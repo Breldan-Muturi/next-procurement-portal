@@ -1,0 +1,21 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-nextprocurementporta-dev-185053-authRole",
+      "UnauthRoleArn": "arn:aws:iam::652633463499:role/amplify-nextprocurementporta-dev-185053-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::652633463499:role/amplify-nextprocurementporta-dev-185053-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-nextprocurementporta-dev-185053-deployment",
+      "UnauthRoleName": "amplify-nextprocurementporta-dev-185053-unauthRole",
+      "StackName": "amplify-nextprocurementporta-dev-185053",
+      "StackId": "arn:aws:cloudformation:us-east-1:652633463499:stack/amplify-nextprocurementporta-dev-185053/2cd7d9d0-4333-11ed-8d55-0aadf9b7a207",
+      "AmplifyAppId": "dp2izwqy2zziw"
+    },
+    "categories": {
+      "auth": {
+        "nextprocurementporta07fbca2e": {},
+        "true": {}
+      }
+    }
+  }
+}

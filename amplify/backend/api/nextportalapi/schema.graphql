@@ -1,0 +1,97 @@
+type Company
+  @model
+  @auth(
+    rules: [
+      { allow: owner }
+      { allow: private, operations: [read] }
+      { allow: public, operations: [read] }
+    ]
+  ) {
+  id: ID!
+  organizationName: String!
+  organizationType: OrganizationType
+  ownership: Ownership
+  natureOfBusiness: String!
+  organizationRegistrationDate: AWSDate!
+  organizationRegistrationNumber: String!
+  registrationCertificate: String!
+  cr12: String!
+  KRAPIN: String!
+  KRAPINCertificate: String!
+  taxComplianceNumber: String!
+  taxComplianceExpiry: AWSDate!
+  taxComplianceCertificate: String!
+  agpoCategory: AGPOCategory
+  agpoExpiryDate: AWSDate
+  agpoCertificate: String
+  addressDetails: [AddressDetails]
+    @hasMany(indexName: "byAddressDetails", fields: ["id"])
+  directors: [Directors] @manyToMany(relationName: "CompanyDirectors")
+}
+
+type AddressDetails
+  @model
+  @auth(
+    rules: [
+      { allow: owner }
+      { allow: private, operations: [read] }
+      { allow: public, operations: [read] }
+    ]
+  ) {
+  id: ID!
+  postalAddress: String!
+  city: String!
+  country: String!
+  officeBuilding: String!
+  streetAddress: String!
+  emailAddress: String!
+  title: Title!
+  fullName: String!
+  contactEmail: String!
+  phoneNumber: String!
+  companyID: ID! @index(name: "byAddressDetails", queryField: "postalAddress")
+  company: Company @belongsTo(fields: ["companyID"])
+}
+
+type Directors
+  @model
+  @auth(
+    rules: [
+      { allow: owner }
+      { allow: private, operations: [read] }
+      { allow: public, operations: [read] }
+    ]
+  ) {
+  id: ID!
+  directorTitle: Title
+  directorName: String!
+  directorKRAPIN: String!
+  directorEmailAddress: String!
+  directorNationality: String!
+  directorShares: Int!
+  companies: [Company] @manyToMany(relationName: "CompanyDirectors")
+}
+
+enum Title {
+  Mr
+  Mrs
+  Ms
+}
+
+enum OrganizationType {
+  SoleProprietorship
+  Partnership
+  PrivateLimitedCompany
+  PublicLimitedCompany
+}
+
+enum Ownership {
+  Kenyan
+  NonCitizen
+}
+
+enum AGPOCategory {
+  Youth
+  Women
+  PWD
+}
