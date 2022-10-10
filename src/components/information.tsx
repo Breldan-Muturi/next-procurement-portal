@@ -2,252 +2,423 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import TextField from "@mui/material/TextField";
-import React, { useState } from "react";
+import MenuItem from "@mui/material/MenuItem";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { Company, CreateCompanyInput, CreateCompanyMutation } from "../API";
-import { CompanyFiles } from "../types";
-import { uuid } from "uuidv4";
-import { API, Storage } from "aws-amplify";
+import { Controller, SubmitHandler, useFormContext } from "react-hook-form";
+import {
+  Company,
+  CreateCompanyInput,
+  CreateCompanyMutation,
+  OrganizationType,
+  Ownership,
+  AGPOCategory,
+} from "../API";
+import { FileUpload, Options } from "../types";
+import { API } from "aws-amplify";
 import { createCompany } from "../graphql/mutations";
 import { GRAPHQL_AUTH_MODE } from "@aws-amplify/auth";
+import FileUploadField from "./FileUploadField";
+import useAcceptedDates from "../hooks/useAcceptedDates";
+import { Button } from "@mui/material";
+import formatDateAws from "../lib/formatDateAWS";
+import getOptions from "../lib/getOptions";
+import uploadFiles from "../lib/uploadFiles";
 
-export default function Information() {
-  const [files, setFiles] = useState<CompanyFiles>({
-    registrationCertificate: undefined,
-    kraPinCertificate: undefined,
-    taxComplianceCertificate: undefined,
-    agpoCertificate: undefined,
-    cr12: undefined,
-  });
+interface Props {
+  activeStep: number;
+  setActiveStep: Dispatch<SetStateAction<number>>;
+  setCompanyId: Dispatch<SetStateAction<string>>;
+}
 
-  const registrationCertificatePath: string = uuid();
-  const cr12Path: string = uuid();
-  const kraPinCertificatePath: string = uuid();
-  const taxComplianceCertificatePath: string = uuid();
-  const agpoCertificatePath: string = uuid();
+export default function Information({
+  activeStep,
+  setActiveStep,
+  setCompanyId,
+}: Props) {
+  const {
+    currentDate,
+    twoYearsLater,
+    twoYearsPrior,
+    oneYearLater,
+    oneYearPrior,
+  } = useAcceptedDates();
+  const [registrationCertificate, setRegistrationCertificate] =
+    useState<FileUpload>();
+  const [cr12, setCr12] = useState<FileUpload>();
+  const [kraPinCertificate, setKraPinCertificate] = useState<FileUpload>();
+  const [taxComplianceCertificate, setTaxComplianceCertificate] =
+    useState<FileUpload>();
+  const [agpoCertificate, setAgpoCertificate] = useState<FileUpload>();
 
-  const handleFileChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    field: string
-  ) => {
-    setFiles((prev) => ({ ...prev, [field]: e.target.files[0] }));
-  };
-  const { register, formState, handleSubmit } = useForm<Company>({
-    mode: "onChange",
-  });
+  const ownerships = getOptions(Ownership);
+  const organizationTypes = getOptions(OrganizationType);
+  const agpoCategories = getOptions(AGPOCategory);
+
+  const {
+    register,
+    control,
+    formState: { errors },
+    handleSubmit,
+  } = useFormContext<Company>();
+
   const onSubmit: SubmitHandler<Company> = async (data) => {
     try {
-      uploadFiles(files);
+      uploadFiles([
+        registrationCertificate,
+        cr12,
+        kraPinCertificate,
+        taxComplianceCertificate,
+        agpoCertificate,
+      ]);
       const createNewCompanyInput: CreateCompanyInput = {
         organizationName: data.organizationName,
         organizationType: data.organizationType,
         ownership: data.ownership,
         natureOfBusiness: data.natureOfBusiness,
-        organizationRegistrationDate: data.organizationRegistrationDate,
+        organizationRegistrationDate: formatDateAws(
+          data.organizationRegistrationDate
+        ),
         organizationRegistrationNumber: data.organizationRegistrationNumber,
-        registrationCertificate: registrationCertificatePath,
-        cr12: cr12Path,
+        registrationCertificate: registrationCertificate.path,
+        cr12: cr12.path,
         KRAPIN: data.KRAPIN,
-        KRAPINCertificate: kraPinCertificatePath,
+        KRAPINCertificate: kraPinCertificate.path,
         taxComplianceNumber: data.taxComplianceNumber,
-        taxComplianceExpiry: data.taxComplianceExpiry,
-        taxComplianceCertificate: taxComplianceCertificatePath,
+        taxComplianceExpiry: formatDateAws(data.taxComplianceExpiry),
+        taxComplianceCertificate: taxComplianceCertificate.path,
         agpoCategory: data.agpoCategory,
-        agpoExpiryDate: data.agpoExpiryDate,
-        agpoCertificate: agpoCertificatePath,
+        agpoExpiryDate: formatDateAws(data.agpoExpiryDate),
+        agpoCertificate: agpoCertificate.path,
       };
       const createNewCompany = (await API.graphql({
         query: createCompany,
         variables: { input: createNewCompanyInput },
         authMode: GRAPHQL_AUTH_MODE.AMAZON_COGNITO_USER_POOLS,
       })) as { data: CreateCompanyMutation };
-      console.log(createNewCompany.data.createCompany.organizationName);
+      setCompanyId(createNewCompany.data.createCompany.id);
+      setActiveStep((prev) => prev + 1);
     } catch (error) {
       console.log(error);
     }
   };
 
-  async function uploadFiles(files: CompanyFiles) {
-    try {
-      await Storage.put(
-        registrationCertificatePath,
-        files.registrationCertificate,
-        {
-          contentType: files.registrationCertificate.type,
-        }
-      );
-      await Storage.put(cr12Path, files.cr12, {
-        contentType: files.cr12.type,
-      });
-      await Storage.put(kraPinCertificatePath, files.kraPinCertificate, {
-        contentType: files.kraPinCertificate.type,
-      });
-      await Storage.put(
-        taxComplianceCertificatePath,
-        files.taxComplianceCertificate,
-        {
-          contentType: files.taxComplianceCertificate.type,
-        }
-      );
-      {
-        files.agpoCertificate &&
-          (await Storage.put(agpoCertificatePath, files.agpoCertificate, {
-            contentType: files.agpoCertificate.type,
-          }));
-      }
-    } catch (error) {
-      throw new Error(error);
-    }
-  }
   return (
-    <Box component="section" sx={{ p: 3, m: 3, border: "1px solid black" }}>
-      <Typography variant="h5" component="h3" gutterBottom>
-        Company Registration Information
-      </Typography>
-      <Divider sx={{ borderColor: "#828282", mb: 1.5 }} />
+    <Box
+      component="form"
+      onSubmit={handleSubmit(onSubmit)}
+      noValidate
+      autoComplete="off"
+    >
       <Box
-        component="form"
-        sx={{
-          "& .MuiTextField-root": { m: 1, width: "25%" },
-        }}
-        noValidate
-        autoComplete="off"
+        component="section"
+        sx={activeStep < 3 && { p: 3, m: 3, border: "1px solid black" }}
       >
+        <Typography variant="h5" component="h3" gutterBottom>
+          Company Registration Information
+        </Typography>
+        <Divider sx={{ borderColor: "#828282" }} />
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <TextField
-              label="Organization name"
-              placeholder="Organization name"
-              required
-              name="organizationName"
-              {...register}
-            />
-            <TextField
-              label="Organization type"
-              placeholder="Organization type"
-              required
-              name="organizationType"
-              select
-              {...register}
-            />
-            <TextField
-              label="Ownership"
-              placeholder="Ownership"
-              name="ownership"
-              required
-              select
-              {...register}
-            />
-            <TextField
-              label="Nature of business"
-              placeholder="Nature of Business"
-              name="natureOfBusiness"
-              required
-              select
-              {...register}
-            />
-          </div>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <DatePicker
-              label="Registration Date"
-              renderInput={(params) => (
-                <TextField name="registrationDate" {...params} {...register} />
-              )}
-              onChange={function (
-                value: unknown,
-                keyboardInputValue?: string
-              ): void {
-                throw new Error("Function not implemented.");
-              }}
-              value={undefined}
-            />
-            <TextField
-              label="Organization Registration Number"
-              placeholder="Enter registration number"
-              required
-              name="registrationNumber"
-              {...register}
-            />
-            <TextField
-              label="Registration Certificate"
-              name="registrationCertificate"
-              {...register}
-            />
-            <TextField label="CR12" name="cr12" {...register} />
-          </div>
-          <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <TextField
-              label="KRA PIN"
-              name="KRAPIN"
-              placeholder="Enter KRA PIN"
-              required
-              {...register}
-            />
-            <DatePicker
-              label="Tax Compliance Expiration"
-              renderInput={(params) => (
-                <TextField
-                  name="taxComplianceExpiry"
-                  {...params}
-                  {...register}
-                />
-              )}
-              onChange={function (
-                value: unknown,
-                keyboardInputValue?: string
-              ): void {
-                throw new Error("Function not implemented.");
-              }}
-              value={undefined}
-            />
-            <TextField
-              label="Attach KRA PIN"
-              name="KRAPINCertificate"
-              {...register}
-            />
-            <TextField
-              label="Attach Tax Compliance"
-              name="taxComplianceCertificate"
-              {...register}
-            />
-          </div>
-          <div
-            style={{
+          <Box
+            sx={{
+              "& .MuiTextField-root": { m: 1, width: "25%" },
+              paddingY: 2,
+            }}
+          >
+            {/* Organization */}
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <TextField
+                name="organizationName"
+                label="Organization name"
+                placeholder="Organization name"
+                required
+                error={!!errors.organizationName}
+                helperText={errors.organizationName?.message}
+                {...register("organizationName", {
+                  required: {
+                    value: true,
+                    message: "An organization name is required.",
+                  },
+                })}
+              />
+              <TextField
+                label="Organization type"
+                placeholder="Organization type"
+                select
+                required
+                defaultValue=""
+                inputProps={register("organizationType", {
+                  required: {
+                    value: true,
+                    message: "Please enter an organization type.",
+                  },
+                })}
+                error={!!errors.organizationType}
+                helperText={errors.organizationType?.message}
+              >
+                {organizationTypes.map((organizationType: Options) => (
+                  <MenuItem
+                    value={organizationType.name}
+                    key={organizationType.name}
+                  >
+                    {organizationType.value}
+                  </MenuItem>
+                ))}
+              </TextField>
+              <TextField
+                label="Ownership"
+                placeholder="Ownership"
+                select
+                required
+                defaultValue=""
+                inputProps={register("ownership", {
+                  required: {
+                    value: true,
+                    message: "Please enter the organization ownership.",
+                  },
+                })}
+                error={!!errors.ownership}
+                helperText={errors.ownership?.message}
+              >
+                {ownerships.map((ownership: Options) => (
+                  <MenuItem value={ownership.name} key={ownership.name}>
+                    {ownership.value}
+                  </MenuItem>
+                ))}
+              </TextField>
+              <TextField
+                name="natureOfBusiness"
+                label="Nature of business"
+                placeholder="Nature of Business"
+                required
+                error={!!errors.natureOfBusiness}
+                helperText={errors.natureOfBusiness?.message}
+                {...register("natureOfBusiness", {
+                  required: {
+                    value: true,
+                    message: "Please enter the organization ownership.",
+                  },
+                })}
+              />
+            </div>
+
+            {/* Registration */}
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <Controller
+                name="organizationRegistrationDate"
+                control={control}
+                defaultValue={new Date().toISOString()}
+                rules={{
+                  required: {
+                    value: true,
+                    message: "The organization registration date is required",
+                  },
+                }}
+                render={({ field: { ref, ...field } }) => (
+                  <DatePicker
+                    value={field.value}
+                    onChange={(organizationRegistrationDate) =>
+                      field.onChange(organizationRegistrationDate)
+                    }
+                    label="Registration Date"
+                    maxDate={currentDate}
+                    renderInput={(params) => (
+                      <TextField
+                        inputRef={ref}
+                        {...params}
+                        error={!!errors.organizationRegistrationDate}
+                        helperText={
+                          errors.organizationRegistrationDate?.message
+                        }
+                        {...field}
+                      />
+                    )}
+                  />
+                )}
+              />
+              <TextField
+                name="organizationRegistrationNumber"
+                label="Organization Registration Number"
+                placeholder="Enter registration number"
+                required
+                error={!!errors.organizationRegistrationNumber}
+                helperText={errors.organizationRegistrationNumber?.message}
+                {...register("organizationRegistrationNumber", {
+                  required: {
+                    value: true,
+                    message:
+                      "Please enter the organization registration number.",
+                  },
+                })}
+              />
+              <FileUploadField
+                upload={registrationCertificate}
+                setFile={setRegistrationCertificate}
+                label="Add Registration Certificate"
+              />
+              <FileUploadField
+                upload={cr12}
+                setFile={setCr12}
+                label="Add CR12"
+              />
+            </div>
+
+            {/* Tax Compliance */}
+            <div style={{ display: "flex" }}>
+              <TextField
+                label="Tax Compliance Number"
+                name="taxComplianceNumber"
+                placeholder="Enter Tax Compliance Number"
+                required
+                error={!!errors.taxComplianceNumber}
+                helperText={errors.taxComplianceNumber?.message}
+                {...register("taxComplianceNumber", {
+                  required: {
+                    value: true,
+                    message:
+                      "The organization tax compliance number is required",
+                  },
+                })}
+              />
+              <Controller
+                name="taxComplianceExpiry"
+                control={control}
+                defaultValue={new Date().toISOString()}
+                rules={{
+                  required: {
+                    value: true,
+                    message: "The tax compliance expiry date is required",
+                  },
+                }}
+                render={({ field: { ref, ...field } }) => (
+                  <DatePicker
+                    value={field.value}
+                    onChange={(taxComplianceExpiry) =>
+                      field.onChange(taxComplianceExpiry)
+                    }
+                    label="Tax Compliance Expiration"
+                    maxDate={oneYearLater}
+                    minDate={oneYearPrior}
+                    renderInput={(params) => (
+                      <TextField
+                        inputRef={ref}
+                        {...params}
+                        error={!!errors.taxComplianceExpiry}
+                        helperText={errors.taxComplianceExpiry?.message}
+                        {...field}
+                      />
+                    )}
+                  />
+                )}
+              />
+              <FileUploadField
+                upload={taxComplianceCertificate}
+                setFile={setTaxComplianceCertificate}
+                label="Attach Tax Compliance"
+              />
+            </div>
+            {/* KRA */}
+            <div style={{ display: "flex" }}>
+              <TextField
+                label="KRA PIN"
+                name="KRAPIN"
+                placeholder="Enter KRA PIN"
+                required
+                error={!!errors.KRAPIN}
+                helperText={errors.KRAPIN?.message}
+                {...register("KRAPIN", {
+                  required: {
+                    value: true,
+                    message: "The organization KRA PIN is required",
+                  },
+                })}
+              />
+              <FileUploadField
+                upload={kraPinCertificate}
+                setFile={setKraPinCertificate}
+                label="Attach KRA PIN"
+              />
+            </div>
+          </Box>
+
+          {/* Agpo  */}
+          <Typography variant="h5" component="h3" gutterBottom>
+            AGPO Qualified Organizations
+          </Typography>
+          <Divider sx={{ borderColor: "#828282" }} />
+          <Box
+            sx={{
+              "& .MuiTextField-root": { m: 1, width: "25%" },
               display: "flex",
-              width: "94%",
+              paddingY: 2,
             }}
           >
             <TextField
               label="AGPO Category"
-              name="agpoCategory"
-              select
               placeholder="Enter AGPO Category"
-              {...register}
-            />
-            <DatePicker
-              label="AGPO Expiry Date"
-              renderInput={(params) => (
-                <TextField name="agpoExpiryDate" {...params} {...register} />
-              )}
-              onChange={function (
-                value: unknown,
-                keyboardInputValue?: string
-              ): void {
-                throw new Error("Function not implemented.");
+              select
+              defaultValue=""
+              inputProps={register("agpoCategory")}
+              error={!!errors.agpoCategory}
+              helperText={errors.agpoCategory?.message}
+            >
+              {agpoCategories.map((agpoCategory: Options) => (
+                <MenuItem value={agpoCategory.name} key={agpoCategory.name}>
+                  {agpoCategory.value}
+                </MenuItem>
+              ))}
+            </TextField>
+            <Controller
+              name="agpoExpiryDate"
+              control={control}
+              defaultValue={new Date().toISOString()}
+              rules={{
+                required: {
+                  value: true,
+                  message: "An Agpo Expiry Date is required",
+                },
               }}
-              value={undefined}
+              render={({ field: { ref, ...field } }) => (
+                <DatePicker
+                  value={field.value}
+                  onChange={(agpoExpiryDate) => field.onChange(agpoExpiryDate)}
+                  label="AGPO Expiry Date"
+                  maxDate={twoYearsLater}
+                  minDate={twoYearsPrior}
+                  renderInput={(params) => (
+                    <TextField
+                      inputRef={ref}
+                      {...params}
+                      error={!!errors.agpoExpiryDate}
+                      helperText={errors.agpoExpiryDate?.message}
+                      {...field}
+                    />
+                  )}
+                />
+              )}
             />
-            <TextField
-              label="Attach AGPO Certificate"
-              name="agoCertificate"
-              {...register}
+            <FileUploadField
+              upload={agpoCertificate}
+              setFile={setAgpoCertificate}
+              label="Attach Agpo Certificate"
             />
-          </div>
+          </Box>
         </LocalizationProvider>
       </Box>
+      {activeStep < 3 && (
+        <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
+          <Box sx={{ flex: "1 1 auto" }} />
+          <Button
+            sx={{ mr: 1 }}
+            onClick={() => setActiveStep((prev) => prev + 1)}
+          >
+            Next
+          </Button>
+          <Button type="submit">Complete Step</Button>
+        </Box>
+      )}
     </Box>
   );
 }

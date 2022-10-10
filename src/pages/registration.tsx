@@ -3,11 +3,13 @@ import Box from "@mui/material/Box";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepButton from "@mui/material/StepButton";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Information from "../components/information";
 import Address from "../components/address";
 import Director from "../components/director";
+import Summary from "../components/summary";
+import { FormProvider, useForm } from "react-hook-form";
+import { CreateCompanyMutation } from "../API";
 
 const steps = [
   "Company Registration Information",
@@ -17,7 +19,9 @@ const steps = [
 ];
 
 export default function Registration() {
+  const methods = useForm<CreateCompanyMutation>();
   const [activeStep, setActiveStep] = useState(0);
+  const [companyId, setCompanyId] = useState<string>("");
   const [completed, setCompleted] = useState<{ [k: number]: boolean }>({});
 
   const totalSteps = () => {
@@ -46,84 +50,77 @@ export default function Registration() {
     setActiveStep(newActiveStep);
   };
 
-  const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-
   const handleStep = (step: number) => () => {
     setActiveStep(step);
   };
 
-  const handleComplete = () => {
-    const newCompleted = completed;
-    newCompleted[activeStep] = true;
-    setCompleted(newCompleted);
-    handleNext();
-  };
-
-  const handleReset = () => {
-    setActiveStep(0);
-    setCompleted({});
-  };
-
   return (
-    <Box sx={{ width: "100%", padding: 5 }}>
-      <Stepper activeStep={activeStep} alternativeLabel>
-        {steps.map((label, index) => (
-          <Step key={label} completed={completed[index]}>
-            <StepButton color="inherit" onClick={handleStep(index)}>
-              {label}
-            </StepButton>
-          </Step>
-        ))}
-      </Stepper>
-      {allStepsCompleted() ? (
-        <Typography sx={{ mt: 2, mb: 1 }}>
-          All steps completed - you&apos;re finished
+    <FormProvider {...methods}>
+      <Box sx={{ width: "100%", padding: 5 }}>
+        <Typography variant="h5" align="center">
+          Supplier Self Registration
         </Typography>
-      ) : (
-        <React.Fragment>
-          {activeStep === 0 && <Information />}
-          {activeStep === 1 && <Address />}
-          {activeStep === 2 && <Director />}
-          {isLastStep() && (
-            <React.Fragment>
-              <Information />
-              <Address />
-              <Director />
-            </React.Fragment>
-          )}
-          <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-            <Button
-              color="inherit"
-              disabled={activeStep === 0}
-              onClick={handleBack}
-              sx={{ mr: 1 }}
-            >
-              Back
-            </Button>
-            <Box sx={{ flex: "1 1 auto" }} />
-            <Button
-              onClick={isLastStep() ? handleReset : handleNext}
-              sx={{ mr: 1 }}
-            >
-              {isLastStep() ? "Reset" : "Next"}
-            </Button>
-            {activeStep !== steps.length &&
-              (completed[activeStep] ? (
-                <Typography variant="caption" sx={{ display: "inline-block" }}>
-                  Step {activeStep + 1} already completed
-                </Typography>
-              ) : (
-                <Button onClick={handleComplete}>
-                  {completedSteps() === totalSteps() - 1
-                    ? "Submit"
-                    : "Complete Step"}
-                </Button>
-              ))}
-          </Box>
-        </React.Fragment>
-      )}
-    </Box>
+        <Typography align="center" sx={{ paddingBottom: 3 }}>
+          Welcome to the supplier self registration portal. This portal serves
+          as an initial point of entry for any vendors who wish to do business
+          with us. <b>IMPORTANT:</b> Please makes sure all required attachments
+          are attached. *Fields marked with an asterisk are mandatory
+        </Typography>
+        <Stepper activeStep={activeStep} alternativeLabel>
+          {steps.map((label, index) => (
+            <Step key={label} completed={completed[index]}>
+              <StepButton color="inherit" onClick={handleStep(index)}>
+                {label}
+              </StepButton>
+            </Step>
+          ))}
+        </Stepper>
+        {allStepsCompleted() ? (
+          <Typography sx={{ mt: 2, mb: 1 }}>
+            All steps completed - you&apos;re finished
+          </Typography>
+        ) : (
+          <React.Fragment>
+            {activeStep === 0 && (
+              <Information
+                activeStep={activeStep}
+                setActiveStep={setActiveStep}
+                setCompanyId={setCompanyId}
+                completed={completed}
+                setCompleted={setCompleted}
+              />
+            )}
+            {activeStep === 1 && (
+              <Address
+                companyId={companyId}
+                activeStep={activeStep}
+                setActiveStep={setActiveStep}
+                completed={completed}
+                setCompleted={setCompleted}
+              />
+            )}
+            {activeStep === 2 && (
+              <Director
+                companyId={companyId}
+                activeStep={activeStep}
+                setActiveStep={setActiveStep}
+                completed={completed}
+                setCompleted={setCompleted}
+              />
+            )}
+            {isLastStep() && (
+              <Summary
+                companyId={companyId}
+                setCompanyId={setCompanyId}
+                activeStep={activeStep}
+                setActiveStep={setActiveStep}
+                completed={completed}
+                setCompleted={setCompleted}
+              />
+            )}
+          </React.Fragment>
+        )}
+      </Box>
+    </FormProvider>
   );
 }

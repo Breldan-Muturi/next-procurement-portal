@@ -9,8 +9,8 @@ type Company
   ) {
   id: ID!
   organizationName: String!
-  organizationType: OrganizationType
-  ownership: Ownership
+  organizationType: OrganizationType!
+  ownership: Ownership!
   natureOfBusiness: String!
   organizationRegistrationDate: AWSDate!
   organizationRegistrationNumber: String!
@@ -67,7 +67,7 @@ type Directors
   directorName: String!
   directorKRAPIN: String!
   directorEmailAddress: String!
-  directorNationality: String!
+  directorNationality: Ownership!
   directorShares: Int!
   companies: [Company] @manyToMany(relationName: "CompanyDirectors")
 }

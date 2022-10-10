@@ -4,6 +4,14 @@ import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { AuthFormInput } from "../types";
+import { yupResolver } from "@hookform/resolvers/yup";
+import {
+  registrationSchema,
+  loginSchema,
+  verifySchema,
+  forgotSchema,
+  resetSchema,
+} from "../validators/authValidators";
 import Avatar from "@mui/material/Avatar";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -33,13 +41,21 @@ export default function authenticate() {
   const [showPassword, setShowPassword] = useState<Boolean>(false);
   const [loading, setLoading] = useState<Boolean>(false);
   const [authError, setAuthError] = useState<string>("");
+
   const {
     register,
-    getValues,
     formState: { errors },
+    reset,
     handleSubmit,
   } = useForm<AuthFormInput>({
     mode: "onChange",
+    resolver: yupResolver(
+      (authMode === "register" && registrationSchema) ||
+        (authMode === "login" && loginSchema) ||
+        (authMode === "verify" && verifySchema) ||
+        (authMode === "forget" && forgotSchema) ||
+        (authMode === "reset" && resetSchema)
+    ),
   });
 
   const onSubmit: SubmitHandler<AuthFormInput> = async (data) => {
@@ -139,17 +155,17 @@ export default function authenticate() {
           {authMode === "forgot" && "Forgot Password"}
           {authMode === "reset" && "Reset password"}
         </Typography>
+        <Grow in={Boolean(open)} {...(open ? { timeout: 1000 } : {})}>
+          <Alert onClose={handleClose} severity="error">
+            {authError}
+          </Alert>
+        </Grow>
         <Box
           component="form"
           onSubmit={handleSubmit(onSubmit)}
           noValidate
           sx={{ mt: 1 }}
         >
-          <Grow in={Boolean(open)} {...(open ? { timeout: 1000 } : {})}>
-            <Alert onClose={handleClose} severity="error">
-              {authError}
-            </Alert>
-          </Grow>
           {authMode !== "verify" && authMode !== "reset" && (
             <TextField
               margin="dense"
@@ -177,20 +193,7 @@ export default function authenticate() {
                   </InputAdornment>
                 ),
               }}
-              {...register("username", {
-                required: {
-                  value: true,
-                  message: "Please enter a username.",
-                },
-                minLength: {
-                  value: 3,
-                  message: "Please enter a username between 3-16 characters.",
-                },
-                maxLength: {
-                  value: 16,
-                  message: "Please enter a username between 3-16 characters.",
-                },
-              })}
+              {...register("username")}
             />
           )}
           {authMode === "register" && (
@@ -219,12 +222,7 @@ export default function authenticate() {
                   </InputAdornment>
                 ),
               }}
-              {...register("email", {
-                required: {
-                  value: true,
-                  message: "Please enter a valid email.",
-                },
-              })}
+              {...register("email")}
             />
           )}
           {authMode !== "forgot" && authMode !== "verify" && (
@@ -266,16 +264,7 @@ export default function authenticate() {
                   </InputAdornment>
                 ),
               }}
-              {...register("password", {
-                required: {
-                  value: true,
-                  message: "Please enter a password.",
-                },
-                minLength: {
-                  value: 8,
-                  message: "Please enter a stronger password.",
-                },
-              })}
+              {...register("password")}
             />
           )}
           {(authMode === "register" || authMode === "reset") && (
@@ -317,11 +306,7 @@ export default function authenticate() {
                   </InputAdornment>
                 ),
               }}
-              {...register("confirmPassword", {
-                validate: (value) =>
-                  value === getValues("password") ||
-                  "Your passwords do not match",
-              })}
+              {...register("confirmPassword")}
             />
           )}
           {authMode === "verify" && (
@@ -351,20 +336,7 @@ export default function authenticate() {
                   </InputAdornment>
                 ),
               }}
-              {...register("code", {
-                required: {
-                  value: true,
-                  message: "Adding a valid code is required.",
-                },
-                minLength: {
-                  value: 6,
-                  message: "Your verification should be 6 characters long.",
-                },
-                maxLength: {
-                  value: 6,
-                  message: "Your verification should be 6 characters long.",
-                },
-              })}
+              {...register("code")}
             />
           )}
           {(authMode === "login" || authMode === "verify") && (
@@ -374,8 +346,12 @@ export default function authenticate() {
             />
           )}
           <LoadingButton
+            fullWidth
+            type="submit"
+            variant="contained"
             loading={Boolean(loading)}
             loadingPosition="start"
+            sx={{ mt: 3, mb: 2 }}
             startIcon={
               (authMode === "login" && <LockOutlinedIcon fontSize="small" />) ||
               (authMode === "register" && <PersonAddIcon fontSize="small" />) ||
@@ -385,10 +361,6 @@ export default function authenticate() {
               (authMode === "forgot" && <EmailIcon fontSize="small" />) ||
               (authMode === "reset" && <LockResetIcon fontSize="small" />)
             }
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
           >
             {authMode === "login" &&
               (loading ? "Logging you in..." : "Login to your account")}
@@ -409,7 +381,10 @@ export default function authenticate() {
             <Grid>
               <Link
                 href="#"
-                onClick={() => setAuthMode("forgot")}
+                onClick={() => {
+                  reset();
+                  setAuthMode("forgot");
+                }}
                 variant="body2"
               >
                 Forgot password?
@@ -418,9 +393,10 @@ export default function authenticate() {
             <Grid>
               <Link
                 href="#"
-                onClick={() =>
-                  setAuthMode(authMode === "register" ? "login" : "register")
-                }
+                onClick={() => {
+                  reset();
+                  setAuthMode(authMode === "register" ? "login" : "register");
+                }}
                 variant="body2"
               >
                 {authMode === "register"

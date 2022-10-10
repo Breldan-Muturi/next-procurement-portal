@@ -21,3 +21,14 @@ export interface CompanyFiles {
   taxComplianceCertificate: File;
   agpoCertificate?: File;
 }
+
+export interface Options {
+  name: string;
+  value: string;
+}
+
+export interface FileUpload {
+  path: string;
+  contentType: string;
+  file: File;
+}
