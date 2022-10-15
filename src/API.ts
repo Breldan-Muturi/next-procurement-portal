@@ -3,23 +3,25 @@
 //  This file was automatically generated and should not be edited.
 
 export type CreateCompanyInput = {
-  id?: string | null;
-  organizationName: string;
-  organizationType: OrganizationType;
-  ownership: Ownership;
-  natureOfBusiness: string;
-  organizationRegistrationDate: string;
-  organizationRegistrationNumber: string;
-  registrationCertificate: string;
-  cr12: string;
-  KRAPIN: string;
-  KRAPINCertificate: string;
-  taxComplianceNumber: string;
-  taxComplianceExpiry: string;
-  taxComplianceCertificate: string;
-  agpoCategory?: AGPOCategory | null;
-  agpoExpiryDate?: string | null;
-  agpoCertificate?: string | null;
+  id?: string | null,
+  organizationName: string,
+  organizationType: OrganizationType,
+  ownership: Ownership,
+  natureOfBusiness: Array< Nature | null >,
+  organizationRegistrationDate: string,
+  organizationRegistrationNumber: string,
+  registrationCertificate: string,
+  cr12: string,
+  KRAPIN: string,
+  KRAPINCertificate: string,
+  taxComplianceNumber: string,
+  taxComplianceExpiry: string,
+  taxComplianceCertificate: string,
+  agpoCategory?: AGPOCategory | null,
+  agpoExpiryDate?: string | null,
+  agpoCertificate?: string | null,
+  status?: Status | null,
+  response?: Array< string | null > | null,
 };
 
 export enum OrganizationType {
@@ -29,10 +31,22 @@ export enum OrganizationType {
   PublicLimitedCompany = "PublicLimitedCompany",
 }
 
+
 export enum Ownership {
   Kenyan = "Kenyan",
   NonCitizen = "NonCitizen",
 }
+
+
+export enum Nature {
+  End_User_Computing = "End_User_Computing",
+  Software_Development = "Software_Development",
+  Digital_Media = "Digital_Media",
+  Policy = "Policy",
+  Consultancy = "Consultancy",
+  Non_Consultancy_Services = "Non_Consultancy_Services",
+}
+
 
 export enum AGPOCategory {
   Youth = "Youth",
@@ -40,42 +54,52 @@ export enum AGPOCategory {
   PWD = "PWD",
 }
 
+
+export enum Status {
+  Approved = "Approved",
+  Pending = "Pending",
+  Rejected = "Rejected",
+}
+
+
 export type ModelCompanyConditionInput = {
-  organizationName?: ModelStringInput | null;
-  organizationType?: ModelOrganizationTypeInput | null;
-  ownership?: ModelOwnershipInput | null;
-  natureOfBusiness?: ModelStringInput | null;
-  organizationRegistrationDate?: ModelStringInput | null;
-  organizationRegistrationNumber?: ModelStringInput | null;
-  registrationCertificate?: ModelStringInput | null;
-  cr12?: ModelStringInput | null;
-  KRAPIN?: ModelStringInput | null;
-  KRAPINCertificate?: ModelStringInput | null;
-  taxComplianceNumber?: ModelStringInput | null;
-  taxComplianceExpiry?: ModelStringInput | null;
-  taxComplianceCertificate?: ModelStringInput | null;
-  agpoCategory?: ModelAGPOCategoryInput | null;
-  agpoExpiryDate?: ModelStringInput | null;
-  agpoCertificate?: ModelStringInput | null;
-  and?: Array<ModelCompanyConditionInput | null> | null;
-  or?: Array<ModelCompanyConditionInput | null> | null;
-  not?: ModelCompanyConditionInput | null;
+  organizationName?: ModelStringInput | null,
+  organizationType?: ModelOrganizationTypeInput | null,
+  ownership?: ModelOwnershipInput | null,
+  natureOfBusiness?: ModelNatureInput | null,
+  organizationRegistrationDate?: ModelStringInput | null,
+  organizationRegistrationNumber?: ModelStringInput | null,
+  registrationCertificate?: ModelStringInput | null,
+  cr12?: ModelStringInput | null,
+  KRAPIN?: ModelStringInput | null,
+  KRAPINCertificate?: ModelStringInput | null,
+  taxComplianceNumber?: ModelStringInput | null,
+  taxComplianceExpiry?: ModelStringInput | null,
+  taxComplianceCertificate?: ModelStringInput | null,
+  agpoCategory?: ModelAGPOCategoryInput | null,
+  agpoExpiryDate?: ModelStringInput | null,
+  agpoCertificate?: ModelStringInput | null,
+  status?: ModelStatusInput | null,
+  response?: ModelStringInput | null,
+  and?: Array< ModelCompanyConditionInput | null > | null,
+  or?: Array< ModelCompanyConditionInput | null > | null,
+  not?: ModelCompanyConditionInput | null,
 };
 
 export type ModelStringInput = {
-  ne?: string | null;
-  eq?: string | null;
-  le?: string | null;
-  lt?: string | null;
-  ge?: string | null;
-  gt?: string | null;
-  contains?: string | null;
-  notContains?: string | null;
-  between?: Array<string | null> | null;
-  beginsWith?: string | null;
-  attributeExists?: boolean | null;
-  attributeType?: ModelAttributeTypes | null;
-  size?: ModelSizeInput | null;
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+  size?: ModelSizeInput | null,
 };
 
 export enum ModelAttributeTypes {
@@ -91,81 +115,97 @@ export enum ModelAttributeTypes {
   _null = "_null",
 }
 
+
 export type ModelSizeInput = {
-  ne?: number | null;
-  eq?: number | null;
-  le?: number | null;
-  lt?: number | null;
-  ge?: number | null;
-  gt?: number | null;
-  between?: Array<number | null> | null;
+  ne?: number | null,
+  eq?: number | null,
+  le?: number | null,
+  lt?: number | null,
+  ge?: number | null,
+  gt?: number | null,
+  between?: Array< number | null > | null,
 };
 
 export type ModelOrganizationTypeInput = {
-  eq?: OrganizationType | null;
-  ne?: OrganizationType | null;
+  eq?: OrganizationType | null,
+  ne?: OrganizationType | null,
 };
 
 export type ModelOwnershipInput = {
-  eq?: Ownership | null;
-  ne?: Ownership | null;
+  eq?: Ownership | null,
+  ne?: Ownership | null,
+};
+
+export type ModelNatureInput = {
+  eq?: Nature | null,
+  ne?: Nature | null,
 };
 
 export type ModelAGPOCategoryInput = {
-  eq?: AGPOCategory | null;
-  ne?: AGPOCategory | null;
+  eq?: AGPOCategory | null,
+  ne?: AGPOCategory | null,
+};
+
+export type ModelStatusInput = {
+  eq?: Status | null,
+  ne?: Status | null,
 };
 
 export type Company = {
-  __typename: "Company";
-  id: string;
-  organizationName: string;
-  organizationType: OrganizationType;
-  ownership: Ownership;
-  natureOfBusiness: string;
-  organizationRegistrationDate: string;
-  organizationRegistrationNumber: string;
-  registrationCertificate: string;
-  cr12: string;
-  KRAPIN: string;
-  KRAPINCertificate: string;
-  taxComplianceNumber: string;
-  taxComplianceExpiry: string;
-  taxComplianceCertificate: string;
-  agpoCategory?: AGPOCategory | null;
-  agpoExpiryDate?: string | null;
-  agpoCertificate?: string | null;
-  addressDetails?: ModelAddressDetailsConnection | null;
-  directors?: ModelCompanyDirectorsConnection | null;
-  createdAt: string;
-  updatedAt: string;
-  owner?: string | null;
+  __typename: "Company",
+  id: string,
+  organizationName: string,
+  organizationType: OrganizationType,
+  ownership: Ownership,
+  natureOfBusiness: Array< Nature | null >,
+  organizationRegistrationDate: string,
+  organizationRegistrationNumber: string,
+  registrationCertificate: string,
+  cr12: string,
+  KRAPIN: string,
+  KRAPINCertificate: string,
+  taxComplianceNumber: string,
+  taxComplianceExpiry: string,
+  taxComplianceCertificate: string,
+  agpoCategory?: AGPOCategory | null,
+  agpoExpiryDate?: string | null,
+  agpoCertificate?: string | null,
+  status?: Status | null,
+  response?: Array< string | null > | null,
+  addressDetails?: ModelAddressDetailsConnection | null,
+  directors?: ModelDirectorsConnection | null,
+  clients?: ModelClientConnection | null,
+  personnel?: ModelPersonelConnection | null,
+  contracts?: ModelContractConnection | null,
+  createdAt: string,
+  updatedAt: string,
+  owner?: string | null,
 };
 
 export type ModelAddressDetailsConnection = {
-  __typename: "ModelAddressDetailsConnection";
-  items: Array<AddressDetails | null>;
-  nextToken?: string | null;
+  __typename: "ModelAddressDetailsConnection",
+  items:  Array<AddressDetails | null >,
+  nextToken?: string | null,
 };
 
 export type AddressDetails = {
-  __typename: "AddressDetails";
-  id: string;
-  postalAddress: string;
-  city: string;
-  country: string;
-  officeBuilding: string;
-  streetAddress: string;
-  emailAddress: string;
-  title: Title;
-  fullName: string;
-  contactEmail: string;
-  phoneNumber: string;
-  companyID: string;
-  company?: Company | null;
-  createdAt: string;
-  updatedAt: string;
-  owner?: string | null;
+  __typename: "AddressDetails",
+  id: string,
+  postalAddress: string,
+  city: string,
+  country: string,
+  officeBuilding: string,
+  streetAddress: string,
+  emailAddress: string,
+  title: Title,
+  fullName: string,
+  contactEmail: string,
+  phoneNumber: string,
+  companyID: string,
+  company?: Company | null,
+  createdAt: string,
+  updatedAt: string,
+  owner?: string | null,
 };
 
 export enum Title {
@@ -174,252 +214,520 @@ export enum Title {
   Ms = "Ms",
 }
 
-export type ModelCompanyDirectorsConnection = {
-  __typename: "ModelCompanyDirectorsConnection";
-  items: Array<CompanyDirectors | null>;
-  nextToken?: string | null;
-};
 
-export type CompanyDirectors = {
-  __typename: "CompanyDirectors";
-  id: string;
-  companyID: string;
-  directorsID: string;
-  company: Company;
-  directors: Directors;
-  createdAt: string;
-  updatedAt: string;
-  owner?: string | null;
+export type ModelDirectorsConnection = {
+  __typename: "ModelDirectorsConnection",
+  items:  Array<Directors | null >,
+  nextToken?: string | null,
 };
 
 export type Directors = {
-  __typename: "Directors";
-  id: string;
-  directorTitle?: Title | null;
-  directorName: string;
-  directorKRAPIN: string;
-  directorEmailAddress: string;
-  directorNationality: string;
-  directorShares: number;
-  companies?: ModelCompanyDirectorsConnection | null;
-  createdAt: string;
-  updatedAt: string;
-  owner?: string | null;
+  __typename: "Directors",
+  id: string,
+  directorTitle?: Title | null,
+  directorName: string,
+  directorKRAPIN: string,
+  directorEmailAddress: string,
+  directorNationality: Ownership,
+  directorShares: number,
+  companyID: string,
+  company?: Company | null,
+  createdAt: string,
+  updatedAt: string,
+  owner?: string | null,
 };
 
+export type ModelClientConnection = {
+  __typename: "ModelClientConnection",
+  items:  Array<Client | null >,
+  nextToken?: string | null,
+};
+
+export type Client = {
+  __typename: "Client",
+  id: string,
+  clientName: string,
+  contractValue: number,
+  startDate: string,
+  endDate: string,
+  contactPerson: string,
+  contactEmail: string,
+  contactPhoneNumber: string,
+  contractAttachment: string,
+  serviceDescription: string,
+  companyID: string,
+  company?: Company | null,
+  createdAt: string,
+  updatedAt: string,
+  owner?: string | null,
+};
+
+export type ModelPersonelConnection = {
+  __typename: "ModelPersonelConnection",
+  items:  Array<Personel | null >,
+  nextToken?: string | null,
+};
+
+export type Personel = {
+  __typename: "Personel",
+  id: string,
+  personelName: string,
+  role: string,
+  nationalid: string,
+  qualificationAttachment: string,
+  companyID: string,
+  company?: Company | null,
+  createdAt: string,
+  updatedAt: string,
+  owner?: string | null,
+};
+
+export type ModelContractConnection = {
+  __typename: "ModelContractConnection",
+  items:  Array<Contract | null >,
+  nextToken?: string | null,
+};
+
+export type Contract = {
+  __typename: "Contract",
+  id: string,
+  title: string,
+  type: Nature,
+  department: string,
+  budget: number,
+  status?: ContractStatus | null,
+  description: string,
+  companyID: string,
+  company?: Company | null,
+  createdAt: string,
+  updatedAt: string,
+  owner?: string | null,
+};
+
+export enum ContractStatus {
+  In_Progress = "In_Progress",
+  Ended = "Ended",
+  Draft = "Draft",
+}
+
+
 export type UpdateCompanyInput = {
-  id: string;
-  organizationName?: string | null;
-  organizationType?: OrganizationType | null;
-  ownership?: Ownership | null;
-  natureOfBusiness?: string | null;
-  organizationRegistrationDate?: string | null;
-  organizationRegistrationNumber?: string | null;
-  registrationCertificate?: string | null;
-  cr12?: string | null;
-  KRAPIN?: string | null;
-  KRAPINCertificate?: string | null;
-  taxComplianceNumber?: string | null;
-  taxComplianceExpiry?: string | null;
-  taxComplianceCertificate?: string | null;
-  agpoCategory?: AGPOCategory | null;
-  agpoExpiryDate?: string | null;
-  agpoCertificate?: string | null;
+  id: string,
+  organizationName?: string | null,
+  organizationType?: OrganizationType | null,
+  ownership?: Ownership | null,
+  natureOfBusiness?: Array< Nature | null > | null,
+  organizationRegistrationDate?: string | null,
+  organizationRegistrationNumber?: string | null,
+  registrationCertificate?: string | null,
+  cr12?: string | null,
+  KRAPIN?: string | null,
+  KRAPINCertificate?: string | null,
+  taxComplianceNumber?: string | null,
+  taxComplianceExpiry?: string | null,
+  taxComplianceCertificate?: string | null,
+  agpoCategory?: AGPOCategory | null,
+  agpoExpiryDate?: string | null,
+  agpoCertificate?: string | null,
+  status?: Status | null,
+  response?: Array< string | null > | null,
 };
 
 export type DeleteCompanyInput = {
-  id: string;
+  id: string,
 };
 
 export type CreateAddressDetailsInput = {
-  id?: string | null;
-  postalAddress: string;
-  city: string;
-  country: string;
-  officeBuilding: string;
-  streetAddress: string;
-  emailAddress: string;
-  title: Title;
-  fullName: string;
-  contactEmail: string;
-  phoneNumber: string;
-  companyID: string;
+  id?: string | null,
+  postalAddress: string,
+  city: string,
+  country: string,
+  officeBuilding: string,
+  streetAddress: string,
+  emailAddress: string,
+  title: Title,
+  fullName: string,
+  contactEmail: string,
+  phoneNumber: string,
+  companyID: string,
 };
 
 export type ModelAddressDetailsConditionInput = {
-  postalAddress?: ModelStringInput | null;
-  city?: ModelStringInput | null;
-  country?: ModelStringInput | null;
-  officeBuilding?: ModelStringInput | null;
-  streetAddress?: ModelStringInput | null;
-  emailAddress?: ModelStringInput | null;
-  title?: ModelTitleInput | null;
-  fullName?: ModelStringInput | null;
-  contactEmail?: ModelStringInput | null;
-  phoneNumber?: ModelStringInput | null;
-  companyID?: ModelIDInput | null;
-  and?: Array<ModelAddressDetailsConditionInput | null> | null;
-  or?: Array<ModelAddressDetailsConditionInput | null> | null;
-  not?: ModelAddressDetailsConditionInput | null;
+  postalAddress?: ModelStringInput | null,
+  city?: ModelStringInput | null,
+  country?: ModelStringInput | null,
+  officeBuilding?: ModelStringInput | null,
+  streetAddress?: ModelStringInput | null,
+  emailAddress?: ModelStringInput | null,
+  title?: ModelTitleInput | null,
+  fullName?: ModelStringInput | null,
+  contactEmail?: ModelStringInput | null,
+  phoneNumber?: ModelStringInput | null,
+  companyID?: ModelIDInput | null,
+  and?: Array< ModelAddressDetailsConditionInput | null > | null,
+  or?: Array< ModelAddressDetailsConditionInput | null > | null,
+  not?: ModelAddressDetailsConditionInput | null,
 };
 
 export type ModelTitleInput = {
-  eq?: Title | null;
-  ne?: Title | null;
+  eq?: Title | null,
+  ne?: Title | null,
 };
 
 export type ModelIDInput = {
-  ne?: string | null;
-  eq?: string | null;
-  le?: string | null;
-  lt?: string | null;
-  ge?: string | null;
-  gt?: string | null;
-  contains?: string | null;
-  notContains?: string | null;
-  between?: Array<string | null> | null;
-  beginsWith?: string | null;
-  attributeExists?: boolean | null;
-  attributeType?: ModelAttributeTypes | null;
-  size?: ModelSizeInput | null;
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+  size?: ModelSizeInput | null,
 };
 
 export type UpdateAddressDetailsInput = {
-  id: string;
-  postalAddress?: string | null;
-  city?: string | null;
-  country?: string | null;
-  officeBuilding?: string | null;
-  streetAddress?: string | null;
-  emailAddress?: string | null;
-  title?: Title | null;
-  fullName?: string | null;
-  contactEmail?: string | null;
-  phoneNumber?: string | null;
-  companyID?: string | null;
+  id: string,
+  postalAddress?: string | null,
+  city?: string | null,
+  country?: string | null,
+  officeBuilding?: string | null,
+  streetAddress?: string | null,
+  emailAddress?: string | null,
+  title?: Title | null,
+  fullName?: string | null,
+  contactEmail?: string | null,
+  phoneNumber?: string | null,
+  companyID?: string | null,
 };
 
 export type DeleteAddressDetailsInput = {
-  id: string;
+  id: string,
 };
 
 export type CreateDirectorsInput = {
-  id?: string | null;
-  directorTitle?: Title | null;
-  directorName: string;
-  directorKRAPIN: string;
-  directorEmailAddress: string;
-  directorNationality: string;
-  directorShares: number;
+  id?: string | null,
+  directorTitle?: Title | null,
+  directorName: string,
+  directorKRAPIN: string,
+  directorEmailAddress: string,
+  directorNationality: Ownership,
+  directorShares: number,
+  companyID: string,
 };
 
 export type ModelDirectorsConditionInput = {
-  directorTitle?: ModelTitleInput | null;
-  directorName?: ModelStringInput | null;
-  directorKRAPIN?: ModelStringInput | null;
-  directorEmailAddress?: ModelStringInput | null;
-  directorNationality?: ModelStringInput | null;
-  directorShares?: ModelIntInput | null;
-  and?: Array<ModelDirectorsConditionInput | null> | null;
-  or?: Array<ModelDirectorsConditionInput | null> | null;
-  not?: ModelDirectorsConditionInput | null;
+  directorTitle?: ModelTitleInput | null,
+  directorName?: ModelStringInput | null,
+  directorKRAPIN?: ModelStringInput | null,
+  directorEmailAddress?: ModelStringInput | null,
+  directorNationality?: ModelOwnershipInput | null,
+  directorShares?: ModelIntInput | null,
+  companyID?: ModelIDInput | null,
+  and?: Array< ModelDirectorsConditionInput | null > | null,
+  or?: Array< ModelDirectorsConditionInput | null > | null,
+  not?: ModelDirectorsConditionInput | null,
 };
 
 export type ModelIntInput = {
-  ne?: number | null;
-  eq?: number | null;
-  le?: number | null;
-  lt?: number | null;
-  ge?: number | null;
-  gt?: number | null;
-  between?: Array<number | null> | null;
-  attributeExists?: boolean | null;
-  attributeType?: ModelAttributeTypes | null;
+  ne?: number | null,
+  eq?: number | null,
+  le?: number | null,
+  lt?: number | null,
+  ge?: number | null,
+  gt?: number | null,
+  between?: Array< number | null > | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
 };
 
 export type UpdateDirectorsInput = {
-  id: string;
-  directorTitle?: Title | null;
-  directorName?: string | null;
-  directorKRAPIN?: string | null;
-  directorEmailAddress?: string | null;
-  directorNationality?: string | null;
-  directorShares?: number | null;
+  id: string,
+  directorTitle?: Title | null,
+  directorName?: string | null,
+  directorKRAPIN?: string | null,
+  directorEmailAddress?: string | null,
+  directorNationality?: Ownership | null,
+  directorShares?: number | null,
+  companyID?: string | null,
 };
 
 export type DeleteDirectorsInput = {
-  id: string;
+  id: string,
 };
 
-export type CreateCompanyDirectorsInput = {
-  id?: string | null;
-  companyID: string;
-  directorsID: string;
+export type CreateClientInput = {
+  id?: string | null,
+  clientName: string,
+  contractValue: number,
+  startDate: string,
+  endDate: string,
+  contactPerson: string,
+  contactEmail: string,
+  contactPhoneNumber: string,
+  contractAttachment: string,
+  serviceDescription: string,
+  companyID: string,
 };
 
-export type ModelCompanyDirectorsConditionInput = {
-  companyID?: ModelIDInput | null;
-  directorsID?: ModelIDInput | null;
-  and?: Array<ModelCompanyDirectorsConditionInput | null> | null;
-  or?: Array<ModelCompanyDirectorsConditionInput | null> | null;
-  not?: ModelCompanyDirectorsConditionInput | null;
+export type ModelClientConditionInput = {
+  clientName?: ModelStringInput | null,
+  contractValue?: ModelIntInput | null,
+  startDate?: ModelStringInput | null,
+  endDate?: ModelStringInput | null,
+  contactPerson?: ModelStringInput | null,
+  contactEmail?: ModelStringInput | null,
+  contactPhoneNumber?: ModelStringInput | null,
+  contractAttachment?: ModelStringInput | null,
+  serviceDescription?: ModelStringInput | null,
+  companyID?: ModelIDInput | null,
+  and?: Array< ModelClientConditionInput | null > | null,
+  or?: Array< ModelClientConditionInput | null > | null,
+  not?: ModelClientConditionInput | null,
 };
 
-export type UpdateCompanyDirectorsInput = {
-  id: string;
-  companyID?: string | null;
-  directorsID?: string | null;
+export type UpdateClientInput = {
+  id: string,
+  clientName?: string | null,
+  contractValue?: number | null,
+  startDate?: string | null,
+  endDate?: string | null,
+  contactPerson?: string | null,
+  contactEmail?: string | null,
+  contactPhoneNumber?: string | null,
+  contractAttachment?: string | null,
+  serviceDescription?: string | null,
+  companyID?: string | null,
 };
 
-export type DeleteCompanyDirectorsInput = {
-  id: string;
+export type DeleteClientInput = {
+  id: string,
+};
+
+export type CreatePersonelInput = {
+  id?: string | null,
+  personelName: string,
+  role: string,
+  nationalid: string,
+  qualificationAttachment: string,
+  companyID: string,
+};
+
+export type ModelPersonelConditionInput = {
+  personelName?: ModelStringInput | null,
+  role?: ModelStringInput | null,
+  nationalid?: ModelStringInput | null,
+  qualificationAttachment?: ModelStringInput | null,
+  companyID?: ModelIDInput | null,
+  and?: Array< ModelPersonelConditionInput | null > | null,
+  or?: Array< ModelPersonelConditionInput | null > | null,
+  not?: ModelPersonelConditionInput | null,
+};
+
+export type UpdatePersonelInput = {
+  id: string,
+  personelName?: string | null,
+  role?: string | null,
+  nationalid?: string | null,
+  qualificationAttachment?: string | null,
+  companyID?: string | null,
+};
+
+export type DeletePersonelInput = {
+  id: string,
+};
+
+export type CreateOpportunityInput = {
+  id?: string | null,
+  title: string,
+  type: Nature,
+  department: string,
+  budget: number,
+  status?: OpportunityStatus | null,
+  description: string,
+};
+
+export enum OpportunityStatus {
+  In_Progress = "In_Progress",
+  Draft = "Draft",
+  Closed = "Closed",
+}
+
+
+export type ModelOpportunityConditionInput = {
+  title?: ModelStringInput | null,
+  type?: ModelNatureInput | null,
+  department?: ModelStringInput | null,
+  budget?: ModelIntInput | null,
+  status?: ModelOpportunityStatusInput | null,
+  description?: ModelStringInput | null,
+  and?: Array< ModelOpportunityConditionInput | null > | null,
+  or?: Array< ModelOpportunityConditionInput | null > | null,
+  not?: ModelOpportunityConditionInput | null,
+};
+
+export type ModelOpportunityStatusInput = {
+  eq?: OpportunityStatus | null,
+  ne?: OpportunityStatus | null,
+};
+
+export type Opportunity = {
+  __typename: "Opportunity",
+  id: string,
+  title: string,
+  type: Nature,
+  department: string,
+  budget: number,
+  status?: OpportunityStatus | null,
+  description: string,
+  createdAt: string,
+  updatedAt: string,
+  owner?: string | null,
+};
+
+export type UpdateOpportunityInput = {
+  id: string,
+  title?: string | null,
+  type?: Nature | null,
+  department?: string | null,
+  budget?: number | null,
+  status?: OpportunityStatus | null,
+  description?: string | null,
+};
+
+export type DeleteOpportunityInput = {
+  id: string,
+};
+
+export type CreateActionInput = {
+  id?: string | null,
+  title: string,
+  type: string,
+};
+
+export type ModelActionConditionInput = {
+  title?: ModelStringInput | null,
+  type?: ModelStringInput | null,
+  and?: Array< ModelActionConditionInput | null > | null,
+  or?: Array< ModelActionConditionInput | null > | null,
+  not?: ModelActionConditionInput | null,
+};
+
+export type Action = {
+  __typename: "Action",
+  id: string,
+  title: string,
+  type: string,
+  createdAt: string,
+  updatedAt: string,
+  owner?: string | null,
+};
+
+export type UpdateActionInput = {
+  id: string,
+  title?: string | null,
+  type?: string | null,
+};
+
+export type DeleteActionInput = {
+  id: string,
+};
+
+export type CreateContractInput = {
+  id?: string | null,
+  title: string,
+  type: Nature,
+  department: string,
+  budget: number,
+  status?: ContractStatus | null,
+  description: string,
+  companyID: string,
+};
+
+export type ModelContractConditionInput = {
+  title?: ModelStringInput | null,
+  type?: ModelNatureInput | null,
+  department?: ModelStringInput | null,
+  budget?: ModelIntInput | null,
+  status?: ModelContractStatusInput | null,
+  description?: ModelStringInput | null,
+  companyID?: ModelIDInput | null,
+  and?: Array< ModelContractConditionInput | null > | null,
+  or?: Array< ModelContractConditionInput | null > | null,
+  not?: ModelContractConditionInput | null,
+};
+
+export type ModelContractStatusInput = {
+  eq?: ContractStatus | null,
+  ne?: ContractStatus | null,
+};
+
+export type UpdateContractInput = {
+  id: string,
+  title?: string | null,
+  type?: Nature | null,
+  department?: string | null,
+  budget?: number | null,
+  status?: ContractStatus | null,
+  description?: string | null,
+  companyID?: string | null,
+};
+
+export type DeleteContractInput = {
+  id: string,
 };
 
 export type ModelCompanyFilterInput = {
-  id?: ModelIDInput | null;
-  organizationName?: ModelStringInput | null;
-  organizationType?: ModelOrganizationTypeInput | null;
-  ownership?: ModelOwnershipInput | null;
-  natureOfBusiness?: ModelStringInput | null;
-  organizationRegistrationDate?: ModelStringInput | null;
-  organizationRegistrationNumber?: ModelStringInput | null;
-  registrationCertificate?: ModelStringInput | null;
-  cr12?: ModelStringInput | null;
-  KRAPIN?: ModelStringInput | null;
-  KRAPINCertificate?: ModelStringInput | null;
-  taxComplianceNumber?: ModelStringInput | null;
-  taxComplianceExpiry?: ModelStringInput | null;
-  taxComplianceCertificate?: ModelStringInput | null;
-  agpoCategory?: ModelAGPOCategoryInput | null;
-  agpoExpiryDate?: ModelStringInput | null;
-  agpoCertificate?: ModelStringInput | null;
-  and?: Array<ModelCompanyFilterInput | null> | null;
-  or?: Array<ModelCompanyFilterInput | null> | null;
-  not?: ModelCompanyFilterInput | null;
+  id?: ModelIDInput | null,
+  organizationName?: ModelStringInput | null,
+  organizationType?: ModelOrganizationTypeInput | null,
+  ownership?: ModelOwnershipInput | null,
+  natureOfBusiness?: ModelNatureInput | null,
+  organizationRegistrationDate?: ModelStringInput | null,
+  organizationRegistrationNumber?: ModelStringInput | null,
+  registrationCertificate?: ModelStringInput | null,
+  cr12?: ModelStringInput | null,
+  KRAPIN?: ModelStringInput | null,
+  KRAPINCertificate?: ModelStringInput | null,
+  taxComplianceNumber?: ModelStringInput | null,
+  taxComplianceExpiry?: ModelStringInput | null,
+  taxComplianceCertificate?: ModelStringInput | null,
+  agpoCategory?: ModelAGPOCategoryInput | null,
+  agpoExpiryDate?: ModelStringInput | null,
+  agpoCertificate?: ModelStringInput | null,
+  status?: ModelStatusInput | null,
+  response?: ModelStringInput | null,
+  and?: Array< ModelCompanyFilterInput | null > | null,
+  or?: Array< ModelCompanyFilterInput | null > | null,
+  not?: ModelCompanyFilterInput | null,
 };
 
 export type ModelCompanyConnection = {
-  __typename: "ModelCompanyConnection";
-  items: Array<Company | null>;
-  nextToken?: string | null;
+  __typename: "ModelCompanyConnection",
+  items:  Array<Company | null >,
+  nextToken?: string | null,
 };
 
 export type ModelAddressDetailsFilterInput = {
-  id?: ModelIDInput | null;
-  postalAddress?: ModelStringInput | null;
-  city?: ModelStringInput | null;
-  country?: ModelStringInput | null;
-  officeBuilding?: ModelStringInput | null;
-  streetAddress?: ModelStringInput | null;
-  emailAddress?: ModelStringInput | null;
-  title?: ModelTitleInput | null;
-  fullName?: ModelStringInput | null;
-  contactEmail?: ModelStringInput | null;
-  phoneNumber?: ModelStringInput | null;
-  companyID?: ModelIDInput | null;
-  and?: Array<ModelAddressDetailsFilterInput | null> | null;
-  or?: Array<ModelAddressDetailsFilterInput | null> | null;
-  not?: ModelAddressDetailsFilterInput | null;
+  id?: ModelIDInput | null,
+  postalAddress?: ModelStringInput | null,
+  city?: ModelStringInput | null,
+  country?: ModelStringInput | null,
+  officeBuilding?: ModelStringInput | null,
+  streetAddress?: ModelStringInput | null,
+  emailAddress?: ModelStringInput | null,
+  title?: ModelTitleInput | null,
+  fullName?: ModelStringInput | null,
+  contactEmail?: ModelStringInput | null,
+  phoneNumber?: ModelStringInput | null,
+  companyID?: ModelIDInput | null,
+  and?: Array< ModelAddressDetailsFilterInput | null > | null,
+  or?: Array< ModelAddressDetailsFilterInput | null > | null,
+  not?: ModelAddressDetailsFilterInput | null,
 };
 
 export enum ModelSortDirection {
@@ -427,1810 +735,8205 @@ export enum ModelSortDirection {
   DESC = "DESC",
 }
 
+
 export type ModelDirectorsFilterInput = {
-  id?: ModelIDInput | null;
-  directorTitle?: ModelTitleInput | null;
-  directorName?: ModelStringInput | null;
-  directorKRAPIN?: ModelStringInput | null;
-  directorEmailAddress?: ModelStringInput | null;
-  directorNationality?: ModelStringInput | null;
-  directorShares?: ModelIntInput | null;
-  and?: Array<ModelDirectorsFilterInput | null> | null;
-  or?: Array<ModelDirectorsFilterInput | null> | null;
-  not?: ModelDirectorsFilterInput | null;
+  id?: ModelIDInput | null,
+  directorTitle?: ModelTitleInput | null,
+  directorName?: ModelStringInput | null,
+  directorKRAPIN?: ModelStringInput | null,
+  directorEmailAddress?: ModelStringInput | null,
+  directorNationality?: ModelOwnershipInput | null,
+  directorShares?: ModelIntInput | null,
+  companyID?: ModelIDInput | null,
+  and?: Array< ModelDirectorsFilterInput | null > | null,
+  or?: Array< ModelDirectorsFilterInput | null > | null,
+  not?: ModelDirectorsFilterInput | null,
 };
 
-export type ModelDirectorsConnection = {
-  __typename: "ModelDirectorsConnection";
-  items: Array<Directors | null>;
-  nextToken?: string | null;
+export type ModelClientFilterInput = {
+  id?: ModelIDInput | null,
+  clientName?: ModelStringInput | null,
+  contractValue?: ModelIntInput | null,
+  startDate?: ModelStringInput | null,
+  endDate?: ModelStringInput | null,
+  contactPerson?: ModelStringInput | null,
+  contactEmail?: ModelStringInput | null,
+  contactPhoneNumber?: ModelStringInput | null,
+  contractAttachment?: ModelStringInput | null,
+  serviceDescription?: ModelStringInput | null,
+  companyID?: ModelIDInput | null,
+  and?: Array< ModelClientFilterInput | null > | null,
+  or?: Array< ModelClientFilterInput | null > | null,
+  not?: ModelClientFilterInput | null,
 };
 
-export type ModelCompanyDirectorsFilterInput = {
-  id?: ModelIDInput | null;
-  companyID?: ModelIDInput | null;
-  directorsID?: ModelIDInput | null;
-  and?: Array<ModelCompanyDirectorsFilterInput | null> | null;
-  or?: Array<ModelCompanyDirectorsFilterInput | null> | null;
-  not?: ModelCompanyDirectorsFilterInput | null;
+export type ModelPersonelFilterInput = {
+  id?: ModelIDInput | null,
+  personelName?: ModelStringInput | null,
+  role?: ModelStringInput | null,
+  nationalid?: ModelStringInput | null,
+  qualificationAttachment?: ModelStringInput | null,
+  companyID?: ModelIDInput | null,
+  and?: Array< ModelPersonelFilterInput | null > | null,
+  or?: Array< ModelPersonelFilterInput | null > | null,
+  not?: ModelPersonelFilterInput | null,
+};
+
+export type ModelOpportunityFilterInput = {
+  id?: ModelIDInput | null,
+  title?: ModelStringInput | null,
+  type?: ModelNatureInput | null,
+  department?: ModelStringInput | null,
+  budget?: ModelIntInput | null,
+  status?: ModelOpportunityStatusInput | null,
+  description?: ModelStringInput | null,
+  and?: Array< ModelOpportunityFilterInput | null > | null,
+  or?: Array< ModelOpportunityFilterInput | null > | null,
+  not?: ModelOpportunityFilterInput | null,
+};
+
+export type ModelOpportunityConnection = {
+  __typename: "ModelOpportunityConnection",
+  items:  Array<Opportunity | null >,
+  nextToken?: string | null,
+};
+
+export type ModelActionFilterInput = {
+  id?: ModelIDInput | null,
+  title?: ModelStringInput | null,
+  type?: ModelStringInput | null,
+  and?: Array< ModelActionFilterInput | null > | null,
+  or?: Array< ModelActionFilterInput | null > | null,
+  not?: ModelActionFilterInput | null,
+};
+
+export type ModelActionConnection = {
+  __typename: "ModelActionConnection",
+  items:  Array<Action | null >,
+  nextToken?: string | null,
+};
+
+export type ModelContractFilterInput = {
+  id?: ModelIDInput | null,
+  title?: ModelStringInput | null,
+  type?: ModelNatureInput | null,
+  department?: ModelStringInput | null,
+  budget?: ModelIntInput | null,
+  status?: ModelContractStatusInput | null,
+  description?: ModelStringInput | null,
+  companyID?: ModelIDInput | null,
+  and?: Array< ModelContractFilterInput | null > | null,
+  or?: Array< ModelContractFilterInput | null > | null,
+  not?: ModelContractFilterInput | null,
+};
+
+export type ModelSubscriptionCompanyFilterInput = {
+  id?: ModelSubscriptionIDInput | null,
+  organizationName?: ModelSubscriptionStringInput | null,
+  organizationType?: ModelSubscriptionStringInput | null,
+  ownership?: ModelSubscriptionStringInput | null,
+  natureOfBusiness?: ModelSubscriptionStringInput | null,
+  organizationRegistrationDate?: ModelSubscriptionStringInput | null,
+  organizationRegistrationNumber?: ModelSubscriptionStringInput | null,
+  registrationCertificate?: ModelSubscriptionStringInput | null,
+  cr12?: ModelSubscriptionStringInput | null,
+  KRAPIN?: ModelSubscriptionStringInput | null,
+  KRAPINCertificate?: ModelSubscriptionStringInput | null,
+  taxComplianceNumber?: ModelSubscriptionStringInput | null,
+  taxComplianceExpiry?: ModelSubscriptionStringInput | null,
+  taxComplianceCertificate?: ModelSubscriptionStringInput | null,
+  agpoCategory?: ModelSubscriptionStringInput | null,
+  agpoExpiryDate?: ModelSubscriptionStringInput | null,
+  agpoCertificate?: ModelSubscriptionStringInput | null,
+  status?: ModelSubscriptionStringInput | null,
+  response?: ModelSubscriptionStringInput | null,
+  and?: Array< ModelSubscriptionCompanyFilterInput | null > | null,
+  or?: Array< ModelSubscriptionCompanyFilterInput | null > | null,
+};
+
+export type ModelSubscriptionIDInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+  in?: Array< string | null > | null,
+  notIn?: Array< string | null > | null,
+};
+
+export type ModelSubscriptionStringInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+  in?: Array< string | null > | null,
+  notIn?: Array< string | null > | null,
+};
+
+export type ModelSubscriptionAddressDetailsFilterInput = {
+  id?: ModelSubscriptionIDInput | null,
+  postalAddress?: ModelSubscriptionStringInput | null,
+  city?: ModelSubscriptionStringInput | null,
+  country?: ModelSubscriptionStringInput | null,
+  officeBuilding?: ModelSubscriptionStringInput | null,
+  streetAddress?: ModelSubscriptionStringInput | null,
+  emailAddress?: ModelSubscriptionStringInput | null,
+  title?: ModelSubscriptionStringInput | null,
+  fullName?: ModelSubscriptionStringInput | null,
+  contactEmail?: ModelSubscriptionStringInput | null,
+  phoneNumber?: ModelSubscriptionStringInput | null,
+  companyID?: ModelSubscriptionIDInput | null,
+  and?: Array< ModelSubscriptionAddressDetailsFilterInput | null > | null,
+  or?: Array< ModelSubscriptionAddressDetailsFilterInput | null > | null,
+};
+
+export type ModelSubscriptionDirectorsFilterInput = {
+  id?: ModelSubscriptionIDInput | null,
+  directorTitle?: ModelSubscriptionStringInput | null,
+  directorName?: ModelSubscriptionStringInput | null,
+  directorKRAPIN?: ModelSubscriptionStringInput | null,
+  directorEmailAddress?: ModelSubscriptionStringInput | null,
+  directorNationality?: ModelSubscriptionStringInput | null,
+  directorShares?: ModelSubscriptionIntInput | null,
+  companyID?: ModelSubscriptionIDInput | null,
+  and?: Array< ModelSubscriptionDirectorsFilterInput | null > | null,
+  or?: Array< ModelSubscriptionDirectorsFilterInput | null > | null,
+};
+
+export type ModelSubscriptionIntInput = {
+  ne?: number | null,
+  eq?: number | null,
+  le?: number | null,
+  lt?: number | null,
+  ge?: number | null,
+  gt?: number | null,
+  between?: Array< number | null > | null,
+  in?: Array< number | null > | null,
+  notIn?: Array< number | null > | null,
+};
+
+export type ModelSubscriptionClientFilterInput = {
+  id?: ModelSubscriptionIDInput | null,
+  clientName?: ModelSubscriptionStringInput | null,
+  contractValue?: ModelSubscriptionIntInput | null,
+  startDate?: ModelSubscriptionStringInput | null,
+  endDate?: ModelSubscriptionStringInput | null,
+  contactPerson?: ModelSubscriptionStringInput | null,
+  contactEmail?: ModelSubscriptionStringInput | null,
+  contactPhoneNumber?: ModelSubscriptionStringInput | null,
+  contractAttachment?: ModelSubscriptionStringInput | null,
+  serviceDescription?: ModelSubscriptionStringInput | null,
+  companyID?: ModelSubscriptionIDInput | null,
+  and?: Array< ModelSubscriptionClientFilterInput | null > | null,
+  or?: Array< ModelSubscriptionClientFilterInput | null > | null,
+};
+
+export type ModelSubscriptionPersonelFilterInput = {
+  id?: ModelSubscriptionIDInput | null,
+  personelName?: ModelSubscriptionStringInput | null,
+  role?: ModelSubscriptionStringInput | null,
+  nationalid?: ModelSubscriptionStringInput | null,
+  qualificationAttachment?: ModelSubscriptionStringInput | null,
+  companyID?: ModelSubscriptionIDInput | null,
+  and?: Array< ModelSubscriptionPersonelFilterInput | null > | null,
+  or?: Array< ModelSubscriptionPersonelFilterInput | null > | null,
+};
+
+export type ModelSubscriptionOpportunityFilterInput = {
+  id?: ModelSubscriptionIDInput | null,
+  title?: ModelSubscriptionStringInput | null,
+  type?: ModelSubscriptionStringInput | null,
+  department?: ModelSubscriptionStringInput | null,
+  budget?: ModelSubscriptionIntInput | null,
+  status?: ModelSubscriptionStringInput | null,
+  description?: ModelSubscriptionStringInput | null,
+  and?: Array< ModelSubscriptionOpportunityFilterInput | null > | null,
+  or?: Array< ModelSubscriptionOpportunityFilterInput | null > | null,
+};
+
+export type ModelSubscriptionActionFilterInput = {
+  id?: ModelSubscriptionIDInput | null,
+  title?: ModelSubscriptionStringInput | null,
+  type?: ModelSubscriptionStringInput | null,
+  and?: Array< ModelSubscriptionActionFilterInput | null > | null,
+  or?: Array< ModelSubscriptionActionFilterInput | null > | null,
+};
+
+export type ModelSubscriptionContractFilterInput = {
+  id?: ModelSubscriptionIDInput | null,
+  title?: ModelSubscriptionStringInput | null,
+  type?: ModelSubscriptionStringInput | null,
+  department?: ModelSubscriptionStringInput | null,
+  budget?: ModelSubscriptionIntInput | null,
+  status?: ModelSubscriptionStringInput | null,
+  description?: ModelSubscriptionStringInput | null,
+  companyID?: ModelSubscriptionIDInput | null,
+  and?: Array< ModelSubscriptionContractFilterInput | null > | null,
+  or?: Array< ModelSubscriptionContractFilterInput | null > | null,
 };
 
 export type CreateCompanyMutationVariables = {
-  input: CreateCompanyInput;
-  condition?: ModelCompanyConditionInput | null;
+  input: CreateCompanyInput,
+  condition?: ModelCompanyConditionInput | null,
 };
 
 export type CreateCompanyMutation = {
-  createCompany?: {
-    __typename: "Company";
-    id: string;
-    organizationName: string;
-    organizationType: OrganizationType;
-    ownership: Ownership;
-    natureOfBusiness: string;
-    organizationRegistrationDate: string;
-    organizationRegistrationNumber: string;
-    registrationCertificate: string;
-    cr12: string;
-    KRAPIN: string;
-    KRAPINCertificate: string;
-    taxComplianceNumber: string;
-    taxComplianceExpiry: string;
-    taxComplianceCertificate: string;
-    agpoCategory?: AGPOCategory | null;
-    agpoExpiryDate?: string | null;
-    agpoCertificate?: string | null;
-    addressDetails?: {
-      __typename: "ModelAddressDetailsConnection";
-      items: Array<{
-        __typename: "AddressDetails";
-        id: string;
-        postalAddress: string;
-        city: string;
-        country: string;
-        officeBuilding: string;
-        streetAddress: string;
-        emailAddress: string;
-        title: Title;
-        fullName: string;
-        contactEmail: string;
-        phoneNumber: string;
-        companyID: string;
-        createdAt: string;
-        updatedAt: string;
-        owner?: string | null;
-      } | null>;
-      nextToken?: string | null;
-    } | null;
-    directors?: {
-      __typename: "ModelCompanyDirectorsConnection";
-      items: Array<{
-        __typename: "CompanyDirectors";
-        id: string;
-        companyID: string;
-        directorsID: string;
-        createdAt: string;
-        updatedAt: string;
-        owner?: string | null;
-      } | null>;
-      nextToken?: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-    owner?: string | null;
-  } | null;
+  createCompany?:  {
+    __typename: "Company",
+    id: string,
+    organizationName: string,
+    organizationType: OrganizationType,
+    ownership: Ownership,
+    natureOfBusiness: Array< Nature | null >,
+    organizationRegistrationDate: string,
+    organizationRegistrationNumber: string,
+    registrationCertificate: string,
+    cr12: string,
+    KRAPIN: string,
+    KRAPINCertificate: string,
+    taxComplianceNumber: string,
+    taxComplianceExpiry: string,
+    taxComplianceCertificate: string,
+    agpoCategory?: AGPOCategory | null,
+    agpoExpiryDate?: string | null,
+    agpoCertificate?: string | null,
+    status?: Status | null,
+    response?: Array< string | null > | null,
+    addressDetails?:  {
+      __typename: "ModelAddressDetailsConnection",
+      items:  Array< {
+        __typename: "AddressDetails",
+        id: string,
+        postalAddress: string,
+        city: string,
+        country: string,
+        officeBuilding: string,
+        streetAddress: string,
+        emailAddress: string,
+        title: Title,
+        fullName: string,
+        contactEmail: string,
+        phoneNumber: string,
+        companyID: string,
+        company?:  {
+          __typename: "Company",
+          id: string,
+          organizationName: string,
+          organizationType: OrganizationType,
+          ownership: Ownership,
+          natureOfBusiness: Array< Nature | null >,
+          organizationRegistrationDate: string,
+          organizationRegistrationNumber: string,
+          registrationCertificate: string,
+          cr12: string,
+          KRAPIN: string,
+          KRAPINCertificate: string,
+          taxComplianceNumber: string,
+          taxComplianceExpiry: string,
+          taxComplianceCertificate: string,
+          agpoCategory?: AGPOCategory | null,
+          agpoExpiryDate?: string | null,
+          agpoCertificate?: string | null,
+          status?: Status | null,
+          response?: Array< string | null > | null,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    directors?:  {
+      __typename: "ModelDirectorsConnection",
+      items:  Array< {
+        __typename: "Directors",
+        id: string,
+        directorTitle?: Title | null,
+        directorName: string,
+        directorKRAPIN: string,
+        directorEmailAddress: string,
+        directorNationality: Ownership,
+        directorShares: number,
+        companyID: string,
+        company?:  {
+          __typename: "Company",
+          id: string,
+          organizationName: string,
+          organizationType: OrganizationType,
+          ownership: Ownership,
+          natureOfBusiness: Array< Nature | null >,
+          organizationRegistrationDate: string,
+          organizationRegistrationNumber: string,
+          registrationCertificate: string,
+          cr12: string,
+          KRAPIN: string,
+          KRAPINCertificate: string,
+          taxComplianceNumber: string,
+          taxComplianceExpiry: string,
+          taxComplianceCertificate: string,
+          agpoCategory?: AGPOCategory | null,
+          agpoExpiryDate?: string | null,
+          agpoCertificate?: string | null,
+          status?: Status | null,
+          response?: Array< string | null > | null,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    clients?:  {
+      __typename: "ModelClientConnection",
+      items:  Array< {
+        __typename: "Client",
+        id: string,
+        clientName: string,
+        contractValue: number,
+        startDate: string,
+        endDate: string,
+        contactPerson: string,
+        contactEmail: string,
+        contactPhoneNumber: string,
+        contractAttachment: string,
+        serviceDescription: string,
+        companyID: string,
+        company?:  {
+          __typename: "Company",
+          id: string,
+          organizationName: string,
+          organizationType: OrganizationType,
+          ownership: Ownership,
+          natureOfBusiness: Array< Nature | null >,
+          organizationRegistrationDate: string,
+          organizationRegistrationNumber: string,
+          registrationCertificate: string,
+          cr12: string,
+          KRAPIN: string,
+          KRAPINCertificate: string,
+          taxComplianceNumber: string,
+          taxComplianceExpiry: string,
+          taxComplianceCertificate: string,
+          agpoCategory?: AGPOCategory | null,
+          agpoExpiryDate?: string | null,
+          agpoCertificate?: string | null,
+          status?: Status | null,
+          response?: Array< string | null > | null,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    personnel?:  {
+      __typename: "ModelPersonelConnection",
+      items:  Array< {
+        __typename: "Personel",
+        id: string,
+        personelName: string,
+        role: string,
+        nationalid: string,
+        qualificationAttachment: string,
+        companyID: string,
+        company?:  {
+          __typename: "Company",
+          id: string,
+          organizationName: string,
+          organizationType: OrganizationType,
+          ownership: Ownership,
+          natureOfBusiness: Array< Nature | null >,
+          organizationRegistrationDate: string,
+          organizationRegistrationNumber: string,
+          registrationCertificate: string,
+          cr12: string,
+          KRAPIN: string,
+          KRAPINCertificate: string,
+          taxComplianceNumber: string,
+          taxComplianceExpiry: string,
+          taxComplianceCertificate: string,
+          agpoCategory?: AGPOCategory | null,
+          agpoExpiryDate?: string | null,
+          agpoCertificate?: string | null,
+          status?: Status | null,
+          response?: Array< string | null > | null,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    contracts?:  {
+      __typename: "ModelContractConnection",
+      items:  Array< {
+        __typename: "Contract",
+        id: string,
+        title: string,
+        type: Nature,
+        department: string,
+        budget: number,
+        status?: ContractStatus | null,
+        description: string,
+        companyID: string,
+        company?:  {
+          __typename: "Company",
+          id: string,
+          organizationName: string,
+          organizationType: OrganizationType,
+          ownership: Ownership,
+          natureOfBusiness: Array< Nature | null >,
+          organizationRegistrationDate: string,
+          organizationRegistrationNumber: string,
+          registrationCertificate: string,
+          cr12: string,
+          KRAPIN: string,
+          KRAPINCertificate: string,
+          taxComplianceNumber: string,
+          taxComplianceExpiry: string,
+          taxComplianceCertificate: string,
+          agpoCategory?: AGPOCategory | null,
+          agpoExpiryDate?: string | null,
+          agpoCertificate?: string | null,
+          status?: Status | null,
+          response?: Array< string | null > | null,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
 };
 
 export type UpdateCompanyMutationVariables = {
-  input: UpdateCompanyInput;
-  condition?: ModelCompanyConditionInput | null;
+  input: UpdateCompanyInput,
+  condition?: ModelCompanyConditionInput | null,
 };
 
 export type UpdateCompanyMutation = {
-  updateCompany?: {
-    __typename: "Company";
-    id: string;
-    organizationName: string;
-    organizationType: OrganizationType;
-    ownership: Ownership;
-    natureOfBusiness: string;
-    organizationRegistrationDate: string;
-    organizationRegistrationNumber: string;
-    registrationCertificate: string;
-    cr12: string;
-    KRAPIN: string;
-    KRAPINCertificate: string;
-    taxComplianceNumber: string;
-    taxComplianceExpiry: string;
-    taxComplianceCertificate: string;
-    agpoCategory?: AGPOCategory | null;
-    agpoExpiryDate?: string | null;
-    agpoCertificate?: string | null;
-    addressDetails?: {
-      __typename: "ModelAddressDetailsConnection";
-      items: Array<{
-        __typename: "AddressDetails";
-        id: string;
-        postalAddress: string;
-        city: string;
-        country: string;
-        officeBuilding: string;
-        streetAddress: string;
-        emailAddress: string;
-        title: Title;
-        fullName: string;
-        contactEmail: string;
-        phoneNumber: string;
-        companyID: string;
-        createdAt: string;
-        updatedAt: string;
-        owner?: string | null;
-      } | null>;
-      nextToken?: string | null;
-    } | null;
-    directors?: {
-      __typename: "ModelCompanyDirectorsConnection";
-      items: Array<{
-        __typename: "CompanyDirectors";
-        id: string;
-        companyID: string;
-        directorsID: string;
-        createdAt: string;
-        updatedAt: string;
-        owner?: string | null;
-      } | null>;
-      nextToken?: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-    owner?: string | null;
-  } | null;
+  updateCompany?:  {
+    __typename: "Company",
+    id: string,
+    organizationName: string,
+    organizationType: OrganizationType,
+    ownership: Ownership,
+    natureOfBusiness: Array< Nature | null >,
+    organizationRegistrationDate: string,
+    organizationRegistrationNumber: string,
+    registrationCertificate: string,
+    cr12: string,
+    KRAPIN: string,
+    KRAPINCertificate: string,
+    taxComplianceNumber: string,
+    taxComplianceExpiry: string,
+    taxComplianceCertificate: string,
+    agpoCategory?: AGPOCategory | null,
+    agpoExpiryDate?: string | null,
+    agpoCertificate?: string | null,
+    status?: Status | null,
+    response?: Array< string | null > | null,
+    addressDetails?:  {
+      __typename: "ModelAddressDetailsConnection",
+      items:  Array< {
+        __typename: "AddressDetails",
+        id: string,
+        postalAddress: string,
+        city: string,
+        country: string,
+        officeBuilding: string,
+        streetAddress: string,
+        emailAddress: string,
+        title: Title,
+        fullName: string,
+        contactEmail: string,
+        phoneNumber: string,
+        companyID: string,
+        company?:  {
+          __typename: "Company",
+          id: string,
+          organizationName: string,
+          organizationType: OrganizationType,
+          ownership: Ownership,
+          natureOfBusiness: Array< Nature | null >,
+          organizationRegistrationDate: string,
+          organizationRegistrationNumber: string,
+          registrationCertificate: string,
+          cr12: string,
+          KRAPIN: string,
+          KRAPINCertificate: string,
+          taxComplianceNumber: string,
+          taxComplianceExpiry: string,
+          taxComplianceCertificate: string,
+          agpoCategory?: AGPOCategory | null,
+          agpoExpiryDate?: string | null,
+          agpoCertificate?: string | null,
+          status?: Status | null,
+          response?: Array< string | null > | null,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    directors?:  {
+      __typename: "ModelDirectorsConnection",
+      items:  Array< {
+        __typename: "Directors",
+        id: string,
+        directorTitle?: Title | null,
+        directorName: string,
+        directorKRAPIN: string,
+        directorEmailAddress: string,
+        directorNationality: Ownership,
+        directorShares: number,
+        companyID: string,
+        company?:  {
+          __typename: "Company",
+          id: string,
+          organizationName: string,
+          organizationType: OrganizationType,
+          ownership: Ownership,
+          natureOfBusiness: Array< Nature | null >,
+          organizationRegistrationDate: string,
+          organizationRegistrationNumber: string,
+          registrationCertificate: string,
+          cr12: string,
+          KRAPIN: string,
+          KRAPINCertificate: string,
+          taxComplianceNumber: string,
+          taxComplianceExpiry: string,
+          taxComplianceCertificate: string,
+          agpoCategory?: AGPOCategory | null,
+          agpoExpiryDate?: string | null,
+          agpoCertificate?: string | null,
+          status?: Status | null,
+          response?: Array< string | null > | null,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    clients?:  {
+      __typename: "ModelClientConnection",
+      items:  Array< {
+        __typename: "Client",
+        id: string,
+        clientName: string,
+        contractValue: number,
+        startDate: string,
+        endDate: string,
+        contactPerson: string,
+        contactEmail: string,
+        contactPhoneNumber: string,
+        contractAttachment: string,
+        serviceDescription: string,
+        companyID: string,
+        company?:  {
+          __typename: "Company",
+          id: string,
+          organizationName: string,
+          organizationType: OrganizationType,
+          ownership: Ownership,
+          natureOfBusiness: Array< Nature | null >,
+          organizationRegistrationDate: string,
+          organizationRegistrationNumber: string,
+          registrationCertificate: string,
+          cr12: string,
+          KRAPIN: string,
+          KRAPINCertificate: string,
+          taxComplianceNumber: string,
+          taxComplianceExpiry: string,
+          taxComplianceCertificate: string,
+          agpoCategory?: AGPOCategory | null,
+          agpoExpiryDate?: string | null,
+          agpoCertificate?: string | null,
+          status?: Status | null,
+          response?: Array< string | null > | null,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    personnel?:  {
+      __typename: "ModelPersonelConnection",
+      items:  Array< {
+        __typename: "Personel",
+        id: string,
+        personelName: string,
+        role: string,
+        nationalid: string,
+        qualificationAttachment: string,
+        companyID: string,
+        company?:  {
+          __typename: "Company",
+          id: string,
+          organizationName: string,
+          organizationType: OrganizationType,
+          ownership: Ownership,
+          natureOfBusiness: Array< Nature | null >,
+          organizationRegistrationDate: string,
+          organizationRegistrationNumber: string,
+          registrationCertificate: string,
+          cr12: string,
+          KRAPIN: string,
+          KRAPINCertificate: string,
+          taxComplianceNumber: string,
+          taxComplianceExpiry: string,
+          taxComplianceCertificate: string,
+          agpoCategory?: AGPOCategory | null,
+          agpoExpiryDate?: string | null,
+          agpoCertificate?: string | null,
+          status?: Status | null,
+          response?: Array< string | null > | null,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    contracts?:  {
+      __typename: "ModelContractConnection",
+      items:  Array< {
+        __typename: "Contract",
+        id: string,
+        title: string,
+        type: Nature,
+        department: string,
+        budget: number,
+        status?: ContractStatus | null,
+        description: string,
+        companyID: string,
+        company?:  {
+          __typename: "Company",
+          id: string,
+          organizationName: string,
+          organizationType: OrganizationType,
+          ownership: Ownership,
+          natureOfBusiness: Array< Nature | null >,
+          organizationRegistrationDate: string,
+          organizationRegistrationNumber: string,
+          registrationCertificate: string,
+          cr12: string,
+          KRAPIN: string,
+          KRAPINCertificate: string,
+          taxComplianceNumber: string,
+          taxComplianceExpiry: string,
+          taxComplianceCertificate: string,
+          agpoCategory?: AGPOCategory | null,
+          agpoExpiryDate?: string | null,
+          agpoCertificate?: string | null,
+          status?: Status | null,
+          response?: Array< string | null > | null,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
 };
 
 export type DeleteCompanyMutationVariables = {
-  input: DeleteCompanyInput;
-  condition?: ModelCompanyConditionInput | null;
+  input: DeleteCompanyInput,
+  condition?: ModelCompanyConditionInput | null,
 };
 
 export type DeleteCompanyMutation = {
-  deleteCompany?: {
-    __typename: "Company";
-    id: string;
-    organizationName: string;
-    organizationType: OrganizationType;
-    ownership: Ownership;
-    natureOfBusiness: string;
-    organizationRegistrationDate: string;
-    organizationRegistrationNumber: string;
-    registrationCertificate: string;
-    cr12: string;
-    KRAPIN: string;
-    KRAPINCertificate: string;
-    taxComplianceNumber: string;
-    taxComplianceExpiry: string;
-    taxComplianceCertificate: string;
-    agpoCategory?: AGPOCategory | null;
-    agpoExpiryDate?: string | null;
-    agpoCertificate?: string | null;
-    addressDetails?: {
-      __typename: "ModelAddressDetailsConnection";
-      items: Array<{
-        __typename: "AddressDetails";
-        id: string;
-        postalAddress: string;
-        city: string;
-        country: string;
-        officeBuilding: string;
-        streetAddress: string;
-        emailAddress: string;
-        title: Title;
-        fullName: string;
-        contactEmail: string;
-        phoneNumber: string;
-        companyID: string;
-        createdAt: string;
-        updatedAt: string;
-        owner?: string | null;
-      } | null>;
-      nextToken?: string | null;
-    } | null;
-    directors?: {
-      __typename: "ModelCompanyDirectorsConnection";
-      items: Array<{
-        __typename: "CompanyDirectors";
-        id: string;
-        companyID: string;
-        directorsID: string;
-        createdAt: string;
-        updatedAt: string;
-        owner?: string | null;
-      } | null>;
-      nextToken?: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-    owner?: string | null;
-  } | null;
+  deleteCompany?:  {
+    __typename: "Company",
+    id: string,
+    organizationName: string,
+    organizationType: OrganizationType,
+    ownership: Ownership,
+    natureOfBusiness: Array< Nature | null >,
+    organizationRegistrationDate: string,
+    organizationRegistrationNumber: string,
+    registrationCertificate: string,
+    cr12: string,
+    KRAPIN: string,
+    KRAPINCertificate: string,
+    taxComplianceNumber: string,
+    taxComplianceExpiry: string,
+    taxComplianceCertificate: string,
+    agpoCategory?: AGPOCategory | null,
+    agpoExpiryDate?: string | null,
+    agpoCertificate?: string | null,
+    status?: Status | null,
+    response?: Array< string | null > | null,
+    addressDetails?:  {
+      __typename: "ModelAddressDetailsConnection",
+      items:  Array< {
+        __typename: "AddressDetails",
+        id: string,
+        postalAddress: string,
+        city: string,
+        country: string,
+        officeBuilding: string,
+        streetAddress: string,
+        emailAddress: string,
+        title: Title,
+        fullName: string,
+        contactEmail: string,
+        phoneNumber: string,
+        companyID: string,
+        company?:  {
+          __typename: "Company",
+          id: string,
+          organizationName: string,
+          organizationType: OrganizationType,
+          ownership: Ownership,
+          natureOfBusiness: Array< Nature | null >,
+          organizationRegistrationDate: string,
+          organizationRegistrationNumber: string,
+          registrationCertificate: string,
+          cr12: string,
+          KRAPIN: string,
+          KRAPINCertificate: string,
+          taxComplianceNumber: string,
+          taxComplianceExpiry: string,
+          taxComplianceCertificate: string,
+          agpoCategory?: AGPOCategory | null,
+          agpoExpiryDate?: string | null,
+          agpoCertificate?: string | null,
+          status?: Status | null,
+          response?: Array< string | null > | null,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    directors?:  {
+      __typename: "ModelDirectorsConnection",
+      items:  Array< {
+        __typename: "Directors",
+        id: string,
+        directorTitle?: Title | null,
+        directorName: string,
+        directorKRAPIN: string,
+        directorEmailAddress: string,
+        directorNationality: Ownership,
+        directorShares: number,
+        companyID: string,
+        company?:  {
+          __typename: "Company",
+          id: string,
+          organizationName: string,
+          organizationType: OrganizationType,
+          ownership: Ownership,
+          natureOfBusiness: Array< Nature | null >,
+          organizationRegistrationDate: string,
+          organizationRegistrationNumber: string,
+          registrationCertificate: string,
+          cr12: string,
+          KRAPIN: string,
+          KRAPINCertificate: string,
+          taxComplianceNumber: string,
+          taxComplianceExpiry: string,
+          taxComplianceCertificate: string,
+          agpoCategory?: AGPOCategory | null,
+          agpoExpiryDate?: string | null,
+          agpoCertificate?: string | null,
+          status?: Status | null,
+          response?: Array< string | null > | null,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    clients?:  {
+      __typename: "ModelClientConnection",
+      items:  Array< {
+        __typename: "Client",
+        id: string,
+        clientName: string,
+        contractValue: number,
+        startDate: string,
+        endDate: string,
+        contactPerson: string,
+        contactEmail: string,
+        contactPhoneNumber: string,
+        contractAttachment: string,
+        serviceDescription: string,
+        companyID: string,
+        company?:  {
+          __typename: "Company",
+          id: string,
+          organizationName: string,
+          organizationType: OrganizationType,
+          ownership: Ownership,
+          natureOfBusiness: Array< Nature | null >,
+          organizationRegistrationDate: string,
+          organizationRegistrationNumber: string,
+          registrationCertificate: string,
+          cr12: string,
+          KRAPIN: string,
+          KRAPINCertificate: string,
+          taxComplianceNumber: string,
+          taxComplianceExpiry: string,
+          taxComplianceCertificate: string,
+          agpoCategory?: AGPOCategory | null,
+          agpoExpiryDate?: string | null,
+          agpoCertificate?: string | null,
+          status?: Status | null,
+          response?: Array< string | null > | null,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    personnel?:  {
+      __typename: "ModelPersonelConnection",
+      items:  Array< {
+        __typename: "Personel",
+        id: string,
+        personelName: string,
+        role: string,
+        nationalid: string,
+        qualificationAttachment: string,
+        companyID: string,
+        company?:  {
+          __typename: "Company",
+          id: string,
+          organizationName: string,
+          organizationType: OrganizationType,
+          ownership: Ownership,
+          natureOfBusiness: Array< Nature | null >,
+          organizationRegistrationDate: string,
+          organizationRegistrationNumber: string,
+          registrationCertificate: string,
+          cr12: string,
+          KRAPIN: string,
+          KRAPINCertificate: string,
+          taxComplianceNumber: string,
+          taxComplianceExpiry: string,
+          taxComplianceCertificate: string,
+          agpoCategory?: AGPOCategory | null,
+          agpoExpiryDate?: string | null,
+          agpoCertificate?: string | null,
+          status?: Status | null,
+          response?: Array< string | null > | null,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    contracts?:  {
+      __typename: "ModelContractConnection",
+      items:  Array< {
+        __typename: "Contract",
+        id: string,
+        title: string,
+        type: Nature,
+        department: string,
+        budget: number,
+        status?: ContractStatus | null,
+        description: string,
+        companyID: string,
+        company?:  {
+          __typename: "Company",
+          id: string,
+          organizationName: string,
+          organizationType: OrganizationType,
+          ownership: Ownership,
+          natureOfBusiness: Array< Nature | null >,
+          organizationRegistrationDate: string,
+          organizationRegistrationNumber: string,
+          registrationCertificate: string,
+          cr12: string,
+          KRAPIN: string,
+          KRAPINCertificate: string,
+          taxComplianceNumber: string,
+          taxComplianceExpiry: string,
+          taxComplianceCertificate: string,
+          agpoCategory?: AGPOCategory | null,
+          agpoExpiryDate?: string | null,
+          agpoCertificate?: string | null,
+          status?: Status | null,
+          response?: Array< string | null > | null,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
 };
 
 export type CreateAddressDetailsMutationVariables = {
-  input: CreateAddressDetailsInput;
-  condition?: ModelAddressDetailsConditionInput | null;
+  input: CreateAddressDetailsInput,
+  condition?: ModelAddressDetailsConditionInput | null,
 };
 
 export type CreateAddressDetailsMutation = {
-  createAddressDetails?: {
-    __typename: "AddressDetails";
-    id: string;
-    postalAddress: string;
-    city: string;
-    country: string;
-    officeBuilding: string;
-    streetAddress: string;
-    emailAddress: string;
-    title: Title;
-    fullName: string;
-    contactEmail: string;
-    phoneNumber: string;
-    companyID: string;
-    company?: {
-      __typename: "Company";
-      id: string;
-      organizationName: string;
-      organizationType: OrganizationType;
-      ownership: Ownership;
-      natureOfBusiness: string;
-      organizationRegistrationDate: string;
-      organizationRegistrationNumber: string;
-      registrationCertificate: string;
-      cr12: string;
-      KRAPIN: string;
-      KRAPINCertificate: string;
-      taxComplianceNumber: string;
-      taxComplianceExpiry: string;
-      taxComplianceCertificate: string;
-      agpoCategory?: AGPOCategory | null;
-      agpoExpiryDate?: string | null;
-      agpoCertificate?: string | null;
-      addressDetails?: {
-        __typename: "ModelAddressDetailsConnection";
-        nextToken?: string | null;
-      } | null;
-      directors?: {
-        __typename: "ModelCompanyDirectorsConnection";
-        nextToken?: string | null;
-      } | null;
-      createdAt: string;
-      updatedAt: string;
-      owner?: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-    owner?: string | null;
-  } | null;
+  createAddressDetails?:  {
+    __typename: "AddressDetails",
+    id: string,
+    postalAddress: string,
+    city: string,
+    country: string,
+    officeBuilding: string,
+    streetAddress: string,
+    emailAddress: string,
+    title: Title,
+    fullName: string,
+    contactEmail: string,
+    phoneNumber: string,
+    companyID: string,
+    company?:  {
+      __typename: "Company",
+      id: string,
+      organizationName: string,
+      organizationType: OrganizationType,
+      ownership: Ownership,
+      natureOfBusiness: Array< Nature | null >,
+      organizationRegistrationDate: string,
+      organizationRegistrationNumber: string,
+      registrationCertificate: string,
+      cr12: string,
+      KRAPIN: string,
+      KRAPINCertificate: string,
+      taxComplianceNumber: string,
+      taxComplianceExpiry: string,
+      taxComplianceCertificate: string,
+      agpoCategory?: AGPOCategory | null,
+      agpoExpiryDate?: string | null,
+      agpoCertificate?: string | null,
+      status?: Status | null,
+      response?: Array< string | null > | null,
+      addressDetails?:  {
+        __typename: "ModelAddressDetailsConnection",
+        items:  Array< {
+          __typename: "AddressDetails",
+          id: string,
+          postalAddress: string,
+          city: string,
+          country: string,
+          officeBuilding: string,
+          streetAddress: string,
+          emailAddress: string,
+          title: Title,
+          fullName: string,
+          contactEmail: string,
+          phoneNumber: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      directors?:  {
+        __typename: "ModelDirectorsConnection",
+        items:  Array< {
+          __typename: "Directors",
+          id: string,
+          directorTitle?: Title | null,
+          directorName: string,
+          directorKRAPIN: string,
+          directorEmailAddress: string,
+          directorNationality: Ownership,
+          directorShares: number,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      clients?:  {
+        __typename: "ModelClientConnection",
+        items:  Array< {
+          __typename: "Client",
+          id: string,
+          clientName: string,
+          contractValue: number,
+          startDate: string,
+          endDate: string,
+          contactPerson: string,
+          contactEmail: string,
+          contactPhoneNumber: string,
+          contractAttachment: string,
+          serviceDescription: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      personnel?:  {
+        __typename: "ModelPersonelConnection",
+        items:  Array< {
+          __typename: "Personel",
+          id: string,
+          personelName: string,
+          role: string,
+          nationalid: string,
+          qualificationAttachment: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      contracts?:  {
+        __typename: "ModelContractConnection",
+        items:  Array< {
+          __typename: "Contract",
+          id: string,
+          title: string,
+          type: Nature,
+          department: string,
+          budget: number,
+          status?: ContractStatus | null,
+          description: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
 };
 
 export type UpdateAddressDetailsMutationVariables = {
-  input: UpdateAddressDetailsInput;
-  condition?: ModelAddressDetailsConditionInput | null;
+  input: UpdateAddressDetailsInput,
+  condition?: ModelAddressDetailsConditionInput | null,
 };
 
 export type UpdateAddressDetailsMutation = {
-  updateAddressDetails?: {
-    __typename: "AddressDetails";
-    id: string;
-    postalAddress: string;
-    city: string;
-    country: string;
-    officeBuilding: string;
-    streetAddress: string;
-    emailAddress: string;
-    title: Title;
-    fullName: string;
-    contactEmail: string;
-    phoneNumber: string;
-    companyID: string;
-    company?: {
-      __typename: "Company";
-      id: string;
-      organizationName: string;
-      organizationType: OrganizationType;
-      ownership: Ownership;
-      natureOfBusiness: string;
-      organizationRegistrationDate: string;
-      organizationRegistrationNumber: string;
-      registrationCertificate: string;
-      cr12: string;
-      KRAPIN: string;
-      KRAPINCertificate: string;
-      taxComplianceNumber: string;
-      taxComplianceExpiry: string;
-      taxComplianceCertificate: string;
-      agpoCategory?: AGPOCategory | null;
-      agpoExpiryDate?: string | null;
-      agpoCertificate?: string | null;
-      addressDetails?: {
-        __typename: "ModelAddressDetailsConnection";
-        nextToken?: string | null;
-      } | null;
-      directors?: {
-        __typename: "ModelCompanyDirectorsConnection";
-        nextToken?: string | null;
-      } | null;
-      createdAt: string;
-      updatedAt: string;
-      owner?: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-    owner?: string | null;
-  } | null;
+  updateAddressDetails?:  {
+    __typename: "AddressDetails",
+    id: string,
+    postalAddress: string,
+    city: string,
+    country: string,
+    officeBuilding: string,
+    streetAddress: string,
+    emailAddress: string,
+    title: Title,
+    fullName: string,
+    contactEmail: string,
+    phoneNumber: string,
+    companyID: string,
+    company?:  {
+      __typename: "Company",
+      id: string,
+      organizationName: string,
+      organizationType: OrganizationType,
+      ownership: Ownership,
+      natureOfBusiness: Array< Nature | null >,
+      organizationRegistrationDate: string,
+      organizationRegistrationNumber: string,
+      registrationCertificate: string,
+      cr12: string,
+      KRAPIN: string,
+      KRAPINCertificate: string,
+      taxComplianceNumber: string,
+      taxComplianceExpiry: string,
+      taxComplianceCertificate: string,
+      agpoCategory?: AGPOCategory | null,
+      agpoExpiryDate?: string | null,
+      agpoCertificate?: string | null,
+      status?: Status | null,
+      response?: Array< string | null > | null,
+      addressDetails?:  {
+        __typename: "ModelAddressDetailsConnection",
+        items:  Array< {
+          __typename: "AddressDetails",
+          id: string,
+          postalAddress: string,
+          city: string,
+          country: string,
+          officeBuilding: string,
+          streetAddress: string,
+          emailAddress: string,
+          title: Title,
+          fullName: string,
+          contactEmail: string,
+          phoneNumber: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      directors?:  {
+        __typename: "ModelDirectorsConnection",
+        items:  Array< {
+          __typename: "Directors",
+          id: string,
+          directorTitle?: Title | null,
+          directorName: string,
+          directorKRAPIN: string,
+          directorEmailAddress: string,
+          directorNationality: Ownership,
+          directorShares: number,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      clients?:  {
+        __typename: "ModelClientConnection",
+        items:  Array< {
+          __typename: "Client",
+          id: string,
+          clientName: string,
+          contractValue: number,
+          startDate: string,
+          endDate: string,
+          contactPerson: string,
+          contactEmail: string,
+          contactPhoneNumber: string,
+          contractAttachment: string,
+          serviceDescription: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      personnel?:  {
+        __typename: "ModelPersonelConnection",
+        items:  Array< {
+          __typename: "Personel",
+          id: string,
+          personelName: string,
+          role: string,
+          nationalid: string,
+          qualificationAttachment: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      contracts?:  {
+        __typename: "ModelContractConnection",
+        items:  Array< {
+          __typename: "Contract",
+          id: string,
+          title: string,
+          type: Nature,
+          department: string,
+          budget: number,
+          status?: ContractStatus | null,
+          description: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
 };
 
 export type DeleteAddressDetailsMutationVariables = {
-  input: DeleteAddressDetailsInput;
-  condition?: ModelAddressDetailsConditionInput | null;
+  input: DeleteAddressDetailsInput,
+  condition?: ModelAddressDetailsConditionInput | null,
 };
 
 export type DeleteAddressDetailsMutation = {
-  deleteAddressDetails?: {
-    __typename: "AddressDetails";
-    id: string;
-    postalAddress: string;
-    city: string;
-    country: string;
-    officeBuilding: string;
-    streetAddress: string;
-    emailAddress: string;
-    title: Title;
-    fullName: string;
-    contactEmail: string;
-    phoneNumber: string;
-    companyID: string;
-    company?: {
-      __typename: "Company";
-      id: string;
-      organizationName: string;
-      organizationType: OrganizationType;
-      ownership: Ownership;
-      natureOfBusiness: string;
-      organizationRegistrationDate: string;
-      organizationRegistrationNumber: string;
-      registrationCertificate: string;
-      cr12: string;
-      KRAPIN: string;
-      KRAPINCertificate: string;
-      taxComplianceNumber: string;
-      taxComplianceExpiry: string;
-      taxComplianceCertificate: string;
-      agpoCategory?: AGPOCategory | null;
-      agpoExpiryDate?: string | null;
-      agpoCertificate?: string | null;
-      addressDetails?: {
-        __typename: "ModelAddressDetailsConnection";
-        nextToken?: string | null;
-      } | null;
-      directors?: {
-        __typename: "ModelCompanyDirectorsConnection";
-        nextToken?: string | null;
-      } | null;
-      createdAt: string;
-      updatedAt: string;
-      owner?: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-    owner?: string | null;
-  } | null;
+  deleteAddressDetails?:  {
+    __typename: "AddressDetails",
+    id: string,
+    postalAddress: string,
+    city: string,
+    country: string,
+    officeBuilding: string,
+    streetAddress: string,
+    emailAddress: string,
+    title: Title,
+    fullName: string,
+    contactEmail: string,
+    phoneNumber: string,
+    companyID: string,
+    company?:  {
+      __typename: "Company",
+      id: string,
+      organizationName: string,
+      organizationType: OrganizationType,
+      ownership: Ownership,
+      natureOfBusiness: Array< Nature | null >,
+      organizationRegistrationDate: string,
+      organizationRegistrationNumber: string,
+      registrationCertificate: string,
+      cr12: string,
+      KRAPIN: string,
+      KRAPINCertificate: string,
+      taxComplianceNumber: string,
+      taxComplianceExpiry: string,
+      taxComplianceCertificate: string,
+      agpoCategory?: AGPOCategory | null,
+      agpoExpiryDate?: string | null,
+      agpoCertificate?: string | null,
+      status?: Status | null,
+      response?: Array< string | null > | null,
+      addressDetails?:  {
+        __typename: "ModelAddressDetailsConnection",
+        items:  Array< {
+          __typename: "AddressDetails",
+          id: string,
+          postalAddress: string,
+          city: string,
+          country: string,
+          officeBuilding: string,
+          streetAddress: string,
+          emailAddress: string,
+          title: Title,
+          fullName: string,
+          contactEmail: string,
+          phoneNumber: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      directors?:  {
+        __typename: "ModelDirectorsConnection",
+        items:  Array< {
+          __typename: "Directors",
+          id: string,
+          directorTitle?: Title | null,
+          directorName: string,
+          directorKRAPIN: string,
+          directorEmailAddress: string,
+          directorNationality: Ownership,
+          directorShares: number,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      clients?:  {
+        __typename: "ModelClientConnection",
+        items:  Array< {
+          __typename: "Client",
+          id: string,
+          clientName: string,
+          contractValue: number,
+          startDate: string,
+          endDate: string,
+          contactPerson: string,
+          contactEmail: string,
+          contactPhoneNumber: string,
+          contractAttachment: string,
+          serviceDescription: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      personnel?:  {
+        __typename: "ModelPersonelConnection",
+        items:  Array< {
+          __typename: "Personel",
+          id: string,
+          personelName: string,
+          role: string,
+          nationalid: string,
+          qualificationAttachment: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      contracts?:  {
+        __typename: "ModelContractConnection",
+        items:  Array< {
+          __typename: "Contract",
+          id: string,
+          title: string,
+          type: Nature,
+          department: string,
+          budget: number,
+          status?: ContractStatus | null,
+          description: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
 };
 
 export type CreateDirectorsMutationVariables = {
-  input: CreateDirectorsInput;
-  condition?: ModelDirectorsConditionInput | null;
+  input: CreateDirectorsInput,
+  condition?: ModelDirectorsConditionInput | null,
 };
 
 export type CreateDirectorsMutation = {
-  createDirectors?: {
-    __typename: "Directors";
-    id: string;
-    directorTitle?: Title | null;
-    directorName: string;
-    directorKRAPIN: string;
-    directorEmailAddress: string;
-    directorNationality: string;
-    directorShares: number;
-    companies?: {
-      __typename: "ModelCompanyDirectorsConnection";
-      items: Array<{
-        __typename: "CompanyDirectors";
-        id: string;
-        companyID: string;
-        directorsID: string;
-        createdAt: string;
-        updatedAt: string;
-        owner?: string | null;
-      } | null>;
-      nextToken?: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-    owner?: string | null;
-  } | null;
+  createDirectors?:  {
+    __typename: "Directors",
+    id: string,
+    directorTitle?: Title | null,
+    directorName: string,
+    directorKRAPIN: string,
+    directorEmailAddress: string,
+    directorNationality: Ownership,
+    directorShares: number,
+    companyID: string,
+    company?:  {
+      __typename: "Company",
+      id: string,
+      organizationName: string,
+      organizationType: OrganizationType,
+      ownership: Ownership,
+      natureOfBusiness: Array< Nature | null >,
+      organizationRegistrationDate: string,
+      organizationRegistrationNumber: string,
+      registrationCertificate: string,
+      cr12: string,
+      KRAPIN: string,
+      KRAPINCertificate: string,
+      taxComplianceNumber: string,
+      taxComplianceExpiry: string,
+      taxComplianceCertificate: string,
+      agpoCategory?: AGPOCategory | null,
+      agpoExpiryDate?: string | null,
+      agpoCertificate?: string | null,
+      status?: Status | null,
+      response?: Array< string | null > | null,
+      addressDetails?:  {
+        __typename: "ModelAddressDetailsConnection",
+        items:  Array< {
+          __typename: "AddressDetails",
+          id: string,
+          postalAddress: string,
+          city: string,
+          country: string,
+          officeBuilding: string,
+          streetAddress: string,
+          emailAddress: string,
+          title: Title,
+          fullName: string,
+          contactEmail: string,
+          phoneNumber: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      directors?:  {
+        __typename: "ModelDirectorsConnection",
+        items:  Array< {
+          __typename: "Directors",
+          id: string,
+          directorTitle?: Title | null,
+          directorName: string,
+          directorKRAPIN: string,
+          directorEmailAddress: string,
+          directorNationality: Ownership,
+          directorShares: number,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      clients?:  {
+        __typename: "ModelClientConnection",
+        items:  Array< {
+          __typename: "Client",
+          id: string,
+          clientName: string,
+          contractValue: number,
+          startDate: string,
+          endDate: string,
+          contactPerson: string,
+          contactEmail: string,
+          contactPhoneNumber: string,
+          contractAttachment: string,
+          serviceDescription: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      personnel?:  {
+        __typename: "ModelPersonelConnection",
+        items:  Array< {
+          __typename: "Personel",
+          id: string,
+          personelName: string,
+          role: string,
+          nationalid: string,
+          qualificationAttachment: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      contracts?:  {
+        __typename: "ModelContractConnection",
+        items:  Array< {
+          __typename: "Contract",
+          id: string,
+          title: string,
+          type: Nature,
+          department: string,
+          budget: number,
+          status?: ContractStatus | null,
+          description: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
 };
 
 export type UpdateDirectorsMutationVariables = {
-  input: UpdateDirectorsInput;
-  condition?: ModelDirectorsConditionInput | null;
+  input: UpdateDirectorsInput,
+  condition?: ModelDirectorsConditionInput | null,
 };
 
 export type UpdateDirectorsMutation = {
-  updateDirectors?: {
-    __typename: "Directors";
-    id: string;
-    directorTitle?: Title | null;
-    directorName: string;
-    directorKRAPIN: string;
-    directorEmailAddress: string;
-    directorNationality: string;
-    directorShares: number;
-    companies?: {
-      __typename: "ModelCompanyDirectorsConnection";
-      items: Array<{
-        __typename: "CompanyDirectors";
-        id: string;
-        companyID: string;
-        directorsID: string;
-        createdAt: string;
-        updatedAt: string;
-        owner?: string | null;
-      } | null>;
-      nextToken?: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-    owner?: string | null;
-  } | null;
+  updateDirectors?:  {
+    __typename: "Directors",
+    id: string,
+    directorTitle?: Title | null,
+    directorName: string,
+    directorKRAPIN: string,
+    directorEmailAddress: string,
+    directorNationality: Ownership,
+    directorShares: number,
+    companyID: string,
+    company?:  {
+      __typename: "Company",
+      id: string,
+      organizationName: string,
+      organizationType: OrganizationType,
+      ownership: Ownership,
+      natureOfBusiness: Array< Nature | null >,
+      organizationRegistrationDate: string,
+      organizationRegistrationNumber: string,
+      registrationCertificate: string,
+      cr12: string,
+      KRAPIN: string,
+      KRAPINCertificate: string,
+      taxComplianceNumber: string,
+      taxComplianceExpiry: string,
+      taxComplianceCertificate: string,
+      agpoCategory?: AGPOCategory | null,
+      agpoExpiryDate?: string | null,
+      agpoCertificate?: string | null,
+      status?: Status | null,
+      response?: Array< string | null > | null,
+      addressDetails?:  {
+        __typename: "ModelAddressDetailsConnection",
+        items:  Array< {
+          __typename: "AddressDetails",
+          id: string,
+          postalAddress: string,
+          city: string,
+          country: string,
+          officeBuilding: string,
+          streetAddress: string,
+          emailAddress: string,
+          title: Title,
+          fullName: string,
+          contactEmail: string,
+          phoneNumber: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      directors?:  {
+        __typename: "ModelDirectorsConnection",
+        items:  Array< {
+          __typename: "Directors",
+          id: string,
+          directorTitle?: Title | null,
+          directorName: string,
+          directorKRAPIN: string,
+          directorEmailAddress: string,
+          directorNationality: Ownership,
+          directorShares: number,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      clients?:  {
+        __typename: "ModelClientConnection",
+        items:  Array< {
+          __typename: "Client",
+          id: string,
+          clientName: string,
+          contractValue: number,
+          startDate: string,
+          endDate: string,
+          contactPerson: string,
+          contactEmail: string,
+          contactPhoneNumber: string,
+          contractAttachment: string,
+          serviceDescription: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      personnel?:  {
+        __typename: "ModelPersonelConnection",
+        items:  Array< {
+          __typename: "Personel",
+          id: string,
+          personelName: string,
+          role: string,
+          nationalid: string,
+          qualificationAttachment: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      contracts?:  {
+        __typename: "ModelContractConnection",
+        items:  Array< {
+          __typename: "Contract",
+          id: string,
+          title: string,
+          type: Nature,
+          department: string,
+          budget: number,
+          status?: ContractStatus | null,
+          description: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
 };
 
 export type DeleteDirectorsMutationVariables = {
-  input: DeleteDirectorsInput;
-  condition?: ModelDirectorsConditionInput | null;
+  input: DeleteDirectorsInput,
+  condition?: ModelDirectorsConditionInput | null,
 };
 
 export type DeleteDirectorsMutation = {
-  deleteDirectors?: {
-    __typename: "Directors";
-    id: string;
-    directorTitle?: Title | null;
-    directorName: string;
-    directorKRAPIN: string;
-    directorEmailAddress: string;
-    directorNationality: string;
-    directorShares: number;
-    companies?: {
-      __typename: "ModelCompanyDirectorsConnection";
-      items: Array<{
-        __typename: "CompanyDirectors";
-        id: string;
-        companyID: string;
-        directorsID: string;
-        createdAt: string;
-        updatedAt: string;
-        owner?: string | null;
-      } | null>;
-      nextToken?: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-    owner?: string | null;
-  } | null;
+  deleteDirectors?:  {
+    __typename: "Directors",
+    id: string,
+    directorTitle?: Title | null,
+    directorName: string,
+    directorKRAPIN: string,
+    directorEmailAddress: string,
+    directorNationality: Ownership,
+    directorShares: number,
+    companyID: string,
+    company?:  {
+      __typename: "Company",
+      id: string,
+      organizationName: string,
+      organizationType: OrganizationType,
+      ownership: Ownership,
+      natureOfBusiness: Array< Nature | null >,
+      organizationRegistrationDate: string,
+      organizationRegistrationNumber: string,
+      registrationCertificate: string,
+      cr12: string,
+      KRAPIN: string,
+      KRAPINCertificate: string,
+      taxComplianceNumber: string,
+      taxComplianceExpiry: string,
+      taxComplianceCertificate: string,
+      agpoCategory?: AGPOCategory | null,
+      agpoExpiryDate?: string | null,
+      agpoCertificate?: string | null,
+      status?: Status | null,
+      response?: Array< string | null > | null,
+      addressDetails?:  {
+        __typename: "ModelAddressDetailsConnection",
+        items:  Array< {
+          __typename: "AddressDetails",
+          id: string,
+          postalAddress: string,
+          city: string,
+          country: string,
+          officeBuilding: string,
+          streetAddress: string,
+          emailAddress: string,
+          title: Title,
+          fullName: string,
+          contactEmail: string,
+          phoneNumber: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      directors?:  {
+        __typename: "ModelDirectorsConnection",
+        items:  Array< {
+          __typename: "Directors",
+          id: string,
+          directorTitle?: Title | null,
+          directorName: string,
+          directorKRAPIN: string,
+          directorEmailAddress: string,
+          directorNationality: Ownership,
+          directorShares: number,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      clients?:  {
+        __typename: "ModelClientConnection",
+        items:  Array< {
+          __typename: "Client",
+          id: string,
+          clientName: string,
+          contractValue: number,
+          startDate: string,
+          endDate: string,
+          contactPerson: string,
+          contactEmail: string,
+          contactPhoneNumber: string,
+          contractAttachment: string,
+          serviceDescription: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      personnel?:  {
+        __typename: "ModelPersonelConnection",
+        items:  Array< {
+          __typename: "Personel",
+          id: string,
+          personelName: string,
+          role: string,
+          nationalid: string,
+          qualificationAttachment: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      contracts?:  {
+        __typename: "ModelContractConnection",
+        items:  Array< {
+          __typename: "Contract",
+          id: string,
+          title: string,
+          type: Nature,
+          department: string,
+          budget: number,
+          status?: ContractStatus | null,
+          description: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
 };
 
-export type CreateCompanyDirectorsMutationVariables = {
-  input: CreateCompanyDirectorsInput;
-  condition?: ModelCompanyDirectorsConditionInput | null;
+export type CreateClientMutationVariables = {
+  input: CreateClientInput,
+  condition?: ModelClientConditionInput | null,
 };
 
-export type CreateCompanyDirectorsMutation = {
-  createCompanyDirectors?: {
-    __typename: "CompanyDirectors";
-    id: string;
-    companyID: string;
-    directorsID: string;
-    company: {
-      __typename: "Company";
-      id: string;
-      organizationName: string;
-      organizationType: OrganizationType;
-      ownership: Ownership;
-      natureOfBusiness: string;
-      organizationRegistrationDate: string;
-      organizationRegistrationNumber: string;
-      registrationCertificate: string;
-      cr12: string;
-      KRAPIN: string;
-      KRAPINCertificate: string;
-      taxComplianceNumber: string;
-      taxComplianceExpiry: string;
-      taxComplianceCertificate: string;
-      agpoCategory?: AGPOCategory | null;
-      agpoExpiryDate?: string | null;
-      agpoCertificate?: string | null;
-      addressDetails?: {
-        __typename: "ModelAddressDetailsConnection";
-        nextToken?: string | null;
-      } | null;
-      directors?: {
-        __typename: "ModelCompanyDirectorsConnection";
-        nextToken?: string | null;
-      } | null;
-      createdAt: string;
-      updatedAt: string;
-      owner?: string | null;
-    };
-    directors: {
-      __typename: "Directors";
-      id: string;
-      directorTitle?: Title | null;
-      directorName: string;
-      directorKRAPIN: string;
-      directorEmailAddress: string;
-      directorNationality: string;
-      directorShares: number;
-      companies?: {
-        __typename: "ModelCompanyDirectorsConnection";
-        nextToken?: string | null;
-      } | null;
-      createdAt: string;
-      updatedAt: string;
-      owner?: string | null;
-    };
-    createdAt: string;
-    updatedAt: string;
-    owner?: string | null;
-  } | null;
+export type CreateClientMutation = {
+  createClient?:  {
+    __typename: "Client",
+    id: string,
+    clientName: string,
+    contractValue: number,
+    startDate: string,
+    endDate: string,
+    contactPerson: string,
+    contactEmail: string,
+    contactPhoneNumber: string,
+    contractAttachment: string,
+    serviceDescription: string,
+    companyID: string,
+    company?:  {
+      __typename: "Company",
+      id: string,
+      organizationName: string,
+      organizationType: OrganizationType,
+      ownership: Ownership,
+      natureOfBusiness: Array< Nature | null >,
+      organizationRegistrationDate: string,
+      organizationRegistrationNumber: string,
+      registrationCertificate: string,
+      cr12: string,
+      KRAPIN: string,
+      KRAPINCertificate: string,
+      taxComplianceNumber: string,
+      taxComplianceExpiry: string,
+      taxComplianceCertificate: string,
+      agpoCategory?: AGPOCategory | null,
+      agpoExpiryDate?: string | null,
+      agpoCertificate?: string | null,
+      status?: Status | null,
+      response?: Array< string | null > | null,
+      addressDetails?:  {
+        __typename: "ModelAddressDetailsConnection",
+        items:  Array< {
+          __typename: "AddressDetails",
+          id: string,
+          postalAddress: string,
+          city: string,
+          country: string,
+          officeBuilding: string,
+          streetAddress: string,
+          emailAddress: string,
+          title: Title,
+          fullName: string,
+          contactEmail: string,
+          phoneNumber: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      directors?:  {
+        __typename: "ModelDirectorsConnection",
+        items:  Array< {
+          __typename: "Directors",
+          id: string,
+          directorTitle?: Title | null,
+          directorName: string,
+          directorKRAPIN: string,
+          directorEmailAddress: string,
+          directorNationality: Ownership,
+          directorShares: number,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      clients?:  {
+        __typename: "ModelClientConnection",
+        items:  Array< {
+          __typename: "Client",
+          id: string,
+          clientName: string,
+          contractValue: number,
+          startDate: string,
+          endDate: string,
+          contactPerson: string,
+          contactEmail: string,
+          contactPhoneNumber: string,
+          contractAttachment: string,
+          serviceDescription: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      personnel?:  {
+        __typename: "ModelPersonelConnection",
+        items:  Array< {
+          __typename: "Personel",
+          id: string,
+          personelName: string,
+          role: string,
+          nationalid: string,
+          qualificationAttachment: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      contracts?:  {
+        __typename: "ModelContractConnection",
+        items:  Array< {
+          __typename: "Contract",
+          id: string,
+          title: string,
+          type: Nature,
+          department: string,
+          budget: number,
+          status?: ContractStatus | null,
+          description: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
 };
 
-export type UpdateCompanyDirectorsMutationVariables = {
-  input: UpdateCompanyDirectorsInput;
-  condition?: ModelCompanyDirectorsConditionInput | null;
+export type UpdateClientMutationVariables = {
+  input: UpdateClientInput,
+  condition?: ModelClientConditionInput | null,
 };
 
-export type UpdateCompanyDirectorsMutation = {
-  updateCompanyDirectors?: {
-    __typename: "CompanyDirectors";
-    id: string;
-    companyID: string;
-    directorsID: string;
-    company: {
-      __typename: "Company";
-      id: string;
-      organizationName: string;
-      organizationType: OrganizationType;
-      ownership: Ownership;
-      natureOfBusiness: string;
-      organizationRegistrationDate: string;
-      organizationRegistrationNumber: string;
-      registrationCertificate: string;
-      cr12: string;
-      KRAPIN: string;
-      KRAPINCertificate: string;
-      taxComplianceNumber: string;
-      taxComplianceExpiry: string;
-      taxComplianceCertificate: string;
-      agpoCategory?: AGPOCategory | null;
-      agpoExpiryDate?: string | null;
-      agpoCertificate?: string | null;
-      addressDetails?: {
-        __typename: "ModelAddressDetailsConnection";
-        nextToken?: string | null;
-      } | null;
-      directors?: {
-        __typename: "ModelCompanyDirectorsConnection";
-        nextToken?: string | null;
-      } | null;
-      createdAt: string;
-      updatedAt: string;
-      owner?: string | null;
-    };
-    directors: {
-      __typename: "Directors";
-      id: string;
-      directorTitle?: Title | null;
-      directorName: string;
-      directorKRAPIN: string;
-      directorEmailAddress: string;
-      directorNationality: string;
-      directorShares: number;
-      companies?: {
-        __typename: "ModelCompanyDirectorsConnection";
-        nextToken?: string | null;
-      } | null;
-      createdAt: string;
-      updatedAt: string;
-      owner?: string | null;
-    };
-    createdAt: string;
-    updatedAt: string;
-    owner?: string | null;
-  } | null;
+export type UpdateClientMutation = {
+  updateClient?:  {
+    __typename: "Client",
+    id: string,
+    clientName: string,
+    contractValue: number,
+    startDate: string,
+    endDate: string,
+    contactPerson: string,
+    contactEmail: string,
+    contactPhoneNumber: string,
+    contractAttachment: string,
+    serviceDescription: string,
+    companyID: string,
+    company?:  {
+      __typename: "Company",
+      id: string,
+      organizationName: string,
+      organizationType: OrganizationType,
+      ownership: Ownership,
+      natureOfBusiness: Array< Nature | null >,
+      organizationRegistrationDate: string,
+      organizationRegistrationNumber: string,
+      registrationCertificate: string,
+      cr12: string,
+      KRAPIN: string,
+      KRAPINCertificate: string,
+      taxComplianceNumber: string,
+      taxComplianceExpiry: string,
+      taxComplianceCertificate: string,
+      agpoCategory?: AGPOCategory | null,
+      agpoExpiryDate?: string | null,
+      agpoCertificate?: string | null,
+      status?: Status | null,
+      response?: Array< string | null > | null,
+      addressDetails?:  {
+        __typename: "ModelAddressDetailsConnection",
+        items:  Array< {
+          __typename: "AddressDetails",
+          id: string,
+          postalAddress: string,
+          city: string,
+          country: string,
+          officeBuilding: string,
+          streetAddress: string,
+          emailAddress: string,
+          title: Title,
+          fullName: string,
+          contactEmail: string,
+          phoneNumber: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      directors?:  {
+        __typename: "ModelDirectorsConnection",
+        items:  Array< {
+          __typename: "Directors",
+          id: string,
+          directorTitle?: Title | null,
+          directorName: string,
+          directorKRAPIN: string,
+          directorEmailAddress: string,
+          directorNationality: Ownership,
+          directorShares: number,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      clients?:  {
+        __typename: "ModelClientConnection",
+        items:  Array< {
+          __typename: "Client",
+          id: string,
+          clientName: string,
+          contractValue: number,
+          startDate: string,
+          endDate: string,
+          contactPerson: string,
+          contactEmail: string,
+          contactPhoneNumber: string,
+          contractAttachment: string,
+          serviceDescription: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      personnel?:  {
+        __typename: "ModelPersonelConnection",
+        items:  Array< {
+          __typename: "Personel",
+          id: string,
+          personelName: string,
+          role: string,
+          nationalid: string,
+          qualificationAttachment: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      contracts?:  {
+        __typename: "ModelContractConnection",
+        items:  Array< {
+          __typename: "Contract",
+          id: string,
+          title: string,
+          type: Nature,
+          department: string,
+          budget: number,
+          status?: ContractStatus | null,
+          description: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
 };
 
-export type DeleteCompanyDirectorsMutationVariables = {
-  input: DeleteCompanyDirectorsInput;
-  condition?: ModelCompanyDirectorsConditionInput | null;
+export type DeleteClientMutationVariables = {
+  input: DeleteClientInput,
+  condition?: ModelClientConditionInput | null,
 };
 
-export type DeleteCompanyDirectorsMutation = {
-  deleteCompanyDirectors?: {
-    __typename: "CompanyDirectors";
-    id: string;
-    companyID: string;
-    directorsID: string;
-    company: {
-      __typename: "Company";
-      id: string;
-      organizationName: string;
-      organizationType: OrganizationType;
-      ownership: Ownership;
-      natureOfBusiness: string;
-      organizationRegistrationDate: string;
-      organizationRegistrationNumber: string;
-      registrationCertificate: string;
-      cr12: string;
-      KRAPIN: string;
-      KRAPINCertificate: string;
-      taxComplianceNumber: string;
-      taxComplianceExpiry: string;
-      taxComplianceCertificate: string;
-      agpoCategory?: AGPOCategory | null;
-      agpoExpiryDate?: string | null;
-      agpoCertificate?: string | null;
-      addressDetails?: {
-        __typename: "ModelAddressDetailsConnection";
-        nextToken?: string | null;
-      } | null;
-      directors?: {
-        __typename: "ModelCompanyDirectorsConnection";
-        nextToken?: string | null;
-      } | null;
-      createdAt: string;
-      updatedAt: string;
-      owner?: string | null;
-    };
-    directors: {
-      __typename: "Directors";
-      id: string;
-      directorTitle?: Title | null;
-      directorName: string;
-      directorKRAPIN: string;
-      directorEmailAddress: string;
-      directorNationality: string;
-      directorShares: number;
-      companies?: {
-        __typename: "ModelCompanyDirectorsConnection";
-        nextToken?: string | null;
-      } | null;
-      createdAt: string;
-      updatedAt: string;
-      owner?: string | null;
-    };
-    createdAt: string;
-    updatedAt: string;
-    owner?: string | null;
-  } | null;
+export type DeleteClientMutation = {
+  deleteClient?:  {
+    __typename: "Client",
+    id: string,
+    clientName: string,
+    contractValue: number,
+    startDate: string,
+    endDate: string,
+    contactPerson: string,
+    contactEmail: string,
+    contactPhoneNumber: string,
+    contractAttachment: string,
+    serviceDescription: string,
+    companyID: string,
+    company?:  {
+      __typename: "Company",
+      id: string,
+      organizationName: string,
+      organizationType: OrganizationType,
+      ownership: Ownership,
+      natureOfBusiness: Array< Nature | null >,
+      organizationRegistrationDate: string,
+      organizationRegistrationNumber: string,
+      registrationCertificate: string,
+      cr12: string,
+      KRAPIN: string,
+      KRAPINCertificate: string,
+      taxComplianceNumber: string,
+      taxComplianceExpiry: string,
+      taxComplianceCertificate: string,
+      agpoCategory?: AGPOCategory | null,
+      agpoExpiryDate?: string | null,
+      agpoCertificate?: string | null,
+      status?: Status | null,
+      response?: Array< string | null > | null,
+      addressDetails?:  {
+        __typename: "ModelAddressDetailsConnection",
+        items:  Array< {
+          __typename: "AddressDetails",
+          id: string,
+          postalAddress: string,
+          city: string,
+          country: string,
+          officeBuilding: string,
+          streetAddress: string,
+          emailAddress: string,
+          title: Title,
+          fullName: string,
+          contactEmail: string,
+          phoneNumber: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      directors?:  {
+        __typename: "ModelDirectorsConnection",
+        items:  Array< {
+          __typename: "Directors",
+          id: string,
+          directorTitle?: Title | null,
+          directorName: string,
+          directorKRAPIN: string,
+          directorEmailAddress: string,
+          directorNationality: Ownership,
+          directorShares: number,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      clients?:  {
+        __typename: "ModelClientConnection",
+        items:  Array< {
+          __typename: "Client",
+          id: string,
+          clientName: string,
+          contractValue: number,
+          startDate: string,
+          endDate: string,
+          contactPerson: string,
+          contactEmail: string,
+          contactPhoneNumber: string,
+          contractAttachment: string,
+          serviceDescription: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      personnel?:  {
+        __typename: "ModelPersonelConnection",
+        items:  Array< {
+          __typename: "Personel",
+          id: string,
+          personelName: string,
+          role: string,
+          nationalid: string,
+          qualificationAttachment: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      contracts?:  {
+        __typename: "ModelContractConnection",
+        items:  Array< {
+          __typename: "Contract",
+          id: string,
+          title: string,
+          type: Nature,
+          department: string,
+          budget: number,
+          status?: ContractStatus | null,
+          description: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type CreatePersonelMutationVariables = {
+  input: CreatePersonelInput,
+  condition?: ModelPersonelConditionInput | null,
+};
+
+export type CreatePersonelMutation = {
+  createPersonel?:  {
+    __typename: "Personel",
+    id: string,
+    personelName: string,
+    role: string,
+    nationalid: string,
+    qualificationAttachment: string,
+    companyID: string,
+    company?:  {
+      __typename: "Company",
+      id: string,
+      organizationName: string,
+      organizationType: OrganizationType,
+      ownership: Ownership,
+      natureOfBusiness: Array< Nature | null >,
+      organizationRegistrationDate: string,
+      organizationRegistrationNumber: string,
+      registrationCertificate: string,
+      cr12: string,
+      KRAPIN: string,
+      KRAPINCertificate: string,
+      taxComplianceNumber: string,
+      taxComplianceExpiry: string,
+      taxComplianceCertificate: string,
+      agpoCategory?: AGPOCategory | null,
+      agpoExpiryDate?: string | null,
+      agpoCertificate?: string | null,
+      status?: Status | null,
+      response?: Array< string | null > | null,
+      addressDetails?:  {
+        __typename: "ModelAddressDetailsConnection",
+        items:  Array< {
+          __typename: "AddressDetails",
+          id: string,
+          postalAddress: string,
+          city: string,
+          country: string,
+          officeBuilding: string,
+          streetAddress: string,
+          emailAddress: string,
+          title: Title,
+          fullName: string,
+          contactEmail: string,
+          phoneNumber: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      directors?:  {
+        __typename: "ModelDirectorsConnection",
+        items:  Array< {
+          __typename: "Directors",
+          id: string,
+          directorTitle?: Title | null,
+          directorName: string,
+          directorKRAPIN: string,
+          directorEmailAddress: string,
+          directorNationality: Ownership,
+          directorShares: number,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      clients?:  {
+        __typename: "ModelClientConnection",
+        items:  Array< {
+          __typename: "Client",
+          id: string,
+          clientName: string,
+          contractValue: number,
+          startDate: string,
+          endDate: string,
+          contactPerson: string,
+          contactEmail: string,
+          contactPhoneNumber: string,
+          contractAttachment: string,
+          serviceDescription: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      personnel?:  {
+        __typename: "ModelPersonelConnection",
+        items:  Array< {
+          __typename: "Personel",
+          id: string,
+          personelName: string,
+          role: string,
+          nationalid: string,
+          qualificationAttachment: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      contracts?:  {
+        __typename: "ModelContractConnection",
+        items:  Array< {
+          __typename: "Contract",
+          id: string,
+          title: string,
+          type: Nature,
+          department: string,
+          budget: number,
+          status?: ContractStatus | null,
+          description: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type UpdatePersonelMutationVariables = {
+  input: UpdatePersonelInput,
+  condition?: ModelPersonelConditionInput | null,
+};
+
+export type UpdatePersonelMutation = {
+  updatePersonel?:  {
+    __typename: "Personel",
+    id: string,
+    personelName: string,
+    role: string,
+    nationalid: string,
+    qualificationAttachment: string,
+    companyID: string,
+    company?:  {
+      __typename: "Company",
+      id: string,
+      organizationName: string,
+      organizationType: OrganizationType,
+      ownership: Ownership,
+      natureOfBusiness: Array< Nature | null >,
+      organizationRegistrationDate: string,
+      organizationRegistrationNumber: string,
+      registrationCertificate: string,
+      cr12: string,
+      KRAPIN: string,
+      KRAPINCertificate: string,
+      taxComplianceNumber: string,
+      taxComplianceExpiry: string,
+      taxComplianceCertificate: string,
+      agpoCategory?: AGPOCategory | null,
+      agpoExpiryDate?: string | null,
+      agpoCertificate?: string | null,
+      status?: Status | null,
+      response?: Array< string | null > | null,
+      addressDetails?:  {
+        __typename: "ModelAddressDetailsConnection",
+        items:  Array< {
+          __typename: "AddressDetails",
+          id: string,
+          postalAddress: string,
+          city: string,
+          country: string,
+          officeBuilding: string,
+          streetAddress: string,
+          emailAddress: string,
+          title: Title,
+          fullName: string,
+          contactEmail: string,
+          phoneNumber: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      directors?:  {
+        __typename: "ModelDirectorsConnection",
+        items:  Array< {
+          __typename: "Directors",
+          id: string,
+          directorTitle?: Title | null,
+          directorName: string,
+          directorKRAPIN: string,
+          directorEmailAddress: string,
+          directorNationality: Ownership,
+          directorShares: number,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      clients?:  {
+        __typename: "ModelClientConnection",
+        items:  Array< {
+          __typename: "Client",
+          id: string,
+          clientName: string,
+          contractValue: number,
+          startDate: string,
+          endDate: string,
+          contactPerson: string,
+          contactEmail: string,
+          contactPhoneNumber: string,
+          contractAttachment: string,
+          serviceDescription: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      personnel?:  {
+        __typename: "ModelPersonelConnection",
+        items:  Array< {
+          __typename: "Personel",
+          id: string,
+          personelName: string,
+          role: string,
+          nationalid: string,
+          qualificationAttachment: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      contracts?:  {
+        __typename: "ModelContractConnection",
+        items:  Array< {
+          __typename: "Contract",
+          id: string,
+          title: string,
+          type: Nature,
+          department: string,
+          budget: number,
+          status?: ContractStatus | null,
+          description: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type DeletePersonelMutationVariables = {
+  input: DeletePersonelInput,
+  condition?: ModelPersonelConditionInput | null,
+};
+
+export type DeletePersonelMutation = {
+  deletePersonel?:  {
+    __typename: "Personel",
+    id: string,
+    personelName: string,
+    role: string,
+    nationalid: string,
+    qualificationAttachment: string,
+    companyID: string,
+    company?:  {
+      __typename: "Company",
+      id: string,
+      organizationName: string,
+      organizationType: OrganizationType,
+      ownership: Ownership,
+      natureOfBusiness: Array< Nature | null >,
+      organizationRegistrationDate: string,
+      organizationRegistrationNumber: string,
+      registrationCertificate: string,
+      cr12: string,
+      KRAPIN: string,
+      KRAPINCertificate: string,
+      taxComplianceNumber: string,
+      taxComplianceExpiry: string,
+      taxComplianceCertificate: string,
+      agpoCategory?: AGPOCategory | null,
+      agpoExpiryDate?: string | null,
+      agpoCertificate?: string | null,
+      status?: Status | null,
+      response?: Array< string | null > | null,
+      addressDetails?:  {
+        __typename: "ModelAddressDetailsConnection",
+        items:  Array< {
+          __typename: "AddressDetails",
+          id: string,
+          postalAddress: string,
+          city: string,
+          country: string,
+          officeBuilding: string,
+          streetAddress: string,
+          emailAddress: string,
+          title: Title,
+          fullName: string,
+          contactEmail: string,
+          phoneNumber: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      directors?:  {
+        __typename: "ModelDirectorsConnection",
+        items:  Array< {
+          __typename: "Directors",
+          id: string,
+          directorTitle?: Title | null,
+          directorName: string,
+          directorKRAPIN: string,
+          directorEmailAddress: string,
+          directorNationality: Ownership,
+          directorShares: number,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      clients?:  {
+        __typename: "ModelClientConnection",
+        items:  Array< {
+          __typename: "Client",
+          id: string,
+          clientName: string,
+          contractValue: number,
+          startDate: string,
+          endDate: string,
+          contactPerson: string,
+          contactEmail: string,
+          contactPhoneNumber: string,
+          contractAttachment: string,
+          serviceDescription: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      personnel?:  {
+        __typename: "ModelPersonelConnection",
+        items:  Array< {
+          __typename: "Personel",
+          id: string,
+          personelName: string,
+          role: string,
+          nationalid: string,
+          qualificationAttachment: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      contracts?:  {
+        __typename: "ModelContractConnection",
+        items:  Array< {
+          __typename: "Contract",
+          id: string,
+          title: string,
+          type: Nature,
+          department: string,
+          budget: number,
+          status?: ContractStatus | null,
+          description: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type CreateOpportunityMutationVariables = {
+  input: CreateOpportunityInput,
+  condition?: ModelOpportunityConditionInput | null,
+};
+
+export type CreateOpportunityMutation = {
+  createOpportunity?:  {
+    __typename: "Opportunity",
+    id: string,
+    title: string,
+    type: Nature,
+    department: string,
+    budget: number,
+    status?: OpportunityStatus | null,
+    description: string,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type UpdateOpportunityMutationVariables = {
+  input: UpdateOpportunityInput,
+  condition?: ModelOpportunityConditionInput | null,
+};
+
+export type UpdateOpportunityMutation = {
+  updateOpportunity?:  {
+    __typename: "Opportunity",
+    id: string,
+    title: string,
+    type: Nature,
+    department: string,
+    budget: number,
+    status?: OpportunityStatus | null,
+    description: string,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type DeleteOpportunityMutationVariables = {
+  input: DeleteOpportunityInput,
+  condition?: ModelOpportunityConditionInput | null,
+};
+
+export type DeleteOpportunityMutation = {
+  deleteOpportunity?:  {
+    __typename: "Opportunity",
+    id: string,
+    title: string,
+    type: Nature,
+    department: string,
+    budget: number,
+    status?: OpportunityStatus | null,
+    description: string,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type CreateActionMutationVariables = {
+  input: CreateActionInput,
+  condition?: ModelActionConditionInput | null,
+};
+
+export type CreateActionMutation = {
+  createAction?:  {
+    __typename: "Action",
+    id: string,
+    title: string,
+    type: string,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type UpdateActionMutationVariables = {
+  input: UpdateActionInput,
+  condition?: ModelActionConditionInput | null,
+};
+
+export type UpdateActionMutation = {
+  updateAction?:  {
+    __typename: "Action",
+    id: string,
+    title: string,
+    type: string,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type DeleteActionMutationVariables = {
+  input: DeleteActionInput,
+  condition?: ModelActionConditionInput | null,
+};
+
+export type DeleteActionMutation = {
+  deleteAction?:  {
+    __typename: "Action",
+    id: string,
+    title: string,
+    type: string,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type CreateContractMutationVariables = {
+  input: CreateContractInput,
+  condition?: ModelContractConditionInput | null,
+};
+
+export type CreateContractMutation = {
+  createContract?:  {
+    __typename: "Contract",
+    id: string,
+    title: string,
+    type: Nature,
+    department: string,
+    budget: number,
+    status?: ContractStatus | null,
+    description: string,
+    companyID: string,
+    company?:  {
+      __typename: "Company",
+      id: string,
+      organizationName: string,
+      organizationType: OrganizationType,
+      ownership: Ownership,
+      natureOfBusiness: Array< Nature | null >,
+      organizationRegistrationDate: string,
+      organizationRegistrationNumber: string,
+      registrationCertificate: string,
+      cr12: string,
+      KRAPIN: string,
+      KRAPINCertificate: string,
+      taxComplianceNumber: string,
+      taxComplianceExpiry: string,
+      taxComplianceCertificate: string,
+      agpoCategory?: AGPOCategory | null,
+      agpoExpiryDate?: string | null,
+      agpoCertificate?: string | null,
+      status?: Status | null,
+      response?: Array< string | null > | null,
+      addressDetails?:  {
+        __typename: "ModelAddressDetailsConnection",
+        items:  Array< {
+          __typename: "AddressDetails",
+          id: string,
+          postalAddress: string,
+          city: string,
+          country: string,
+          officeBuilding: string,
+          streetAddress: string,
+          emailAddress: string,
+          title: Title,
+          fullName: string,
+          contactEmail: string,
+          phoneNumber: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      directors?:  {
+        __typename: "ModelDirectorsConnection",
+        items:  Array< {
+          __typename: "Directors",
+          id: string,
+          directorTitle?: Title | null,
+          directorName: string,
+          directorKRAPIN: string,
+          directorEmailAddress: string,
+          directorNationality: Ownership,
+          directorShares: number,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      clients?:  {
+        __typename: "ModelClientConnection",
+        items:  Array< {
+          __typename: "Client",
+          id: string,
+          clientName: string,
+          contractValue: number,
+          startDate: string,
+          endDate: string,
+          contactPerson: string,
+          contactEmail: string,
+          contactPhoneNumber: string,
+          contractAttachment: string,
+          serviceDescription: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      personnel?:  {
+        __typename: "ModelPersonelConnection",
+        items:  Array< {
+          __typename: "Personel",
+          id: string,
+          personelName: string,
+          role: string,
+          nationalid: string,
+          qualificationAttachment: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      contracts?:  {
+        __typename: "ModelContractConnection",
+        items:  Array< {
+          __typename: "Contract",
+          id: string,
+          title: string,
+          type: Nature,
+          department: string,
+          budget: number,
+          status?: ContractStatus | null,
+          description: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type UpdateContractMutationVariables = {
+  input: UpdateContractInput,
+  condition?: ModelContractConditionInput | null,
+};
+
+export type UpdateContractMutation = {
+  updateContract?:  {
+    __typename: "Contract",
+    id: string,
+    title: string,
+    type: Nature,
+    department: string,
+    budget: number,
+    status?: ContractStatus | null,
+    description: string,
+    companyID: string,
+    company?:  {
+      __typename: "Company",
+      id: string,
+      organizationName: string,
+      organizationType: OrganizationType,
+      ownership: Ownership,
+      natureOfBusiness: Array< Nature | null >,
+      organizationRegistrationDate: string,
+      organizationRegistrationNumber: string,
+      registrationCertificate: string,
+      cr12: string,
+      KRAPIN: string,
+      KRAPINCertificate: string,
+      taxComplianceNumber: string,
+      taxComplianceExpiry: string,
+      taxComplianceCertificate: string,
+      agpoCategory?: AGPOCategory | null,
+      agpoExpiryDate?: string | null,
+      agpoCertificate?: string | null,
+      status?: Status | null,
+      response?: Array< string | null > | null,
+      addressDetails?:  {
+        __typename: "ModelAddressDetailsConnection",
+        items:  Array< {
+          __typename: "AddressDetails",
+          id: string,
+          postalAddress: string,
+          city: string,
+          country: string,
+          officeBuilding: string,
+          streetAddress: string,
+          emailAddress: string,
+          title: Title,
+          fullName: string,
+          contactEmail: string,
+          phoneNumber: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      directors?:  {
+        __typename: "ModelDirectorsConnection",
+        items:  Array< {
+          __typename: "Directors",
+          id: string,
+          directorTitle?: Title | null,
+          directorName: string,
+          directorKRAPIN: string,
+          directorEmailAddress: string,
+          directorNationality: Ownership,
+          directorShares: number,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      clients?:  {
+        __typename: "ModelClientConnection",
+        items:  Array< {
+          __typename: "Client",
+          id: string,
+          clientName: string,
+          contractValue: number,
+          startDate: string,
+          endDate: string,
+          contactPerson: string,
+          contactEmail: string,
+          contactPhoneNumber: string,
+          contractAttachment: string,
+          serviceDescription: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      personnel?:  {
+        __typename: "ModelPersonelConnection",
+        items:  Array< {
+          __typename: "Personel",
+          id: string,
+          personelName: string,
+          role: string,
+          nationalid: string,
+          qualificationAttachment: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      contracts?:  {
+        __typename: "ModelContractConnection",
+        items:  Array< {
+          __typename: "Contract",
+          id: string,
+          title: string,
+          type: Nature,
+          department: string,
+          budget: number,
+          status?: ContractStatus | null,
+          description: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type DeleteContractMutationVariables = {
+  input: DeleteContractInput,
+  condition?: ModelContractConditionInput | null,
+};
+
+export type DeleteContractMutation = {
+  deleteContract?:  {
+    __typename: "Contract",
+    id: string,
+    title: string,
+    type: Nature,
+    department: string,
+    budget: number,
+    status?: ContractStatus | null,
+    description: string,
+    companyID: string,
+    company?:  {
+      __typename: "Company",
+      id: string,
+      organizationName: string,
+      organizationType: OrganizationType,
+      ownership: Ownership,
+      natureOfBusiness: Array< Nature | null >,
+      organizationRegistrationDate: string,
+      organizationRegistrationNumber: string,
+      registrationCertificate: string,
+      cr12: string,
+      KRAPIN: string,
+      KRAPINCertificate: string,
+      taxComplianceNumber: string,
+      taxComplianceExpiry: string,
+      taxComplianceCertificate: string,
+      agpoCategory?: AGPOCategory | null,
+      agpoExpiryDate?: string | null,
+      agpoCertificate?: string | null,
+      status?: Status | null,
+      response?: Array< string | null > | null,
+      addressDetails?:  {
+        __typename: "ModelAddressDetailsConnection",
+        items:  Array< {
+          __typename: "AddressDetails",
+          id: string,
+          postalAddress: string,
+          city: string,
+          country: string,
+          officeBuilding: string,
+          streetAddress: string,
+          emailAddress: string,
+          title: Title,
+          fullName: string,
+          contactEmail: string,
+          phoneNumber: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      directors?:  {
+        __typename: "ModelDirectorsConnection",
+        items:  Array< {
+          __typename: "Directors",
+          id: string,
+          directorTitle?: Title | null,
+          directorName: string,
+          directorKRAPIN: string,
+          directorEmailAddress: string,
+          directorNationality: Ownership,
+          directorShares: number,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      clients?:  {
+        __typename: "ModelClientConnection",
+        items:  Array< {
+          __typename: "Client",
+          id: string,
+          clientName: string,
+          contractValue: number,
+          startDate: string,
+          endDate: string,
+          contactPerson: string,
+          contactEmail: string,
+          contactPhoneNumber: string,
+          contractAttachment: string,
+          serviceDescription: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      personnel?:  {
+        __typename: "ModelPersonelConnection",
+        items:  Array< {
+          __typename: "Personel",
+          id: string,
+          personelName: string,
+          role: string,
+          nationalid: string,
+          qualificationAttachment: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      contracts?:  {
+        __typename: "ModelContractConnection",
+        items:  Array< {
+          __typename: "Contract",
+          id: string,
+          title: string,
+          type: Nature,
+          department: string,
+          budget: number,
+          status?: ContractStatus | null,
+          description: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
 };
 
 export type GetCompanyQueryVariables = {
-  id: string;
+  id: string,
 };
 
 export type GetCompanyQuery = {
-  getCompany?: {
-    __typename: "Company";
-    id: string;
-    organizationName: string;
-    organizationType: OrganizationType;
-    ownership: Ownership;
-    natureOfBusiness: string;
-    organizationRegistrationDate: string;
-    organizationRegistrationNumber: string;
-    registrationCertificate: string;
-    cr12: string;
-    KRAPIN: string;
-    KRAPINCertificate: string;
-    taxComplianceNumber: string;
-    taxComplianceExpiry: string;
-    taxComplianceCertificate: string;
-    agpoCategory?: AGPOCategory | null;
-    agpoExpiryDate?: string | null;
-    agpoCertificate?: string | null;
-    addressDetails?: {
-      __typename: "ModelAddressDetailsConnection";
-      items: Array<{
-        __typename: "AddressDetails";
-        id: string;
-        postalAddress: string;
-        city: string;
-        country: string;
-        officeBuilding: string;
-        streetAddress: string;
-        emailAddress: string;
-        title: Title;
-        fullName: string;
-        contactEmail: string;
-        phoneNumber: string;
-        companyID: string;
-        createdAt: string;
-        updatedAt: string;
-        owner?: string | null;
-      } | null>;
-      nextToken?: string | null;
-    } | null;
-    directors?: {
-      __typename: "ModelCompanyDirectorsConnection";
-      items: Array<{
-        __typename: "CompanyDirectors";
-        id: string;
-        companyID: string;
-        directorsID: string;
-        createdAt: string;
-        updatedAt: string;
-        owner?: string | null;
-      } | null>;
-      nextToken?: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-    owner?: string | null;
-  } | null;
+  getCompany?:  {
+    __typename: "Company",
+    id: string,
+    organizationName: string,
+    organizationType: OrganizationType,
+    ownership: Ownership,
+    natureOfBusiness: Array< Nature | null >,
+    organizationRegistrationDate: string,
+    organizationRegistrationNumber: string,
+    registrationCertificate: string,
+    cr12: string,
+    KRAPIN: string,
+    KRAPINCertificate: string,
+    taxComplianceNumber: string,
+    taxComplianceExpiry: string,
+    taxComplianceCertificate: string,
+    agpoCategory?: AGPOCategory | null,
+    agpoExpiryDate?: string | null,
+    agpoCertificate?: string | null,
+    status?: Status | null,
+    response?: Array< string | null > | null,
+    addressDetails?:  {
+      __typename: "ModelAddressDetailsConnection",
+      items:  Array< {
+        __typename: "AddressDetails",
+        id: string,
+        postalAddress: string,
+        city: string,
+        country: string,
+        officeBuilding: string,
+        streetAddress: string,
+        emailAddress: string,
+        title: Title,
+        fullName: string,
+        contactEmail: string,
+        phoneNumber: string,
+        companyID: string,
+        company?:  {
+          __typename: "Company",
+          id: string,
+          organizationName: string,
+          organizationType: OrganizationType,
+          ownership: Ownership,
+          natureOfBusiness: Array< Nature | null >,
+          organizationRegistrationDate: string,
+          organizationRegistrationNumber: string,
+          registrationCertificate: string,
+          cr12: string,
+          KRAPIN: string,
+          KRAPINCertificate: string,
+          taxComplianceNumber: string,
+          taxComplianceExpiry: string,
+          taxComplianceCertificate: string,
+          agpoCategory?: AGPOCategory | null,
+          agpoExpiryDate?: string | null,
+          agpoCertificate?: string | null,
+          status?: Status | null,
+          response?: Array< string | null > | null,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    directors?:  {
+      __typename: "ModelDirectorsConnection",
+      items:  Array< {
+        __typename: "Directors",
+        id: string,
+        directorTitle?: Title | null,
+        directorName: string,
+        directorKRAPIN: string,
+        directorEmailAddress: string,
+        directorNationality: Ownership,
+        directorShares: number,
+        companyID: string,
+        company?:  {
+          __typename: "Company",
+          id: string,
+          organizationName: string,
+          organizationType: OrganizationType,
+          ownership: Ownership,
+          natureOfBusiness: Array< Nature | null >,
+          organizationRegistrationDate: string,
+          organizationRegistrationNumber: string,
+          registrationCertificate: string,
+          cr12: string,
+          KRAPIN: string,
+          KRAPINCertificate: string,
+          taxComplianceNumber: string,
+          taxComplianceExpiry: string,
+          taxComplianceCertificate: string,
+          agpoCategory?: AGPOCategory | null,
+          agpoExpiryDate?: string | null,
+          agpoCertificate?: string | null,
+          status?: Status | null,
+          response?: Array< string | null > | null,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    clients?:  {
+      __typename: "ModelClientConnection",
+      items:  Array< {
+        __typename: "Client",
+        id: string,
+        clientName: string,
+        contractValue: number,
+        startDate: string,
+        endDate: string,
+        contactPerson: string,
+        contactEmail: string,
+        contactPhoneNumber: string,
+        contractAttachment: string,
+        serviceDescription: string,
+        companyID: string,
+        company?:  {
+          __typename: "Company",
+          id: string,
+          organizationName: string,
+          organizationType: OrganizationType,
+          ownership: Ownership,
+          natureOfBusiness: Array< Nature | null >,
+          organizationRegistrationDate: string,
+          organizationRegistrationNumber: string,
+          registrationCertificate: string,
+          cr12: string,
+          KRAPIN: string,
+          KRAPINCertificate: string,
+          taxComplianceNumber: string,
+          taxComplianceExpiry: string,
+          taxComplianceCertificate: string,
+          agpoCategory?: AGPOCategory | null,
+          agpoExpiryDate?: string | null,
+          agpoCertificate?: string | null,
+          status?: Status | null,
+          response?: Array< string | null > | null,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    personnel?:  {
+      __typename: "ModelPersonelConnection",
+      items:  Array< {
+        __typename: "Personel",
+        id: string,
+        personelName: string,
+        role: string,
+        nationalid: string,
+        qualificationAttachment: string,
+        companyID: string,
+        company?:  {
+          __typename: "Company",
+          id: string,
+          organizationName: string,
+          organizationType: OrganizationType,
+          ownership: Ownership,
+          natureOfBusiness: Array< Nature | null >,
+          organizationRegistrationDate: string,
+          organizationRegistrationNumber: string,
+          registrationCertificate: string,
+          cr12: string,
+          KRAPIN: string,
+          KRAPINCertificate: string,
+          taxComplianceNumber: string,
+          taxComplianceExpiry: string,
+          taxComplianceCertificate: string,
+          agpoCategory?: AGPOCategory | null,
+          agpoExpiryDate?: string | null,
+          agpoCertificate?: string | null,
+          status?: Status | null,
+          response?: Array< string | null > | null,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    contracts?:  {
+      __typename: "ModelContractConnection",
+      items:  Array< {
+        __typename: "Contract",
+        id: string,
+        title: string,
+        type: Nature,
+        department: string,
+        budget: number,
+        status?: ContractStatus | null,
+        description: string,
+        companyID: string,
+        company?:  {
+          __typename: "Company",
+          id: string,
+          organizationName: string,
+          organizationType: OrganizationType,
+          ownership: Ownership,
+          natureOfBusiness: Array< Nature | null >,
+          organizationRegistrationDate: string,
+          organizationRegistrationNumber: string,
+          registrationCertificate: string,
+          cr12: string,
+          KRAPIN: string,
+          KRAPINCertificate: string,
+          taxComplianceNumber: string,
+          taxComplianceExpiry: string,
+          taxComplianceCertificate: string,
+          agpoCategory?: AGPOCategory | null,
+          agpoExpiryDate?: string | null,
+          agpoCertificate?: string | null,
+          status?: Status | null,
+          response?: Array< string | null > | null,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
 };
 
 export type ListCompaniesQueryVariables = {
-  filter?: ModelCompanyFilterInput | null;
-  limit?: number | null;
-  nextToken?: string | null;
+  filter?: ModelCompanyFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
 };
 
 export type ListCompaniesQuery = {
-  listCompanies?: {
-    __typename: "ModelCompanyConnection";
-    items: Array<{
-      __typename: "Company";
-      id: string;
-      organizationName: string;
-      organizationType: OrganizationType;
-      ownership: Ownership;
-      natureOfBusiness: string;
-      organizationRegistrationDate: string;
-      organizationRegistrationNumber: string;
-      registrationCertificate: string;
-      cr12: string;
-      KRAPIN: string;
-      KRAPINCertificate: string;
-      taxComplianceNumber: string;
-      taxComplianceExpiry: string;
-      taxComplianceCertificate: string;
-      agpoCategory?: AGPOCategory | null;
-      agpoExpiryDate?: string | null;
-      agpoCertificate?: string | null;
-      addressDetails?: {
-        __typename: "ModelAddressDetailsConnection";
-        nextToken?: string | null;
-      } | null;
-      directors?: {
-        __typename: "ModelCompanyDirectorsConnection";
-        nextToken?: string | null;
-      } | null;
-      createdAt: string;
-      updatedAt: string;
-      owner?: string | null;
-    } | null>;
-    nextToken?: string | null;
-  } | null;
+  listCompanies?:  {
+    __typename: "ModelCompanyConnection",
+    items:  Array< {
+      __typename: "Company",
+      id: string,
+      organizationName: string,
+      organizationType: OrganizationType,
+      ownership: Ownership,
+      natureOfBusiness: Array< Nature | null >,
+      organizationRegistrationDate: string,
+      organizationRegistrationNumber: string,
+      registrationCertificate: string,
+      cr12: string,
+      KRAPIN: string,
+      KRAPINCertificate: string,
+      taxComplianceNumber: string,
+      taxComplianceExpiry: string,
+      taxComplianceCertificate: string,
+      agpoCategory?: AGPOCategory | null,
+      agpoExpiryDate?: string | null,
+      agpoCertificate?: string | null,
+      status?: Status | null,
+      response?: Array< string | null > | null,
+      addressDetails?:  {
+        __typename: "ModelAddressDetailsConnection",
+        items:  Array< {
+          __typename: "AddressDetails",
+          id: string,
+          postalAddress: string,
+          city: string,
+          country: string,
+          officeBuilding: string,
+          streetAddress: string,
+          emailAddress: string,
+          title: Title,
+          fullName: string,
+          contactEmail: string,
+          phoneNumber: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      directors?:  {
+        __typename: "ModelDirectorsConnection",
+        items:  Array< {
+          __typename: "Directors",
+          id: string,
+          directorTitle?: Title | null,
+          directorName: string,
+          directorKRAPIN: string,
+          directorEmailAddress: string,
+          directorNationality: Ownership,
+          directorShares: number,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      clients?:  {
+        __typename: "ModelClientConnection",
+        items:  Array< {
+          __typename: "Client",
+          id: string,
+          clientName: string,
+          contractValue: number,
+          startDate: string,
+          endDate: string,
+          contactPerson: string,
+          contactEmail: string,
+          contactPhoneNumber: string,
+          contractAttachment: string,
+          serviceDescription: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      personnel?:  {
+        __typename: "ModelPersonelConnection",
+        items:  Array< {
+          __typename: "Personel",
+          id: string,
+          personelName: string,
+          role: string,
+          nationalid: string,
+          qualificationAttachment: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      contracts?:  {
+        __typename: "ModelContractConnection",
+        items:  Array< {
+          __typename: "Contract",
+          id: string,
+          title: string,
+          type: Nature,
+          department: string,
+          budget: number,
+          status?: ContractStatus | null,
+          description: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
 };
 
 export type GetAddressDetailsQueryVariables = {
-  id: string;
+  id: string,
 };
 
 export type GetAddressDetailsQuery = {
-  getAddressDetails?: {
-    __typename: "AddressDetails";
-    id: string;
-    postalAddress: string;
-    city: string;
-    country: string;
-    officeBuilding: string;
-    streetAddress: string;
-    emailAddress: string;
-    title: Title;
-    fullName: string;
-    contactEmail: string;
-    phoneNumber: string;
-    companyID: string;
-    company?: {
-      __typename: "Company";
-      id: string;
-      organizationName: string;
-      organizationType: OrganizationType;
-      ownership: Ownership;
-      natureOfBusiness: string;
-      organizationRegistrationDate: string;
-      organizationRegistrationNumber: string;
-      registrationCertificate: string;
-      cr12: string;
-      KRAPIN: string;
-      KRAPINCertificate: string;
-      taxComplianceNumber: string;
-      taxComplianceExpiry: string;
-      taxComplianceCertificate: string;
-      agpoCategory?: AGPOCategory | null;
-      agpoExpiryDate?: string | null;
-      agpoCertificate?: string | null;
-      addressDetails?: {
-        __typename: "ModelAddressDetailsConnection";
-        nextToken?: string | null;
-      } | null;
-      directors?: {
-        __typename: "ModelCompanyDirectorsConnection";
-        nextToken?: string | null;
-      } | null;
-      createdAt: string;
-      updatedAt: string;
-      owner?: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-    owner?: string | null;
-  } | null;
+  getAddressDetails?:  {
+    __typename: "AddressDetails",
+    id: string,
+    postalAddress: string,
+    city: string,
+    country: string,
+    officeBuilding: string,
+    streetAddress: string,
+    emailAddress: string,
+    title: Title,
+    fullName: string,
+    contactEmail: string,
+    phoneNumber: string,
+    companyID: string,
+    company?:  {
+      __typename: "Company",
+      id: string,
+      organizationName: string,
+      organizationType: OrganizationType,
+      ownership: Ownership,
+      natureOfBusiness: Array< Nature | null >,
+      organizationRegistrationDate: string,
+      organizationRegistrationNumber: string,
+      registrationCertificate: string,
+      cr12: string,
+      KRAPIN: string,
+      KRAPINCertificate: string,
+      taxComplianceNumber: string,
+      taxComplianceExpiry: string,
+      taxComplianceCertificate: string,
+      agpoCategory?: AGPOCategory | null,
+      agpoExpiryDate?: string | null,
+      agpoCertificate?: string | null,
+      status?: Status | null,
+      response?: Array< string | null > | null,
+      addressDetails?:  {
+        __typename: "ModelAddressDetailsConnection",
+        items:  Array< {
+          __typename: "AddressDetails",
+          id: string,
+          postalAddress: string,
+          city: string,
+          country: string,
+          officeBuilding: string,
+          streetAddress: string,
+          emailAddress: string,
+          title: Title,
+          fullName: string,
+          contactEmail: string,
+          phoneNumber: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      directors?:  {
+        __typename: "ModelDirectorsConnection",
+        items:  Array< {
+          __typename: "Directors",
+          id: string,
+          directorTitle?: Title | null,
+          directorName: string,
+          directorKRAPIN: string,
+          directorEmailAddress: string,
+          directorNationality: Ownership,
+          directorShares: number,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      clients?:  {
+        __typename: "ModelClientConnection",
+        items:  Array< {
+          __typename: "Client",
+          id: string,
+          clientName: string,
+          contractValue: number,
+          startDate: string,
+          endDate: string,
+          contactPerson: string,
+          contactEmail: string,
+          contactPhoneNumber: string,
+          contractAttachment: string,
+          serviceDescription: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      personnel?:  {
+        __typename: "ModelPersonelConnection",
+        items:  Array< {
+          __typename: "Personel",
+          id: string,
+          personelName: string,
+          role: string,
+          nationalid: string,
+          qualificationAttachment: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      contracts?:  {
+        __typename: "ModelContractConnection",
+        items:  Array< {
+          __typename: "Contract",
+          id: string,
+          title: string,
+          type: Nature,
+          department: string,
+          budget: number,
+          status?: ContractStatus | null,
+          description: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
 };
 
 export type ListAddressDetailsQueryVariables = {
-  filter?: ModelAddressDetailsFilterInput | null;
-  limit?: number | null;
-  nextToken?: string | null;
+  filter?: ModelAddressDetailsFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
 };
 
 export type ListAddressDetailsQuery = {
-  listAddressDetails?: {
-    __typename: "ModelAddressDetailsConnection";
-    items: Array<{
-      __typename: "AddressDetails";
-      id: string;
-      postalAddress: string;
-      city: string;
-      country: string;
-      officeBuilding: string;
-      streetAddress: string;
-      emailAddress: string;
-      title: Title;
-      fullName: string;
-      contactEmail: string;
-      phoneNumber: string;
-      companyID: string;
-      company?: {
-        __typename: "Company";
-        id: string;
-        organizationName: string;
-        organizationType: OrganizationType;
-        ownership: Ownership;
-        natureOfBusiness: string;
-        organizationRegistrationDate: string;
-        organizationRegistrationNumber: string;
-        registrationCertificate: string;
-        cr12: string;
-        KRAPIN: string;
-        KRAPINCertificate: string;
-        taxComplianceNumber: string;
-        taxComplianceExpiry: string;
-        taxComplianceCertificate: string;
-        agpoCategory?: AGPOCategory | null;
-        agpoExpiryDate?: string | null;
-        agpoCertificate?: string | null;
-        createdAt: string;
-        updatedAt: string;
-        owner?: string | null;
-      } | null;
-      createdAt: string;
-      updatedAt: string;
-      owner?: string | null;
-    } | null>;
-    nextToken?: string | null;
-  } | null;
+  listAddressDetails?:  {
+    __typename: "ModelAddressDetailsConnection",
+    items:  Array< {
+      __typename: "AddressDetails",
+      id: string,
+      postalAddress: string,
+      city: string,
+      country: string,
+      officeBuilding: string,
+      streetAddress: string,
+      emailAddress: string,
+      title: Title,
+      fullName: string,
+      contactEmail: string,
+      phoneNumber: string,
+      companyID: string,
+      company?:  {
+        __typename: "Company",
+        id: string,
+        organizationName: string,
+        organizationType: OrganizationType,
+        ownership: Ownership,
+        natureOfBusiness: Array< Nature | null >,
+        organizationRegistrationDate: string,
+        organizationRegistrationNumber: string,
+        registrationCertificate: string,
+        cr12: string,
+        KRAPIN: string,
+        KRAPINCertificate: string,
+        taxComplianceNumber: string,
+        taxComplianceExpiry: string,
+        taxComplianceCertificate: string,
+        agpoCategory?: AGPOCategory | null,
+        agpoExpiryDate?: string | null,
+        agpoCertificate?: string | null,
+        status?: Status | null,
+        response?: Array< string | null > | null,
+        addressDetails?:  {
+          __typename: "ModelAddressDetailsConnection",
+          nextToken?: string | null,
+        } | null,
+        directors?:  {
+          __typename: "ModelDirectorsConnection",
+          nextToken?: string | null,
+        } | null,
+        clients?:  {
+          __typename: "ModelClientConnection",
+          nextToken?: string | null,
+        } | null,
+        personnel?:  {
+          __typename: "ModelPersonelConnection",
+          nextToken?: string | null,
+        } | null,
+        contracts?:  {
+          __typename: "ModelContractConnection",
+          nextToken?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
 };
 
 export type PostalAddressQueryVariables = {
-  companyID: string;
-  sortDirection?: ModelSortDirection | null;
-  filter?: ModelAddressDetailsFilterInput | null;
-  limit?: number | null;
-  nextToken?: string | null;
+  companyID: string,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelAddressDetailsFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
 };
 
 export type PostalAddressQuery = {
-  postalAddress?: {
-    __typename: "ModelAddressDetailsConnection";
-    items: Array<{
-      __typename: "AddressDetails";
-      id: string;
-      postalAddress: string;
-      city: string;
-      country: string;
-      officeBuilding: string;
-      streetAddress: string;
-      emailAddress: string;
-      title: Title;
-      fullName: string;
-      contactEmail: string;
-      phoneNumber: string;
-      companyID: string;
-      company?: {
-        __typename: "Company";
-        id: string;
-        organizationName: string;
-        organizationType: OrganizationType;
-        ownership: Ownership;
-        natureOfBusiness: string;
-        organizationRegistrationDate: string;
-        organizationRegistrationNumber: string;
-        registrationCertificate: string;
-        cr12: string;
-        KRAPIN: string;
-        KRAPINCertificate: string;
-        taxComplianceNumber: string;
-        taxComplianceExpiry: string;
-        taxComplianceCertificate: string;
-        agpoCategory?: AGPOCategory | null;
-        agpoExpiryDate?: string | null;
-        agpoCertificate?: string | null;
-        createdAt: string;
-        updatedAt: string;
-        owner?: string | null;
-      } | null;
-      createdAt: string;
-      updatedAt: string;
-      owner?: string | null;
-    } | null>;
-    nextToken?: string | null;
-  } | null;
+  postalAddress?:  {
+    __typename: "ModelAddressDetailsConnection",
+    items:  Array< {
+      __typename: "AddressDetails",
+      id: string,
+      postalAddress: string,
+      city: string,
+      country: string,
+      officeBuilding: string,
+      streetAddress: string,
+      emailAddress: string,
+      title: Title,
+      fullName: string,
+      contactEmail: string,
+      phoneNumber: string,
+      companyID: string,
+      company?:  {
+        __typename: "Company",
+        id: string,
+        organizationName: string,
+        organizationType: OrganizationType,
+        ownership: Ownership,
+        natureOfBusiness: Array< Nature | null >,
+        organizationRegistrationDate: string,
+        organizationRegistrationNumber: string,
+        registrationCertificate: string,
+        cr12: string,
+        KRAPIN: string,
+        KRAPINCertificate: string,
+        taxComplianceNumber: string,
+        taxComplianceExpiry: string,
+        taxComplianceCertificate: string,
+        agpoCategory?: AGPOCategory | null,
+        agpoExpiryDate?: string | null,
+        agpoCertificate?: string | null,
+        status?: Status | null,
+        response?: Array< string | null > | null,
+        addressDetails?:  {
+          __typename: "ModelAddressDetailsConnection",
+          nextToken?: string | null,
+        } | null,
+        directors?:  {
+          __typename: "ModelDirectorsConnection",
+          nextToken?: string | null,
+        } | null,
+        clients?:  {
+          __typename: "ModelClientConnection",
+          nextToken?: string | null,
+        } | null,
+        personnel?:  {
+          __typename: "ModelPersonelConnection",
+          nextToken?: string | null,
+        } | null,
+        contracts?:  {
+          __typename: "ModelContractConnection",
+          nextToken?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
 };
 
 export type GetDirectorsQueryVariables = {
-  id: string;
+  id: string,
 };
 
 export type GetDirectorsQuery = {
-  getDirectors?: {
-    __typename: "Directors";
-    id: string;
-    directorTitle?: Title | null;
-    directorName: string;
-    directorKRAPIN: string;
-    directorEmailAddress: string;
-    directorNationality: string;
-    directorShares: number;
-    companies?: {
-      __typename: "ModelCompanyDirectorsConnection";
-      items: Array<{
-        __typename: "CompanyDirectors";
-        id: string;
-        companyID: string;
-        directorsID: string;
-        createdAt: string;
-        updatedAt: string;
-        owner?: string | null;
-      } | null>;
-      nextToken?: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-    owner?: string | null;
-  } | null;
+  getDirectors?:  {
+    __typename: "Directors",
+    id: string,
+    directorTitle?: Title | null,
+    directorName: string,
+    directorKRAPIN: string,
+    directorEmailAddress: string,
+    directorNationality: Ownership,
+    directorShares: number,
+    companyID: string,
+    company?:  {
+      __typename: "Company",
+      id: string,
+      organizationName: string,
+      organizationType: OrganizationType,
+      ownership: Ownership,
+      natureOfBusiness: Array< Nature | null >,
+      organizationRegistrationDate: string,
+      organizationRegistrationNumber: string,
+      registrationCertificate: string,
+      cr12: string,
+      KRAPIN: string,
+      KRAPINCertificate: string,
+      taxComplianceNumber: string,
+      taxComplianceExpiry: string,
+      taxComplianceCertificate: string,
+      agpoCategory?: AGPOCategory | null,
+      agpoExpiryDate?: string | null,
+      agpoCertificate?: string | null,
+      status?: Status | null,
+      response?: Array< string | null > | null,
+      addressDetails?:  {
+        __typename: "ModelAddressDetailsConnection",
+        items:  Array< {
+          __typename: "AddressDetails",
+          id: string,
+          postalAddress: string,
+          city: string,
+          country: string,
+          officeBuilding: string,
+          streetAddress: string,
+          emailAddress: string,
+          title: Title,
+          fullName: string,
+          contactEmail: string,
+          phoneNumber: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      directors?:  {
+        __typename: "ModelDirectorsConnection",
+        items:  Array< {
+          __typename: "Directors",
+          id: string,
+          directorTitle?: Title | null,
+          directorName: string,
+          directorKRAPIN: string,
+          directorEmailAddress: string,
+          directorNationality: Ownership,
+          directorShares: number,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      clients?:  {
+        __typename: "ModelClientConnection",
+        items:  Array< {
+          __typename: "Client",
+          id: string,
+          clientName: string,
+          contractValue: number,
+          startDate: string,
+          endDate: string,
+          contactPerson: string,
+          contactEmail: string,
+          contactPhoneNumber: string,
+          contractAttachment: string,
+          serviceDescription: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      personnel?:  {
+        __typename: "ModelPersonelConnection",
+        items:  Array< {
+          __typename: "Personel",
+          id: string,
+          personelName: string,
+          role: string,
+          nationalid: string,
+          qualificationAttachment: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      contracts?:  {
+        __typename: "ModelContractConnection",
+        items:  Array< {
+          __typename: "Contract",
+          id: string,
+          title: string,
+          type: Nature,
+          department: string,
+          budget: number,
+          status?: ContractStatus | null,
+          description: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
 };
 
 export type ListDirectorsQueryVariables = {
-  filter?: ModelDirectorsFilterInput | null;
-  limit?: number | null;
-  nextToken?: string | null;
+  filter?: ModelDirectorsFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
 };
 
 export type ListDirectorsQuery = {
-  listDirectors?: {
-    __typename: "ModelDirectorsConnection";
-    items: Array<{
-      __typename: "Directors";
-      id: string;
-      directorTitle?: Title | null;
-      directorName: string;
-      directorKRAPIN: string;
-      directorEmailAddress: string;
-      directorNationality: string;
-      directorShares: number;
-      companies?: {
-        __typename: "ModelCompanyDirectorsConnection";
-        nextToken?: string | null;
-      } | null;
-      createdAt: string;
-      updatedAt: string;
-      owner?: string | null;
-    } | null>;
-    nextToken?: string | null;
-  } | null;
+  listDirectors?:  {
+    __typename: "ModelDirectorsConnection",
+    items:  Array< {
+      __typename: "Directors",
+      id: string,
+      directorTitle?: Title | null,
+      directorName: string,
+      directorKRAPIN: string,
+      directorEmailAddress: string,
+      directorNationality: Ownership,
+      directorShares: number,
+      companyID: string,
+      company?:  {
+        __typename: "Company",
+        id: string,
+        organizationName: string,
+        organizationType: OrganizationType,
+        ownership: Ownership,
+        natureOfBusiness: Array< Nature | null >,
+        organizationRegistrationDate: string,
+        organizationRegistrationNumber: string,
+        registrationCertificate: string,
+        cr12: string,
+        KRAPIN: string,
+        KRAPINCertificate: string,
+        taxComplianceNumber: string,
+        taxComplianceExpiry: string,
+        taxComplianceCertificate: string,
+        agpoCategory?: AGPOCategory | null,
+        agpoExpiryDate?: string | null,
+        agpoCertificate?: string | null,
+        status?: Status | null,
+        response?: Array< string | null > | null,
+        addressDetails?:  {
+          __typename: "ModelAddressDetailsConnection",
+          nextToken?: string | null,
+        } | null,
+        directors?:  {
+          __typename: "ModelDirectorsConnection",
+          nextToken?: string | null,
+        } | null,
+        clients?:  {
+          __typename: "ModelClientConnection",
+          nextToken?: string | null,
+        } | null,
+        personnel?:  {
+          __typename: "ModelPersonelConnection",
+          nextToken?: string | null,
+        } | null,
+        contracts?:  {
+          __typename: "ModelContractConnection",
+          nextToken?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
 };
 
-export type GetCompanyDirectorsQueryVariables = {
-  id: string;
+export type DirectorNameQueryVariables = {
+  companyID: string,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelDirectorsFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
 };
 
-export type GetCompanyDirectorsQuery = {
-  getCompanyDirectors?: {
-    __typename: "CompanyDirectors";
-    id: string;
-    companyID: string;
-    directorsID: string;
-    company: {
-      __typename: "Company";
-      id: string;
-      organizationName: string;
-      organizationType: OrganizationType;
-      ownership: Ownership;
-      natureOfBusiness: string;
-      organizationRegistrationDate: string;
-      organizationRegistrationNumber: string;
-      registrationCertificate: string;
-      cr12: string;
-      KRAPIN: string;
-      KRAPINCertificate: string;
-      taxComplianceNumber: string;
-      taxComplianceExpiry: string;
-      taxComplianceCertificate: string;
-      agpoCategory?: AGPOCategory | null;
-      agpoExpiryDate?: string | null;
-      agpoCertificate?: string | null;
-      addressDetails?: {
-        __typename: "ModelAddressDetailsConnection";
-        nextToken?: string | null;
-      } | null;
-      directors?: {
-        __typename: "ModelCompanyDirectorsConnection";
-        nextToken?: string | null;
-      } | null;
-      createdAt: string;
-      updatedAt: string;
-      owner?: string | null;
-    };
-    directors: {
-      __typename: "Directors";
-      id: string;
-      directorTitle?: Title | null;
-      directorName: string;
-      directorKRAPIN: string;
-      directorEmailAddress: string;
-      directorNationality: string;
-      directorShares: number;
-      companies?: {
-        __typename: "ModelCompanyDirectorsConnection";
-        nextToken?: string | null;
-      } | null;
-      createdAt: string;
-      updatedAt: string;
-      owner?: string | null;
-    };
-    createdAt: string;
-    updatedAt: string;
-    owner?: string | null;
-  } | null;
+export type DirectorNameQuery = {
+  directorName?:  {
+    __typename: "ModelDirectorsConnection",
+    items:  Array< {
+      __typename: "Directors",
+      id: string,
+      directorTitle?: Title | null,
+      directorName: string,
+      directorKRAPIN: string,
+      directorEmailAddress: string,
+      directorNationality: Ownership,
+      directorShares: number,
+      companyID: string,
+      company?:  {
+        __typename: "Company",
+        id: string,
+        organizationName: string,
+        organizationType: OrganizationType,
+        ownership: Ownership,
+        natureOfBusiness: Array< Nature | null >,
+        organizationRegistrationDate: string,
+        organizationRegistrationNumber: string,
+        registrationCertificate: string,
+        cr12: string,
+        KRAPIN: string,
+        KRAPINCertificate: string,
+        taxComplianceNumber: string,
+        taxComplianceExpiry: string,
+        taxComplianceCertificate: string,
+        agpoCategory?: AGPOCategory | null,
+        agpoExpiryDate?: string | null,
+        agpoCertificate?: string | null,
+        status?: Status | null,
+        response?: Array< string | null > | null,
+        addressDetails?:  {
+          __typename: "ModelAddressDetailsConnection",
+          nextToken?: string | null,
+        } | null,
+        directors?:  {
+          __typename: "ModelDirectorsConnection",
+          nextToken?: string | null,
+        } | null,
+        clients?:  {
+          __typename: "ModelClientConnection",
+          nextToken?: string | null,
+        } | null,
+        personnel?:  {
+          __typename: "ModelPersonelConnection",
+          nextToken?: string | null,
+        } | null,
+        contracts?:  {
+          __typename: "ModelContractConnection",
+          nextToken?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
 };
 
-export type ListCompanyDirectorsQueryVariables = {
-  filter?: ModelCompanyDirectorsFilterInput | null;
-  limit?: number | null;
-  nextToken?: string | null;
+export type GetClientQueryVariables = {
+  id: string,
 };
 
-export type ListCompanyDirectorsQuery = {
-  listCompanyDirectors?: {
-    __typename: "ModelCompanyDirectorsConnection";
-    items: Array<{
-      __typename: "CompanyDirectors";
-      id: string;
-      companyID: string;
-      directorsID: string;
-      company: {
-        __typename: "Company";
-        id: string;
-        organizationName: string;
-        organizationType: OrganizationType;
-        ownership: Ownership;
-        natureOfBusiness: string;
-        organizationRegistrationDate: string;
-        organizationRegistrationNumber: string;
-        registrationCertificate: string;
-        cr12: string;
-        KRAPIN: string;
-        KRAPINCertificate: string;
-        taxComplianceNumber: string;
-        taxComplianceExpiry: string;
-        taxComplianceCertificate: string;
-        agpoCategory?: AGPOCategory | null;
-        agpoExpiryDate?: string | null;
-        agpoCertificate?: string | null;
-        createdAt: string;
-        updatedAt: string;
-        owner?: string | null;
-      };
-      directors: {
-        __typename: "Directors";
-        id: string;
-        directorTitle?: Title | null;
-        directorName: string;
-        directorKRAPIN: string;
-        directorEmailAddress: string;
-        directorNationality: string;
-        directorShares: number;
-        createdAt: string;
-        updatedAt: string;
-        owner?: string | null;
-      };
-      createdAt: string;
-      updatedAt: string;
-      owner?: string | null;
-    } | null>;
-    nextToken?: string | null;
-  } | null;
+export type GetClientQuery = {
+  getClient?:  {
+    __typename: "Client",
+    id: string,
+    clientName: string,
+    contractValue: number,
+    startDate: string,
+    endDate: string,
+    contactPerson: string,
+    contactEmail: string,
+    contactPhoneNumber: string,
+    contractAttachment: string,
+    serviceDescription: string,
+    companyID: string,
+    company?:  {
+      __typename: "Company",
+      id: string,
+      organizationName: string,
+      organizationType: OrganizationType,
+      ownership: Ownership,
+      natureOfBusiness: Array< Nature | null >,
+      organizationRegistrationDate: string,
+      organizationRegistrationNumber: string,
+      registrationCertificate: string,
+      cr12: string,
+      KRAPIN: string,
+      KRAPINCertificate: string,
+      taxComplianceNumber: string,
+      taxComplianceExpiry: string,
+      taxComplianceCertificate: string,
+      agpoCategory?: AGPOCategory | null,
+      agpoExpiryDate?: string | null,
+      agpoCertificate?: string | null,
+      status?: Status | null,
+      response?: Array< string | null > | null,
+      addressDetails?:  {
+        __typename: "ModelAddressDetailsConnection",
+        items:  Array< {
+          __typename: "AddressDetails",
+          id: string,
+          postalAddress: string,
+          city: string,
+          country: string,
+          officeBuilding: string,
+          streetAddress: string,
+          emailAddress: string,
+          title: Title,
+          fullName: string,
+          contactEmail: string,
+          phoneNumber: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      directors?:  {
+        __typename: "ModelDirectorsConnection",
+        items:  Array< {
+          __typename: "Directors",
+          id: string,
+          directorTitle?: Title | null,
+          directorName: string,
+          directorKRAPIN: string,
+          directorEmailAddress: string,
+          directorNationality: Ownership,
+          directorShares: number,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      clients?:  {
+        __typename: "ModelClientConnection",
+        items:  Array< {
+          __typename: "Client",
+          id: string,
+          clientName: string,
+          contractValue: number,
+          startDate: string,
+          endDate: string,
+          contactPerson: string,
+          contactEmail: string,
+          contactPhoneNumber: string,
+          contractAttachment: string,
+          serviceDescription: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      personnel?:  {
+        __typename: "ModelPersonelConnection",
+        items:  Array< {
+          __typename: "Personel",
+          id: string,
+          personelName: string,
+          role: string,
+          nationalid: string,
+          qualificationAttachment: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      contracts?:  {
+        __typename: "ModelContractConnection",
+        items:  Array< {
+          __typename: "Contract",
+          id: string,
+          title: string,
+          type: Nature,
+          department: string,
+          budget: number,
+          status?: ContractStatus | null,
+          description: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type ListClientsQueryVariables = {
+  filter?: ModelClientFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListClientsQuery = {
+  listClients?:  {
+    __typename: "ModelClientConnection",
+    items:  Array< {
+      __typename: "Client",
+      id: string,
+      clientName: string,
+      contractValue: number,
+      startDate: string,
+      endDate: string,
+      contactPerson: string,
+      contactEmail: string,
+      contactPhoneNumber: string,
+      contractAttachment: string,
+      serviceDescription: string,
+      companyID: string,
+      company?:  {
+        __typename: "Company",
+        id: string,
+        organizationName: string,
+        organizationType: OrganizationType,
+        ownership: Ownership,
+        natureOfBusiness: Array< Nature | null >,
+        organizationRegistrationDate: string,
+        organizationRegistrationNumber: string,
+        registrationCertificate: string,
+        cr12: string,
+        KRAPIN: string,
+        KRAPINCertificate: string,
+        taxComplianceNumber: string,
+        taxComplianceExpiry: string,
+        taxComplianceCertificate: string,
+        agpoCategory?: AGPOCategory | null,
+        agpoExpiryDate?: string | null,
+        agpoCertificate?: string | null,
+        status?: Status | null,
+        response?: Array< string | null > | null,
+        addressDetails?:  {
+          __typename: "ModelAddressDetailsConnection",
+          nextToken?: string | null,
+        } | null,
+        directors?:  {
+          __typename: "ModelDirectorsConnection",
+          nextToken?: string | null,
+        } | null,
+        clients?:  {
+          __typename: "ModelClientConnection",
+          nextToken?: string | null,
+        } | null,
+        personnel?:  {
+          __typename: "ModelPersonelConnection",
+          nextToken?: string | null,
+        } | null,
+        contracts?:  {
+          __typename: "ModelContractConnection",
+          nextToken?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
+};
+
+export type ClientNameQueryVariables = {
+  companyID: string,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelClientFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ClientNameQuery = {
+  clientName?:  {
+    __typename: "ModelClientConnection",
+    items:  Array< {
+      __typename: "Client",
+      id: string,
+      clientName: string,
+      contractValue: number,
+      startDate: string,
+      endDate: string,
+      contactPerson: string,
+      contactEmail: string,
+      contactPhoneNumber: string,
+      contractAttachment: string,
+      serviceDescription: string,
+      companyID: string,
+      company?:  {
+        __typename: "Company",
+        id: string,
+        organizationName: string,
+        organizationType: OrganizationType,
+        ownership: Ownership,
+        natureOfBusiness: Array< Nature | null >,
+        organizationRegistrationDate: string,
+        organizationRegistrationNumber: string,
+        registrationCertificate: string,
+        cr12: string,
+        KRAPIN: string,
+        KRAPINCertificate: string,
+        taxComplianceNumber: string,
+        taxComplianceExpiry: string,
+        taxComplianceCertificate: string,
+        agpoCategory?: AGPOCategory | null,
+        agpoExpiryDate?: string | null,
+        agpoCertificate?: string | null,
+        status?: Status | null,
+        response?: Array< string | null > | null,
+        addressDetails?:  {
+          __typename: "ModelAddressDetailsConnection",
+          nextToken?: string | null,
+        } | null,
+        directors?:  {
+          __typename: "ModelDirectorsConnection",
+          nextToken?: string | null,
+        } | null,
+        clients?:  {
+          __typename: "ModelClientConnection",
+          nextToken?: string | null,
+        } | null,
+        personnel?:  {
+          __typename: "ModelPersonelConnection",
+          nextToken?: string | null,
+        } | null,
+        contracts?:  {
+          __typename: "ModelContractConnection",
+          nextToken?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
+};
+
+export type GetPersonelQueryVariables = {
+  id: string,
+};
+
+export type GetPersonelQuery = {
+  getPersonel?:  {
+    __typename: "Personel",
+    id: string,
+    personelName: string,
+    role: string,
+    nationalid: string,
+    qualificationAttachment: string,
+    companyID: string,
+    company?:  {
+      __typename: "Company",
+      id: string,
+      organizationName: string,
+      organizationType: OrganizationType,
+      ownership: Ownership,
+      natureOfBusiness: Array< Nature | null >,
+      organizationRegistrationDate: string,
+      organizationRegistrationNumber: string,
+      registrationCertificate: string,
+      cr12: string,
+      KRAPIN: string,
+      KRAPINCertificate: string,
+      taxComplianceNumber: string,
+      taxComplianceExpiry: string,
+      taxComplianceCertificate: string,
+      agpoCategory?: AGPOCategory | null,
+      agpoExpiryDate?: string | null,
+      agpoCertificate?: string | null,
+      status?: Status | null,
+      response?: Array< string | null > | null,
+      addressDetails?:  {
+        __typename: "ModelAddressDetailsConnection",
+        items:  Array< {
+          __typename: "AddressDetails",
+          id: string,
+          postalAddress: string,
+          city: string,
+          country: string,
+          officeBuilding: string,
+          streetAddress: string,
+          emailAddress: string,
+          title: Title,
+          fullName: string,
+          contactEmail: string,
+          phoneNumber: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      directors?:  {
+        __typename: "ModelDirectorsConnection",
+        items:  Array< {
+          __typename: "Directors",
+          id: string,
+          directorTitle?: Title | null,
+          directorName: string,
+          directorKRAPIN: string,
+          directorEmailAddress: string,
+          directorNationality: Ownership,
+          directorShares: number,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      clients?:  {
+        __typename: "ModelClientConnection",
+        items:  Array< {
+          __typename: "Client",
+          id: string,
+          clientName: string,
+          contractValue: number,
+          startDate: string,
+          endDate: string,
+          contactPerson: string,
+          contactEmail: string,
+          contactPhoneNumber: string,
+          contractAttachment: string,
+          serviceDescription: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      personnel?:  {
+        __typename: "ModelPersonelConnection",
+        items:  Array< {
+          __typename: "Personel",
+          id: string,
+          personelName: string,
+          role: string,
+          nationalid: string,
+          qualificationAttachment: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      contracts?:  {
+        __typename: "ModelContractConnection",
+        items:  Array< {
+          __typename: "Contract",
+          id: string,
+          title: string,
+          type: Nature,
+          department: string,
+          budget: number,
+          status?: ContractStatus | null,
+          description: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type ListPersonelsQueryVariables = {
+  filter?: ModelPersonelFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListPersonelsQuery = {
+  listPersonels?:  {
+    __typename: "ModelPersonelConnection",
+    items:  Array< {
+      __typename: "Personel",
+      id: string,
+      personelName: string,
+      role: string,
+      nationalid: string,
+      qualificationAttachment: string,
+      companyID: string,
+      company?:  {
+        __typename: "Company",
+        id: string,
+        organizationName: string,
+        organizationType: OrganizationType,
+        ownership: Ownership,
+        natureOfBusiness: Array< Nature | null >,
+        organizationRegistrationDate: string,
+        organizationRegistrationNumber: string,
+        registrationCertificate: string,
+        cr12: string,
+        KRAPIN: string,
+        KRAPINCertificate: string,
+        taxComplianceNumber: string,
+        taxComplianceExpiry: string,
+        taxComplianceCertificate: string,
+        agpoCategory?: AGPOCategory | null,
+        agpoExpiryDate?: string | null,
+        agpoCertificate?: string | null,
+        status?: Status | null,
+        response?: Array< string | null > | null,
+        addressDetails?:  {
+          __typename: "ModelAddressDetailsConnection",
+          nextToken?: string | null,
+        } | null,
+        directors?:  {
+          __typename: "ModelDirectorsConnection",
+          nextToken?: string | null,
+        } | null,
+        clients?:  {
+          __typename: "ModelClientConnection",
+          nextToken?: string | null,
+        } | null,
+        personnel?:  {
+          __typename: "ModelPersonelConnection",
+          nextToken?: string | null,
+        } | null,
+        contracts?:  {
+          __typename: "ModelContractConnection",
+          nextToken?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
+};
+
+export type PersonelNameQueryVariables = {
+  companyID: string,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelPersonelFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type PersonelNameQuery = {
+  personelName?:  {
+    __typename: "ModelPersonelConnection",
+    items:  Array< {
+      __typename: "Personel",
+      id: string,
+      personelName: string,
+      role: string,
+      nationalid: string,
+      qualificationAttachment: string,
+      companyID: string,
+      company?:  {
+        __typename: "Company",
+        id: string,
+        organizationName: string,
+        organizationType: OrganizationType,
+        ownership: Ownership,
+        natureOfBusiness: Array< Nature | null >,
+        organizationRegistrationDate: string,
+        organizationRegistrationNumber: string,
+        registrationCertificate: string,
+        cr12: string,
+        KRAPIN: string,
+        KRAPINCertificate: string,
+        taxComplianceNumber: string,
+        taxComplianceExpiry: string,
+        taxComplianceCertificate: string,
+        agpoCategory?: AGPOCategory | null,
+        agpoExpiryDate?: string | null,
+        agpoCertificate?: string | null,
+        status?: Status | null,
+        response?: Array< string | null > | null,
+        addressDetails?:  {
+          __typename: "ModelAddressDetailsConnection",
+          nextToken?: string | null,
+        } | null,
+        directors?:  {
+          __typename: "ModelDirectorsConnection",
+          nextToken?: string | null,
+        } | null,
+        clients?:  {
+          __typename: "ModelClientConnection",
+          nextToken?: string | null,
+        } | null,
+        personnel?:  {
+          __typename: "ModelPersonelConnection",
+          nextToken?: string | null,
+        } | null,
+        contracts?:  {
+          __typename: "ModelContractConnection",
+          nextToken?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
+};
+
+export type GetOpportunityQueryVariables = {
+  id: string,
+};
+
+export type GetOpportunityQuery = {
+  getOpportunity?:  {
+    __typename: "Opportunity",
+    id: string,
+    title: string,
+    type: Nature,
+    department: string,
+    budget: number,
+    status?: OpportunityStatus | null,
+    description: string,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type ListOpportunitiesQueryVariables = {
+  filter?: ModelOpportunityFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListOpportunitiesQuery = {
+  listOpportunities?:  {
+    __typename: "ModelOpportunityConnection",
+    items:  Array< {
+      __typename: "Opportunity",
+      id: string,
+      title: string,
+      type: Nature,
+      department: string,
+      budget: number,
+      status?: OpportunityStatus | null,
+      description: string,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
+};
+
+export type GetActionQueryVariables = {
+  id: string,
+};
+
+export type GetActionQuery = {
+  getAction?:  {
+    __typename: "Action",
+    id: string,
+    title: string,
+    type: string,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type ListActionsQueryVariables = {
+  filter?: ModelActionFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListActionsQuery = {
+  listActions?:  {
+    __typename: "ModelActionConnection",
+    items:  Array< {
+      __typename: "Action",
+      id: string,
+      title: string,
+      type: string,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
+};
+
+export type GetContractQueryVariables = {
+  id: string,
+};
+
+export type GetContractQuery = {
+  getContract?:  {
+    __typename: "Contract",
+    id: string,
+    title: string,
+    type: Nature,
+    department: string,
+    budget: number,
+    status?: ContractStatus | null,
+    description: string,
+    companyID: string,
+    company?:  {
+      __typename: "Company",
+      id: string,
+      organizationName: string,
+      organizationType: OrganizationType,
+      ownership: Ownership,
+      natureOfBusiness: Array< Nature | null >,
+      organizationRegistrationDate: string,
+      organizationRegistrationNumber: string,
+      registrationCertificate: string,
+      cr12: string,
+      KRAPIN: string,
+      KRAPINCertificate: string,
+      taxComplianceNumber: string,
+      taxComplianceExpiry: string,
+      taxComplianceCertificate: string,
+      agpoCategory?: AGPOCategory | null,
+      agpoExpiryDate?: string | null,
+      agpoCertificate?: string | null,
+      status?: Status | null,
+      response?: Array< string | null > | null,
+      addressDetails?:  {
+        __typename: "ModelAddressDetailsConnection",
+        items:  Array< {
+          __typename: "AddressDetails",
+          id: string,
+          postalAddress: string,
+          city: string,
+          country: string,
+          officeBuilding: string,
+          streetAddress: string,
+          emailAddress: string,
+          title: Title,
+          fullName: string,
+          contactEmail: string,
+          phoneNumber: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      directors?:  {
+        __typename: "ModelDirectorsConnection",
+        items:  Array< {
+          __typename: "Directors",
+          id: string,
+          directorTitle?: Title | null,
+          directorName: string,
+          directorKRAPIN: string,
+          directorEmailAddress: string,
+          directorNationality: Ownership,
+          directorShares: number,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      clients?:  {
+        __typename: "ModelClientConnection",
+        items:  Array< {
+          __typename: "Client",
+          id: string,
+          clientName: string,
+          contractValue: number,
+          startDate: string,
+          endDate: string,
+          contactPerson: string,
+          contactEmail: string,
+          contactPhoneNumber: string,
+          contractAttachment: string,
+          serviceDescription: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      personnel?:  {
+        __typename: "ModelPersonelConnection",
+        items:  Array< {
+          __typename: "Personel",
+          id: string,
+          personelName: string,
+          role: string,
+          nationalid: string,
+          qualificationAttachment: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      contracts?:  {
+        __typename: "ModelContractConnection",
+        items:  Array< {
+          __typename: "Contract",
+          id: string,
+          title: string,
+          type: Nature,
+          department: string,
+          budget: number,
+          status?: ContractStatus | null,
+          description: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type ListContractsQueryVariables = {
+  filter?: ModelContractFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListContractsQuery = {
+  listContracts?:  {
+    __typename: "ModelContractConnection",
+    items:  Array< {
+      __typename: "Contract",
+      id: string,
+      title: string,
+      type: Nature,
+      department: string,
+      budget: number,
+      status?: ContractStatus | null,
+      description: string,
+      companyID: string,
+      company?:  {
+        __typename: "Company",
+        id: string,
+        organizationName: string,
+        organizationType: OrganizationType,
+        ownership: Ownership,
+        natureOfBusiness: Array< Nature | null >,
+        organizationRegistrationDate: string,
+        organizationRegistrationNumber: string,
+        registrationCertificate: string,
+        cr12: string,
+        KRAPIN: string,
+        KRAPINCertificate: string,
+        taxComplianceNumber: string,
+        taxComplianceExpiry: string,
+        taxComplianceCertificate: string,
+        agpoCategory?: AGPOCategory | null,
+        agpoExpiryDate?: string | null,
+        agpoCertificate?: string | null,
+        status?: Status | null,
+        response?: Array< string | null > | null,
+        addressDetails?:  {
+          __typename: "ModelAddressDetailsConnection",
+          nextToken?: string | null,
+        } | null,
+        directors?:  {
+          __typename: "ModelDirectorsConnection",
+          nextToken?: string | null,
+        } | null,
+        clients?:  {
+          __typename: "ModelClientConnection",
+          nextToken?: string | null,
+        } | null,
+        personnel?:  {
+          __typename: "ModelPersonelConnection",
+          nextToken?: string | null,
+        } | null,
+        contracts?:  {
+          __typename: "ModelContractConnection",
+          nextToken?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
+};
+
+export type TitleQueryVariables = {
+  companyID: string,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelContractFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type TitleQuery = {
+  title?:  {
+    __typename: "ModelContractConnection",
+    items:  Array< {
+      __typename: "Contract",
+      id: string,
+      title: string,
+      type: Nature,
+      department: string,
+      budget: number,
+      status?: ContractStatus | null,
+      description: string,
+      companyID: string,
+      company?:  {
+        __typename: "Company",
+        id: string,
+        organizationName: string,
+        organizationType: OrganizationType,
+        ownership: Ownership,
+        natureOfBusiness: Array< Nature | null >,
+        organizationRegistrationDate: string,
+        organizationRegistrationNumber: string,
+        registrationCertificate: string,
+        cr12: string,
+        KRAPIN: string,
+        KRAPINCertificate: string,
+        taxComplianceNumber: string,
+        taxComplianceExpiry: string,
+        taxComplianceCertificate: string,
+        agpoCategory?: AGPOCategory | null,
+        agpoExpiryDate?: string | null,
+        agpoCertificate?: string | null,
+        status?: Status | null,
+        response?: Array< string | null > | null,
+        addressDetails?:  {
+          __typename: "ModelAddressDetailsConnection",
+          nextToken?: string | null,
+        } | null,
+        directors?:  {
+          __typename: "ModelDirectorsConnection",
+          nextToken?: string | null,
+        } | null,
+        clients?:  {
+          __typename: "ModelClientConnection",
+          nextToken?: string | null,
+        } | null,
+        personnel?:  {
+          __typename: "ModelPersonelConnection",
+          nextToken?: string | null,
+        } | null,
+        contracts?:  {
+          __typename: "ModelContractConnection",
+          nextToken?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
 };
 
 export type OnCreateCompanySubscriptionVariables = {
-  owner?: string | null;
+  filter?: ModelSubscriptionCompanyFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnCreateCompanySubscription = {
-  onCreateCompany?: {
-    __typename: "Company";
-    id: string;
-    organizationName: string;
-    organizationType: OrganizationType;
-    ownership: Ownership;
-    natureOfBusiness: string;
-    organizationRegistrationDate: string;
-    organizationRegistrationNumber: string;
-    registrationCertificate: string;
-    cr12: string;
-    KRAPIN: string;
-    KRAPINCertificate: string;
-    taxComplianceNumber: string;
-    taxComplianceExpiry: string;
-    taxComplianceCertificate: string;
-    agpoCategory?: AGPOCategory | null;
-    agpoExpiryDate?: string | null;
-    agpoCertificate?: string | null;
-    addressDetails?: {
-      __typename: "ModelAddressDetailsConnection";
-      items: Array<{
-        __typename: "AddressDetails";
-        id: string;
-        postalAddress: string;
-        city: string;
-        country: string;
-        officeBuilding: string;
-        streetAddress: string;
-        emailAddress: string;
-        title: Title;
-        fullName: string;
-        contactEmail: string;
-        phoneNumber: string;
-        companyID: string;
-        createdAt: string;
-        updatedAt: string;
-        owner?: string | null;
-      } | null>;
-      nextToken?: string | null;
-    } | null;
-    directors?: {
-      __typename: "ModelCompanyDirectorsConnection";
-      items: Array<{
-        __typename: "CompanyDirectors";
-        id: string;
-        companyID: string;
-        directorsID: string;
-        createdAt: string;
-        updatedAt: string;
-        owner?: string | null;
-      } | null>;
-      nextToken?: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-    owner?: string | null;
-  } | null;
+  onCreateCompany?:  {
+    __typename: "Company",
+    id: string,
+    organizationName: string,
+    organizationType: OrganizationType,
+    ownership: Ownership,
+    natureOfBusiness: Array< Nature | null >,
+    organizationRegistrationDate: string,
+    organizationRegistrationNumber: string,
+    registrationCertificate: string,
+    cr12: string,
+    KRAPIN: string,
+    KRAPINCertificate: string,
+    taxComplianceNumber: string,
+    taxComplianceExpiry: string,
+    taxComplianceCertificate: string,
+    agpoCategory?: AGPOCategory | null,
+    agpoExpiryDate?: string | null,
+    agpoCertificate?: string | null,
+    status?: Status | null,
+    response?: Array< string | null > | null,
+    addressDetails?:  {
+      __typename: "ModelAddressDetailsConnection",
+      items:  Array< {
+        __typename: "AddressDetails",
+        id: string,
+        postalAddress: string,
+        city: string,
+        country: string,
+        officeBuilding: string,
+        streetAddress: string,
+        emailAddress: string,
+        title: Title,
+        fullName: string,
+        contactEmail: string,
+        phoneNumber: string,
+        companyID: string,
+        company?:  {
+          __typename: "Company",
+          id: string,
+          organizationName: string,
+          organizationType: OrganizationType,
+          ownership: Ownership,
+          natureOfBusiness: Array< Nature | null >,
+          organizationRegistrationDate: string,
+          organizationRegistrationNumber: string,
+          registrationCertificate: string,
+          cr12: string,
+          KRAPIN: string,
+          KRAPINCertificate: string,
+          taxComplianceNumber: string,
+          taxComplianceExpiry: string,
+          taxComplianceCertificate: string,
+          agpoCategory?: AGPOCategory | null,
+          agpoExpiryDate?: string | null,
+          agpoCertificate?: string | null,
+          status?: Status | null,
+          response?: Array< string | null > | null,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    directors?:  {
+      __typename: "ModelDirectorsConnection",
+      items:  Array< {
+        __typename: "Directors",
+        id: string,
+        directorTitle?: Title | null,
+        directorName: string,
+        directorKRAPIN: string,
+        directorEmailAddress: string,
+        directorNationality: Ownership,
+        directorShares: number,
+        companyID: string,
+        company?:  {
+          __typename: "Company",
+          id: string,
+          organizationName: string,
+          organizationType: OrganizationType,
+          ownership: Ownership,
+          natureOfBusiness: Array< Nature | null >,
+          organizationRegistrationDate: string,
+          organizationRegistrationNumber: string,
+          registrationCertificate: string,
+          cr12: string,
+          KRAPIN: string,
+          KRAPINCertificate: string,
+          taxComplianceNumber: string,
+          taxComplianceExpiry: string,
+          taxComplianceCertificate: string,
+          agpoCategory?: AGPOCategory | null,
+          agpoExpiryDate?: string | null,
+          agpoCertificate?: string | null,
+          status?: Status | null,
+          response?: Array< string | null > | null,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    clients?:  {
+      __typename: "ModelClientConnection",
+      items:  Array< {
+        __typename: "Client",
+        id: string,
+        clientName: string,
+        contractValue: number,
+        startDate: string,
+        endDate: string,
+        contactPerson: string,
+        contactEmail: string,
+        contactPhoneNumber: string,
+        contractAttachment: string,
+        serviceDescription: string,
+        companyID: string,
+        company?:  {
+          __typename: "Company",
+          id: string,
+          organizationName: string,
+          organizationType: OrganizationType,
+          ownership: Ownership,
+          natureOfBusiness: Array< Nature | null >,
+          organizationRegistrationDate: string,
+          organizationRegistrationNumber: string,
+          registrationCertificate: string,
+          cr12: string,
+          KRAPIN: string,
+          KRAPINCertificate: string,
+          taxComplianceNumber: string,
+          taxComplianceExpiry: string,
+          taxComplianceCertificate: string,
+          agpoCategory?: AGPOCategory | null,
+          agpoExpiryDate?: string | null,
+          agpoCertificate?: string | null,
+          status?: Status | null,
+          response?: Array< string | null > | null,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    personnel?:  {
+      __typename: "ModelPersonelConnection",
+      items:  Array< {
+        __typename: "Personel",
+        id: string,
+        personelName: string,
+        role: string,
+        nationalid: string,
+        qualificationAttachment: string,
+        companyID: string,
+        company?:  {
+          __typename: "Company",
+          id: string,
+          organizationName: string,
+          organizationType: OrganizationType,
+          ownership: Ownership,
+          natureOfBusiness: Array< Nature | null >,
+          organizationRegistrationDate: string,
+          organizationRegistrationNumber: string,
+          registrationCertificate: string,
+          cr12: string,
+          KRAPIN: string,
+          KRAPINCertificate: string,
+          taxComplianceNumber: string,
+          taxComplianceExpiry: string,
+          taxComplianceCertificate: string,
+          agpoCategory?: AGPOCategory | null,
+          agpoExpiryDate?: string | null,
+          agpoCertificate?: string | null,
+          status?: Status | null,
+          response?: Array< string | null > | null,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    contracts?:  {
+      __typename: "ModelContractConnection",
+      items:  Array< {
+        __typename: "Contract",
+        id: string,
+        title: string,
+        type: Nature,
+        department: string,
+        budget: number,
+        status?: ContractStatus | null,
+        description: string,
+        companyID: string,
+        company?:  {
+          __typename: "Company",
+          id: string,
+          organizationName: string,
+          organizationType: OrganizationType,
+          ownership: Ownership,
+          natureOfBusiness: Array< Nature | null >,
+          organizationRegistrationDate: string,
+          organizationRegistrationNumber: string,
+          registrationCertificate: string,
+          cr12: string,
+          KRAPIN: string,
+          KRAPINCertificate: string,
+          taxComplianceNumber: string,
+          taxComplianceExpiry: string,
+          taxComplianceCertificate: string,
+          agpoCategory?: AGPOCategory | null,
+          agpoExpiryDate?: string | null,
+          agpoCertificate?: string | null,
+          status?: Status | null,
+          response?: Array< string | null > | null,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
 };
 
 export type OnUpdateCompanySubscriptionVariables = {
-  owner?: string | null;
+  filter?: ModelSubscriptionCompanyFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnUpdateCompanySubscription = {
-  onUpdateCompany?: {
-    __typename: "Company";
-    id: string;
-    organizationName: string;
-    organizationType: OrganizationType;
-    ownership: Ownership;
-    natureOfBusiness: string;
-    organizationRegistrationDate: string;
-    organizationRegistrationNumber: string;
-    registrationCertificate: string;
-    cr12: string;
-    KRAPIN: string;
-    KRAPINCertificate: string;
-    taxComplianceNumber: string;
-    taxComplianceExpiry: string;
-    taxComplianceCertificate: string;
-    agpoCategory?: AGPOCategory | null;
-    agpoExpiryDate?: string | null;
-    agpoCertificate?: string | null;
-    addressDetails?: {
-      __typename: "ModelAddressDetailsConnection";
-      items: Array<{
-        __typename: "AddressDetails";
-        id: string;
-        postalAddress: string;
-        city: string;
-        country: string;
-        officeBuilding: string;
-        streetAddress: string;
-        emailAddress: string;
-        title: Title;
-        fullName: string;
-        contactEmail: string;
-        phoneNumber: string;
-        companyID: string;
-        createdAt: string;
-        updatedAt: string;
-        owner?: string | null;
-      } | null>;
-      nextToken?: string | null;
-    } | null;
-    directors?: {
-      __typename: "ModelCompanyDirectorsConnection";
-      items: Array<{
-        __typename: "CompanyDirectors";
-        id: string;
-        companyID: string;
-        directorsID: string;
-        createdAt: string;
-        updatedAt: string;
-        owner?: string | null;
-      } | null>;
-      nextToken?: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-    owner?: string | null;
-  } | null;
+  onUpdateCompany?:  {
+    __typename: "Company",
+    id: string,
+    organizationName: string,
+    organizationType: OrganizationType,
+    ownership: Ownership,
+    natureOfBusiness: Array< Nature | null >,
+    organizationRegistrationDate: string,
+    organizationRegistrationNumber: string,
+    registrationCertificate: string,
+    cr12: string,
+    KRAPIN: string,
+    KRAPINCertificate: string,
+    taxComplianceNumber: string,
+    taxComplianceExpiry: string,
+    taxComplianceCertificate: string,
+    agpoCategory?: AGPOCategory | null,
+    agpoExpiryDate?: string | null,
+    agpoCertificate?: string | null,
+    status?: Status | null,
+    response?: Array< string | null > | null,
+    addressDetails?:  {
+      __typename: "ModelAddressDetailsConnection",
+      items:  Array< {
+        __typename: "AddressDetails",
+        id: string,
+        postalAddress: string,
+        city: string,
+        country: string,
+        officeBuilding: string,
+        streetAddress: string,
+        emailAddress: string,
+        title: Title,
+        fullName: string,
+        contactEmail: string,
+        phoneNumber: string,
+        companyID: string,
+        company?:  {
+          __typename: "Company",
+          id: string,
+          organizationName: string,
+          organizationType: OrganizationType,
+          ownership: Ownership,
+          natureOfBusiness: Array< Nature | null >,
+          organizationRegistrationDate: string,
+          organizationRegistrationNumber: string,
+          registrationCertificate: string,
+          cr12: string,
+          KRAPIN: string,
+          KRAPINCertificate: string,
+          taxComplianceNumber: string,
+          taxComplianceExpiry: string,
+          taxComplianceCertificate: string,
+          agpoCategory?: AGPOCategory | null,
+          agpoExpiryDate?: string | null,
+          agpoCertificate?: string | null,
+          status?: Status | null,
+          response?: Array< string | null > | null,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    directors?:  {
+      __typename: "ModelDirectorsConnection",
+      items:  Array< {
+        __typename: "Directors",
+        id: string,
+        directorTitle?: Title | null,
+        directorName: string,
+        directorKRAPIN: string,
+        directorEmailAddress: string,
+        directorNationality: Ownership,
+        directorShares: number,
+        companyID: string,
+        company?:  {
+          __typename: "Company",
+          id: string,
+          organizationName: string,
+          organizationType: OrganizationType,
+          ownership: Ownership,
+          natureOfBusiness: Array< Nature | null >,
+          organizationRegistrationDate: string,
+          organizationRegistrationNumber: string,
+          registrationCertificate: string,
+          cr12: string,
+          KRAPIN: string,
+          KRAPINCertificate: string,
+          taxComplianceNumber: string,
+          taxComplianceExpiry: string,
+          taxComplianceCertificate: string,
+          agpoCategory?: AGPOCategory | null,
+          agpoExpiryDate?: string | null,
+          agpoCertificate?: string | null,
+          status?: Status | null,
+          response?: Array< string | null > | null,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    clients?:  {
+      __typename: "ModelClientConnection",
+      items:  Array< {
+        __typename: "Client",
+        id: string,
+        clientName: string,
+        contractValue: number,
+        startDate: string,
+        endDate: string,
+        contactPerson: string,
+        contactEmail: string,
+        contactPhoneNumber: string,
+        contractAttachment: string,
+        serviceDescription: string,
+        companyID: string,
+        company?:  {
+          __typename: "Company",
+          id: string,
+          organizationName: string,
+          organizationType: OrganizationType,
+          ownership: Ownership,
+          natureOfBusiness: Array< Nature | null >,
+          organizationRegistrationDate: string,
+          organizationRegistrationNumber: string,
+          registrationCertificate: string,
+          cr12: string,
+          KRAPIN: string,
+          KRAPINCertificate: string,
+          taxComplianceNumber: string,
+          taxComplianceExpiry: string,
+          taxComplianceCertificate: string,
+          agpoCategory?: AGPOCategory | null,
+          agpoExpiryDate?: string | null,
+          agpoCertificate?: string | null,
+          status?: Status | null,
+          response?: Array< string | null > | null,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    personnel?:  {
+      __typename: "ModelPersonelConnection",
+      items:  Array< {
+        __typename: "Personel",
+        id: string,
+        personelName: string,
+        role: string,
+        nationalid: string,
+        qualificationAttachment: string,
+        companyID: string,
+        company?:  {
+          __typename: "Company",
+          id: string,
+          organizationName: string,
+          organizationType: OrganizationType,
+          ownership: Ownership,
+          natureOfBusiness: Array< Nature | null >,
+          organizationRegistrationDate: string,
+          organizationRegistrationNumber: string,
+          registrationCertificate: string,
+          cr12: string,
+          KRAPIN: string,
+          KRAPINCertificate: string,
+          taxComplianceNumber: string,
+          taxComplianceExpiry: string,
+          taxComplianceCertificate: string,
+          agpoCategory?: AGPOCategory | null,
+          agpoExpiryDate?: string | null,
+          agpoCertificate?: string | null,
+          status?: Status | null,
+          response?: Array< string | null > | null,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    contracts?:  {
+      __typename: "ModelContractConnection",
+      items:  Array< {
+        __typename: "Contract",
+        id: string,
+        title: string,
+        type: Nature,
+        department: string,
+        budget: number,
+        status?: ContractStatus | null,
+        description: string,
+        companyID: string,
+        company?:  {
+          __typename: "Company",
+          id: string,
+          organizationName: string,
+          organizationType: OrganizationType,
+          ownership: Ownership,
+          natureOfBusiness: Array< Nature | null >,
+          organizationRegistrationDate: string,
+          organizationRegistrationNumber: string,
+          registrationCertificate: string,
+          cr12: string,
+          KRAPIN: string,
+          KRAPINCertificate: string,
+          taxComplianceNumber: string,
+          taxComplianceExpiry: string,
+          taxComplianceCertificate: string,
+          agpoCategory?: AGPOCategory | null,
+          agpoExpiryDate?: string | null,
+          agpoCertificate?: string | null,
+          status?: Status | null,
+          response?: Array< string | null > | null,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
 };
 
 export type OnDeleteCompanySubscriptionVariables = {
-  owner?: string | null;
+  filter?: ModelSubscriptionCompanyFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnDeleteCompanySubscription = {
-  onDeleteCompany?: {
-    __typename: "Company";
-    id: string;
-    organizationName: string;
-    organizationType: OrganizationType;
-    ownership: Ownership;
-    natureOfBusiness: string;
-    organizationRegistrationDate: string;
-    organizationRegistrationNumber: string;
-    registrationCertificate: string;
-    cr12: string;
-    KRAPIN: string;
-    KRAPINCertificate: string;
-    taxComplianceNumber: string;
-    taxComplianceExpiry: string;
-    taxComplianceCertificate: string;
-    agpoCategory?: AGPOCategory | null;
-    agpoExpiryDate?: string | null;
-    agpoCertificate?: string | null;
-    addressDetails?: {
-      __typename: "ModelAddressDetailsConnection";
-      items: Array<{
-        __typename: "AddressDetails";
-        id: string;
-        postalAddress: string;
-        city: string;
-        country: string;
-        officeBuilding: string;
-        streetAddress: string;
-        emailAddress: string;
-        title: Title;
-        fullName: string;
-        contactEmail: string;
-        phoneNumber: string;
-        companyID: string;
-        createdAt: string;
-        updatedAt: string;
-        owner?: string | null;
-      } | null>;
-      nextToken?: string | null;
-    } | null;
-    directors?: {
-      __typename: "ModelCompanyDirectorsConnection";
-      items: Array<{
-        __typename: "CompanyDirectors";
-        id: string;
-        companyID: string;
-        directorsID: string;
-        createdAt: string;
-        updatedAt: string;
-        owner?: string | null;
-      } | null>;
-      nextToken?: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-    owner?: string | null;
-  } | null;
+  onDeleteCompany?:  {
+    __typename: "Company",
+    id: string,
+    organizationName: string,
+    organizationType: OrganizationType,
+    ownership: Ownership,
+    natureOfBusiness: Array< Nature | null >,
+    organizationRegistrationDate: string,
+    organizationRegistrationNumber: string,
+    registrationCertificate: string,
+    cr12: string,
+    KRAPIN: string,
+    KRAPINCertificate: string,
+    taxComplianceNumber: string,
+    taxComplianceExpiry: string,
+    taxComplianceCertificate: string,
+    agpoCategory?: AGPOCategory | null,
+    agpoExpiryDate?: string | null,
+    agpoCertificate?: string | null,
+    status?: Status | null,
+    response?: Array< string | null > | null,
+    addressDetails?:  {
+      __typename: "ModelAddressDetailsConnection",
+      items:  Array< {
+        __typename: "AddressDetails",
+        id: string,
+        postalAddress: string,
+        city: string,
+        country: string,
+        officeBuilding: string,
+        streetAddress: string,
+        emailAddress: string,
+        title: Title,
+        fullName: string,
+        contactEmail: string,
+        phoneNumber: string,
+        companyID: string,
+        company?:  {
+          __typename: "Company",
+          id: string,
+          organizationName: string,
+          organizationType: OrganizationType,
+          ownership: Ownership,
+          natureOfBusiness: Array< Nature | null >,
+          organizationRegistrationDate: string,
+          organizationRegistrationNumber: string,
+          registrationCertificate: string,
+          cr12: string,
+          KRAPIN: string,
+          KRAPINCertificate: string,
+          taxComplianceNumber: string,
+          taxComplianceExpiry: string,
+          taxComplianceCertificate: string,
+          agpoCategory?: AGPOCategory | null,
+          agpoExpiryDate?: string | null,
+          agpoCertificate?: string | null,
+          status?: Status | null,
+          response?: Array< string | null > | null,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    directors?:  {
+      __typename: "ModelDirectorsConnection",
+      items:  Array< {
+        __typename: "Directors",
+        id: string,
+        directorTitle?: Title | null,
+        directorName: string,
+        directorKRAPIN: string,
+        directorEmailAddress: string,
+        directorNationality: Ownership,
+        directorShares: number,
+        companyID: string,
+        company?:  {
+          __typename: "Company",
+          id: string,
+          organizationName: string,
+          organizationType: OrganizationType,
+          ownership: Ownership,
+          natureOfBusiness: Array< Nature | null >,
+          organizationRegistrationDate: string,
+          organizationRegistrationNumber: string,
+          registrationCertificate: string,
+          cr12: string,
+          KRAPIN: string,
+          KRAPINCertificate: string,
+          taxComplianceNumber: string,
+          taxComplianceExpiry: string,
+          taxComplianceCertificate: string,
+          agpoCategory?: AGPOCategory | null,
+          agpoExpiryDate?: string | null,
+          agpoCertificate?: string | null,
+          status?: Status | null,
+          response?: Array< string | null > | null,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    clients?:  {
+      __typename: "ModelClientConnection",
+      items:  Array< {
+        __typename: "Client",
+        id: string,
+        clientName: string,
+        contractValue: number,
+        startDate: string,
+        endDate: string,
+        contactPerson: string,
+        contactEmail: string,
+        contactPhoneNumber: string,
+        contractAttachment: string,
+        serviceDescription: string,
+        companyID: string,
+        company?:  {
+          __typename: "Company",
+          id: string,
+          organizationName: string,
+          organizationType: OrganizationType,
+          ownership: Ownership,
+          natureOfBusiness: Array< Nature | null >,
+          organizationRegistrationDate: string,
+          organizationRegistrationNumber: string,
+          registrationCertificate: string,
+          cr12: string,
+          KRAPIN: string,
+          KRAPINCertificate: string,
+          taxComplianceNumber: string,
+          taxComplianceExpiry: string,
+          taxComplianceCertificate: string,
+          agpoCategory?: AGPOCategory | null,
+          agpoExpiryDate?: string | null,
+          agpoCertificate?: string | null,
+          status?: Status | null,
+          response?: Array< string | null > | null,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    personnel?:  {
+      __typename: "ModelPersonelConnection",
+      items:  Array< {
+        __typename: "Personel",
+        id: string,
+        personelName: string,
+        role: string,
+        nationalid: string,
+        qualificationAttachment: string,
+        companyID: string,
+        company?:  {
+          __typename: "Company",
+          id: string,
+          organizationName: string,
+          organizationType: OrganizationType,
+          ownership: Ownership,
+          natureOfBusiness: Array< Nature | null >,
+          organizationRegistrationDate: string,
+          organizationRegistrationNumber: string,
+          registrationCertificate: string,
+          cr12: string,
+          KRAPIN: string,
+          KRAPINCertificate: string,
+          taxComplianceNumber: string,
+          taxComplianceExpiry: string,
+          taxComplianceCertificate: string,
+          agpoCategory?: AGPOCategory | null,
+          agpoExpiryDate?: string | null,
+          agpoCertificate?: string | null,
+          status?: Status | null,
+          response?: Array< string | null > | null,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    contracts?:  {
+      __typename: "ModelContractConnection",
+      items:  Array< {
+        __typename: "Contract",
+        id: string,
+        title: string,
+        type: Nature,
+        department: string,
+        budget: number,
+        status?: ContractStatus | null,
+        description: string,
+        companyID: string,
+        company?:  {
+          __typename: "Company",
+          id: string,
+          organizationName: string,
+          organizationType: OrganizationType,
+          ownership: Ownership,
+          natureOfBusiness: Array< Nature | null >,
+          organizationRegistrationDate: string,
+          organizationRegistrationNumber: string,
+          registrationCertificate: string,
+          cr12: string,
+          KRAPIN: string,
+          KRAPINCertificate: string,
+          taxComplianceNumber: string,
+          taxComplianceExpiry: string,
+          taxComplianceCertificate: string,
+          agpoCategory?: AGPOCategory | null,
+          agpoExpiryDate?: string | null,
+          agpoCertificate?: string | null,
+          status?: Status | null,
+          response?: Array< string | null > | null,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null,
+        createdAt: string,
+        updatedAt: string,
+        owner?: string | null,
+      } | null >,
+      nextToken?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
 };
 
 export type OnCreateAddressDetailsSubscriptionVariables = {
-  owner?: string | null;
+  filter?: ModelSubscriptionAddressDetailsFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnCreateAddressDetailsSubscription = {
-  onCreateAddressDetails?: {
-    __typename: "AddressDetails";
-    id: string;
-    postalAddress: string;
-    city: string;
-    country: string;
-    officeBuilding: string;
-    streetAddress: string;
-    emailAddress: string;
-    title: Title;
-    fullName: string;
-    contactEmail: string;
-    phoneNumber: string;
-    companyID: string;
-    company?: {
-      __typename: "Company";
-      id: string;
-      organizationName: string;
-      organizationType: OrganizationType;
-      ownership: Ownership;
-      natureOfBusiness: string;
-      organizationRegistrationDate: string;
-      organizationRegistrationNumber: string;
-      registrationCertificate: string;
-      cr12: string;
-      KRAPIN: string;
-      KRAPINCertificate: string;
-      taxComplianceNumber: string;
-      taxComplianceExpiry: string;
-      taxComplianceCertificate: string;
-      agpoCategory?: AGPOCategory | null;
-      agpoExpiryDate?: string | null;
-      agpoCertificate?: string | null;
-      addressDetails?: {
-        __typename: "ModelAddressDetailsConnection";
-        nextToken?: string | null;
-      } | null;
-      directors?: {
-        __typename: "ModelCompanyDirectorsConnection";
-        nextToken?: string | null;
-      } | null;
-      createdAt: string;
-      updatedAt: string;
-      owner?: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-    owner?: string | null;
-  } | null;
+  onCreateAddressDetails?:  {
+    __typename: "AddressDetails",
+    id: string,
+    postalAddress: string,
+    city: string,
+    country: string,
+    officeBuilding: string,
+    streetAddress: string,
+    emailAddress: string,
+    title: Title,
+    fullName: string,
+    contactEmail: string,
+    phoneNumber: string,
+    companyID: string,
+    company?:  {
+      __typename: "Company",
+      id: string,
+      organizationName: string,
+      organizationType: OrganizationType,
+      ownership: Ownership,
+      natureOfBusiness: Array< Nature | null >,
+      organizationRegistrationDate: string,
+      organizationRegistrationNumber: string,
+      registrationCertificate: string,
+      cr12: string,
+      KRAPIN: string,
+      KRAPINCertificate: string,
+      taxComplianceNumber: string,
+      taxComplianceExpiry: string,
+      taxComplianceCertificate: string,
+      agpoCategory?: AGPOCategory | null,
+      agpoExpiryDate?: string | null,
+      agpoCertificate?: string | null,
+      status?: Status | null,
+      response?: Array< string | null > | null,
+      addressDetails?:  {
+        __typename: "ModelAddressDetailsConnection",
+        items:  Array< {
+          __typename: "AddressDetails",
+          id: string,
+          postalAddress: string,
+          city: string,
+          country: string,
+          officeBuilding: string,
+          streetAddress: string,
+          emailAddress: string,
+          title: Title,
+          fullName: string,
+          contactEmail: string,
+          phoneNumber: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      directors?:  {
+        __typename: "ModelDirectorsConnection",
+        items:  Array< {
+          __typename: "Directors",
+          id: string,
+          directorTitle?: Title | null,
+          directorName: string,
+          directorKRAPIN: string,
+          directorEmailAddress: string,
+          directorNationality: Ownership,
+          directorShares: number,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      clients?:  {
+        __typename: "ModelClientConnection",
+        items:  Array< {
+          __typename: "Client",
+          id: string,
+          clientName: string,
+          contractValue: number,
+          startDate: string,
+          endDate: string,
+          contactPerson: string,
+          contactEmail: string,
+          contactPhoneNumber: string,
+          contractAttachment: string,
+          serviceDescription: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      personnel?:  {
+        __typename: "ModelPersonelConnection",
+        items:  Array< {
+          __typename: "Personel",
+          id: string,
+          personelName: string,
+          role: string,
+          nationalid: string,
+          qualificationAttachment: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      contracts?:  {
+        __typename: "ModelContractConnection",
+        items:  Array< {
+          __typename: "Contract",
+          id: string,
+          title: string,
+          type: Nature,
+          department: string,
+          budget: number,
+          status?: ContractStatus | null,
+          description: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
 };
 
 export type OnUpdateAddressDetailsSubscriptionVariables = {
-  owner?: string | null;
+  filter?: ModelSubscriptionAddressDetailsFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnUpdateAddressDetailsSubscription = {
-  onUpdateAddressDetails?: {
-    __typename: "AddressDetails";
-    id: string;
-    postalAddress: string;
-    city: string;
-    country: string;
-    officeBuilding: string;
-    streetAddress: string;
-    emailAddress: string;
-    title: Title;
-    fullName: string;
-    contactEmail: string;
-    phoneNumber: string;
-    companyID: string;
-    company?: {
-      __typename: "Company";
-      id: string;
-      organizationName: string;
-      organizationType: OrganizationType;
-      ownership: Ownership;
-      natureOfBusiness: string;
-      organizationRegistrationDate: string;
-      organizationRegistrationNumber: string;
-      registrationCertificate: string;
-      cr12: string;
-      KRAPIN: string;
-      KRAPINCertificate: string;
-      taxComplianceNumber: string;
-      taxComplianceExpiry: string;
-      taxComplianceCertificate: string;
-      agpoCategory?: AGPOCategory | null;
-      agpoExpiryDate?: string | null;
-      agpoCertificate?: string | null;
-      addressDetails?: {
-        __typename: "ModelAddressDetailsConnection";
-        nextToken?: string | null;
-      } | null;
-      directors?: {
-        __typename: "ModelCompanyDirectorsConnection";
-        nextToken?: string | null;
-      } | null;
-      createdAt: string;
-      updatedAt: string;
-      owner?: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-    owner?: string | null;
-  } | null;
+  onUpdateAddressDetails?:  {
+    __typename: "AddressDetails",
+    id: string,
+    postalAddress: string,
+    city: string,
+    country: string,
+    officeBuilding: string,
+    streetAddress: string,
+    emailAddress: string,
+    title: Title,
+    fullName: string,
+    contactEmail: string,
+    phoneNumber: string,
+    companyID: string,
+    company?:  {
+      __typename: "Company",
+      id: string,
+      organizationName: string,
+      organizationType: OrganizationType,
+      ownership: Ownership,
+      natureOfBusiness: Array< Nature | null >,
+      organizationRegistrationDate: string,
+      organizationRegistrationNumber: string,
+      registrationCertificate: string,
+      cr12: string,
+      KRAPIN: string,
+      KRAPINCertificate: string,
+      taxComplianceNumber: string,
+      taxComplianceExpiry: string,
+      taxComplianceCertificate: string,
+      agpoCategory?: AGPOCategory | null,
+      agpoExpiryDate?: string | null,
+      agpoCertificate?: string | null,
+      status?: Status | null,
+      response?: Array< string | null > | null,
+      addressDetails?:  {
+        __typename: "ModelAddressDetailsConnection",
+        items:  Array< {
+          __typename: "AddressDetails",
+          id: string,
+          postalAddress: string,
+          city: string,
+          country: string,
+          officeBuilding: string,
+          streetAddress: string,
+          emailAddress: string,
+          title: Title,
+          fullName: string,
+          contactEmail: string,
+          phoneNumber: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      directors?:  {
+        __typename: "ModelDirectorsConnection",
+        items:  Array< {
+          __typename: "Directors",
+          id: string,
+          directorTitle?: Title | null,
+          directorName: string,
+          directorKRAPIN: string,
+          directorEmailAddress: string,
+          directorNationality: Ownership,
+          directorShares: number,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      clients?:  {
+        __typename: "ModelClientConnection",
+        items:  Array< {
+          __typename: "Client",
+          id: string,
+          clientName: string,
+          contractValue: number,
+          startDate: string,
+          endDate: string,
+          contactPerson: string,
+          contactEmail: string,
+          contactPhoneNumber: string,
+          contractAttachment: string,
+          serviceDescription: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      personnel?:  {
+        __typename: "ModelPersonelConnection",
+        items:  Array< {
+          __typename: "Personel",
+          id: string,
+          personelName: string,
+          role: string,
+          nationalid: string,
+          qualificationAttachment: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      contracts?:  {
+        __typename: "ModelContractConnection",
+        items:  Array< {
+          __typename: "Contract",
+          id: string,
+          title: string,
+          type: Nature,
+          department: string,
+          budget: number,
+          status?: ContractStatus | null,
+          description: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
 };
 
 export type OnDeleteAddressDetailsSubscriptionVariables = {
-  owner?: string | null;
+  filter?: ModelSubscriptionAddressDetailsFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnDeleteAddressDetailsSubscription = {
-  onDeleteAddressDetails?: {
-    __typename: "AddressDetails";
-    id: string;
-    postalAddress: string;
-    city: string;
-    country: string;
-    officeBuilding: string;
-    streetAddress: string;
-    emailAddress: string;
-    title: Title;
-    fullName: string;
-    contactEmail: string;
-    phoneNumber: string;
-    companyID: string;
-    company?: {
-      __typename: "Company";
-      id: string;
-      organizationName: string;
-      organizationType: OrganizationType;
-      ownership: Ownership;
-      natureOfBusiness: string;
-      organizationRegistrationDate: string;
-      organizationRegistrationNumber: string;
-      registrationCertificate: string;
-      cr12: string;
-      KRAPIN: string;
-      KRAPINCertificate: string;
-      taxComplianceNumber: string;
-      taxComplianceExpiry: string;
-      taxComplianceCertificate: string;
-      agpoCategory?: AGPOCategory | null;
-      agpoExpiryDate?: string | null;
-      agpoCertificate?: string | null;
-      addressDetails?: {
-        __typename: "ModelAddressDetailsConnection";
-        nextToken?: string | null;
-      } | null;
-      directors?: {
-        __typename: "ModelCompanyDirectorsConnection";
-        nextToken?: string | null;
-      } | null;
-      createdAt: string;
-      updatedAt: string;
-      owner?: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-    owner?: string | null;
-  } | null;
+  onDeleteAddressDetails?:  {
+    __typename: "AddressDetails",
+    id: string,
+    postalAddress: string,
+    city: string,
+    country: string,
+    officeBuilding: string,
+    streetAddress: string,
+    emailAddress: string,
+    title: Title,
+    fullName: string,
+    contactEmail: string,
+    phoneNumber: string,
+    companyID: string,
+    company?:  {
+      __typename: "Company",
+      id: string,
+      organizationName: string,
+      organizationType: OrganizationType,
+      ownership: Ownership,
+      natureOfBusiness: Array< Nature | null >,
+      organizationRegistrationDate: string,
+      organizationRegistrationNumber: string,
+      registrationCertificate: string,
+      cr12: string,
+      KRAPIN: string,
+      KRAPINCertificate: string,
+      taxComplianceNumber: string,
+      taxComplianceExpiry: string,
+      taxComplianceCertificate: string,
+      agpoCategory?: AGPOCategory | null,
+      agpoExpiryDate?: string | null,
+      agpoCertificate?: string | null,
+      status?: Status | null,
+      response?: Array< string | null > | null,
+      addressDetails?:  {
+        __typename: "ModelAddressDetailsConnection",
+        items:  Array< {
+          __typename: "AddressDetails",
+          id: string,
+          postalAddress: string,
+          city: string,
+          country: string,
+          officeBuilding: string,
+          streetAddress: string,
+          emailAddress: string,
+          title: Title,
+          fullName: string,
+          contactEmail: string,
+          phoneNumber: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      directors?:  {
+        __typename: "ModelDirectorsConnection",
+        items:  Array< {
+          __typename: "Directors",
+          id: string,
+          directorTitle?: Title | null,
+          directorName: string,
+          directorKRAPIN: string,
+          directorEmailAddress: string,
+          directorNationality: Ownership,
+          directorShares: number,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      clients?:  {
+        __typename: "ModelClientConnection",
+        items:  Array< {
+          __typename: "Client",
+          id: string,
+          clientName: string,
+          contractValue: number,
+          startDate: string,
+          endDate: string,
+          contactPerson: string,
+          contactEmail: string,
+          contactPhoneNumber: string,
+          contractAttachment: string,
+          serviceDescription: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      personnel?:  {
+        __typename: "ModelPersonelConnection",
+        items:  Array< {
+          __typename: "Personel",
+          id: string,
+          personelName: string,
+          role: string,
+          nationalid: string,
+          qualificationAttachment: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      contracts?:  {
+        __typename: "ModelContractConnection",
+        items:  Array< {
+          __typename: "Contract",
+          id: string,
+          title: string,
+          type: Nature,
+          department: string,
+          budget: number,
+          status?: ContractStatus | null,
+          description: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
 };
 
 export type OnCreateDirectorsSubscriptionVariables = {
-  owner?: string | null;
+  filter?: ModelSubscriptionDirectorsFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnCreateDirectorsSubscription = {
-  onCreateDirectors?: {
-    __typename: "Directors";
-    id: string;
-    directorTitle?: Title | null;
-    directorName: string;
-    directorKRAPIN: string;
-    directorEmailAddress: string;
-    directorNationality: string;
-    directorShares: number;
-    companies?: {
-      __typename: "ModelCompanyDirectorsConnection";
-      items: Array<{
-        __typename: "CompanyDirectors";
-        id: string;
-        companyID: string;
-        directorsID: string;
-        createdAt: string;
-        updatedAt: string;
-        owner?: string | null;
-      } | null>;
-      nextToken?: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-    owner?: string | null;
-  } | null;
+  onCreateDirectors?:  {
+    __typename: "Directors",
+    id: string,
+    directorTitle?: Title | null,
+    directorName: string,
+    directorKRAPIN: string,
+    directorEmailAddress: string,
+    directorNationality: Ownership,
+    directorShares: number,
+    companyID: string,
+    company?:  {
+      __typename: "Company",
+      id: string,
+      organizationName: string,
+      organizationType: OrganizationType,
+      ownership: Ownership,
+      natureOfBusiness: Array< Nature | null >,
+      organizationRegistrationDate: string,
+      organizationRegistrationNumber: string,
+      registrationCertificate: string,
+      cr12: string,
+      KRAPIN: string,
+      KRAPINCertificate: string,
+      taxComplianceNumber: string,
+      taxComplianceExpiry: string,
+      taxComplianceCertificate: string,
+      agpoCategory?: AGPOCategory | null,
+      agpoExpiryDate?: string | null,
+      agpoCertificate?: string | null,
+      status?: Status | null,
+      response?: Array< string | null > | null,
+      addressDetails?:  {
+        __typename: "ModelAddressDetailsConnection",
+        items:  Array< {
+          __typename: "AddressDetails",
+          id: string,
+          postalAddress: string,
+          city: string,
+          country: string,
+          officeBuilding: string,
+          streetAddress: string,
+          emailAddress: string,
+          title: Title,
+          fullName: string,
+          contactEmail: string,
+          phoneNumber: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      directors?:  {
+        __typename: "ModelDirectorsConnection",
+        items:  Array< {
+          __typename: "Directors",
+          id: string,
+          directorTitle?: Title | null,
+          directorName: string,
+          directorKRAPIN: string,
+          directorEmailAddress: string,
+          directorNationality: Ownership,
+          directorShares: number,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      clients?:  {
+        __typename: "ModelClientConnection",
+        items:  Array< {
+          __typename: "Client",
+          id: string,
+          clientName: string,
+          contractValue: number,
+          startDate: string,
+          endDate: string,
+          contactPerson: string,
+          contactEmail: string,
+          contactPhoneNumber: string,
+          contractAttachment: string,
+          serviceDescription: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      personnel?:  {
+        __typename: "ModelPersonelConnection",
+        items:  Array< {
+          __typename: "Personel",
+          id: string,
+          personelName: string,
+          role: string,
+          nationalid: string,
+          qualificationAttachment: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      contracts?:  {
+        __typename: "ModelContractConnection",
+        items:  Array< {
+          __typename: "Contract",
+          id: string,
+          title: string,
+          type: Nature,
+          department: string,
+          budget: number,
+          status?: ContractStatus | null,
+          description: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
 };
 
 export type OnUpdateDirectorsSubscriptionVariables = {
-  owner?: string | null;
+  filter?: ModelSubscriptionDirectorsFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnUpdateDirectorsSubscription = {
-  onUpdateDirectors?: {
-    __typename: "Directors";
-    id: string;
-    directorTitle?: Title | null;
-    directorName: string;
-    directorKRAPIN: string;
-    directorEmailAddress: string;
-    directorNationality: string;
-    directorShares: number;
-    companies?: {
-      __typename: "ModelCompanyDirectorsConnection";
-      items: Array<{
-        __typename: "CompanyDirectors";
-        id: string;
-        companyID: string;
-        directorsID: string;
-        createdAt: string;
-        updatedAt: string;
-        owner?: string | null;
-      } | null>;
-      nextToken?: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-    owner?: string | null;
-  } | null;
+  onUpdateDirectors?:  {
+    __typename: "Directors",
+    id: string,
+    directorTitle?: Title | null,
+    directorName: string,
+    directorKRAPIN: string,
+    directorEmailAddress: string,
+    directorNationality: Ownership,
+    directorShares: number,
+    companyID: string,
+    company?:  {
+      __typename: "Company",
+      id: string,
+      organizationName: string,
+      organizationType: OrganizationType,
+      ownership: Ownership,
+      natureOfBusiness: Array< Nature | null >,
+      organizationRegistrationDate: string,
+      organizationRegistrationNumber: string,
+      registrationCertificate: string,
+      cr12: string,
+      KRAPIN: string,
+      KRAPINCertificate: string,
+      taxComplianceNumber: string,
+      taxComplianceExpiry: string,
+      taxComplianceCertificate: string,
+      agpoCategory?: AGPOCategory | null,
+      agpoExpiryDate?: string | null,
+      agpoCertificate?: string | null,
+      status?: Status | null,
+      response?: Array< string | null > | null,
+      addressDetails?:  {
+        __typename: "ModelAddressDetailsConnection",
+        items:  Array< {
+          __typename: "AddressDetails",
+          id: string,
+          postalAddress: string,
+          city: string,
+          country: string,
+          officeBuilding: string,
+          streetAddress: string,
+          emailAddress: string,
+          title: Title,
+          fullName: string,
+          contactEmail: string,
+          phoneNumber: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      directors?:  {
+        __typename: "ModelDirectorsConnection",
+        items:  Array< {
+          __typename: "Directors",
+          id: string,
+          directorTitle?: Title | null,
+          directorName: string,
+          directorKRAPIN: string,
+          directorEmailAddress: string,
+          directorNationality: Ownership,
+          directorShares: number,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      clients?:  {
+        __typename: "ModelClientConnection",
+        items:  Array< {
+          __typename: "Client",
+          id: string,
+          clientName: string,
+          contractValue: number,
+          startDate: string,
+          endDate: string,
+          contactPerson: string,
+          contactEmail: string,
+          contactPhoneNumber: string,
+          contractAttachment: string,
+          serviceDescription: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      personnel?:  {
+        __typename: "ModelPersonelConnection",
+        items:  Array< {
+          __typename: "Personel",
+          id: string,
+          personelName: string,
+          role: string,
+          nationalid: string,
+          qualificationAttachment: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      contracts?:  {
+        __typename: "ModelContractConnection",
+        items:  Array< {
+          __typename: "Contract",
+          id: string,
+          title: string,
+          type: Nature,
+          department: string,
+          budget: number,
+          status?: ContractStatus | null,
+          description: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
 };
 
 export type OnDeleteDirectorsSubscriptionVariables = {
-  owner?: string | null;
+  filter?: ModelSubscriptionDirectorsFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnDeleteDirectorsSubscription = {
-  onDeleteDirectors?: {
-    __typename: "Directors";
-    id: string;
-    directorTitle?: Title | null;
-    directorName: string;
-    directorKRAPIN: string;
-    directorEmailAddress: string;
-    directorNationality: string;
-    directorShares: number;
-    companies?: {
-      __typename: "ModelCompanyDirectorsConnection";
-      items: Array<{
-        __typename: "CompanyDirectors";
-        id: string;
-        companyID: string;
-        directorsID: string;
-        createdAt: string;
-        updatedAt: string;
-        owner?: string | null;
-      } | null>;
-      nextToken?: string | null;
-    } | null;
-    createdAt: string;
-    updatedAt: string;
-    owner?: string | null;
-  } | null;
+  onDeleteDirectors?:  {
+    __typename: "Directors",
+    id: string,
+    directorTitle?: Title | null,
+    directorName: string,
+    directorKRAPIN: string,
+    directorEmailAddress: string,
+    directorNationality: Ownership,
+    directorShares: number,
+    companyID: string,
+    company?:  {
+      __typename: "Company",
+      id: string,
+      organizationName: string,
+      organizationType: OrganizationType,
+      ownership: Ownership,
+      natureOfBusiness: Array< Nature | null >,
+      organizationRegistrationDate: string,
+      organizationRegistrationNumber: string,
+      registrationCertificate: string,
+      cr12: string,
+      KRAPIN: string,
+      KRAPINCertificate: string,
+      taxComplianceNumber: string,
+      taxComplianceExpiry: string,
+      taxComplianceCertificate: string,
+      agpoCategory?: AGPOCategory | null,
+      agpoExpiryDate?: string | null,
+      agpoCertificate?: string | null,
+      status?: Status | null,
+      response?: Array< string | null > | null,
+      addressDetails?:  {
+        __typename: "ModelAddressDetailsConnection",
+        items:  Array< {
+          __typename: "AddressDetails",
+          id: string,
+          postalAddress: string,
+          city: string,
+          country: string,
+          officeBuilding: string,
+          streetAddress: string,
+          emailAddress: string,
+          title: Title,
+          fullName: string,
+          contactEmail: string,
+          phoneNumber: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      directors?:  {
+        __typename: "ModelDirectorsConnection",
+        items:  Array< {
+          __typename: "Directors",
+          id: string,
+          directorTitle?: Title | null,
+          directorName: string,
+          directorKRAPIN: string,
+          directorEmailAddress: string,
+          directorNationality: Ownership,
+          directorShares: number,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      clients?:  {
+        __typename: "ModelClientConnection",
+        items:  Array< {
+          __typename: "Client",
+          id: string,
+          clientName: string,
+          contractValue: number,
+          startDate: string,
+          endDate: string,
+          contactPerson: string,
+          contactEmail: string,
+          contactPhoneNumber: string,
+          contractAttachment: string,
+          serviceDescription: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      personnel?:  {
+        __typename: "ModelPersonelConnection",
+        items:  Array< {
+          __typename: "Personel",
+          id: string,
+          personelName: string,
+          role: string,
+          nationalid: string,
+          qualificationAttachment: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      contracts?:  {
+        __typename: "ModelContractConnection",
+        items:  Array< {
+          __typename: "Contract",
+          id: string,
+          title: string,
+          type: Nature,
+          department: string,
+          budget: number,
+          status?: ContractStatus | null,
+          description: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
 };
 
-export type OnCreateCompanyDirectorsSubscriptionVariables = {
-  owner?: string | null;
+export type OnCreateClientSubscriptionVariables = {
+  filter?: ModelSubscriptionClientFilterInput | null,
+  owner?: string | null,
 };
 
-export type OnCreateCompanyDirectorsSubscription = {
-  onCreateCompanyDirectors?: {
-    __typename: "CompanyDirectors";
-    id: string;
-    companyID: string;
-    directorsID: string;
-    company: {
-      __typename: "Company";
-      id: string;
-      organizationName: string;
-      organizationType: OrganizationType;
-      ownership: Ownership;
-      natureOfBusiness: string;
-      organizationRegistrationDate: string;
-      organizationRegistrationNumber: string;
-      registrationCertificate: string;
-      cr12: string;
-      KRAPIN: string;
-      KRAPINCertificate: string;
-      taxComplianceNumber: string;
-      taxComplianceExpiry: string;
-      taxComplianceCertificate: string;
-      agpoCategory?: AGPOCategory | null;
-      agpoExpiryDate?: string | null;
-      agpoCertificate?: string | null;
-      addressDetails?: {
-        __typename: "ModelAddressDetailsConnection";
-        nextToken?: string | null;
-      } | null;
-      directors?: {
-        __typename: "ModelCompanyDirectorsConnection";
-        nextToken?: string | null;
-      } | null;
-      createdAt: string;
-      updatedAt: string;
-      owner?: string | null;
-    };
-    directors: {
-      __typename: "Directors";
-      id: string;
-      directorTitle?: Title | null;
-      directorName: string;
-      directorKRAPIN: string;
-      directorEmailAddress: string;
-      directorNationality: string;
-      directorShares: number;
-      companies?: {
-        __typename: "ModelCompanyDirectorsConnection";
-        nextToken?: string | null;
-      } | null;
-      createdAt: string;
-      updatedAt: string;
-      owner?: string | null;
-    };
-    createdAt: string;
-    updatedAt: string;
-    owner?: string | null;
-  } | null;
+export type OnCreateClientSubscription = {
+  onCreateClient?:  {
+    __typename: "Client",
+    id: string,
+    clientName: string,
+    contractValue: number,
+    startDate: string,
+    endDate: string,
+    contactPerson: string,
+    contactEmail: string,
+    contactPhoneNumber: string,
+    contractAttachment: string,
+    serviceDescription: string,
+    companyID: string,
+    company?:  {
+      __typename: "Company",
+      id: string,
+      organizationName: string,
+      organizationType: OrganizationType,
+      ownership: Ownership,
+      natureOfBusiness: Array< Nature | null >,
+      organizationRegistrationDate: string,
+      organizationRegistrationNumber: string,
+      registrationCertificate: string,
+      cr12: string,
+      KRAPIN: string,
+      KRAPINCertificate: string,
+      taxComplianceNumber: string,
+      taxComplianceExpiry: string,
+      taxComplianceCertificate: string,
+      agpoCategory?: AGPOCategory | null,
+      agpoExpiryDate?: string | null,
+      agpoCertificate?: string | null,
+      status?: Status | null,
+      response?: Array< string | null > | null,
+      addressDetails?:  {
+        __typename: "ModelAddressDetailsConnection",
+        items:  Array< {
+          __typename: "AddressDetails",
+          id: string,
+          postalAddress: string,
+          city: string,
+          country: string,
+          officeBuilding: string,
+          streetAddress: string,
+          emailAddress: string,
+          title: Title,
+          fullName: string,
+          contactEmail: string,
+          phoneNumber: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      directors?:  {
+        __typename: "ModelDirectorsConnection",
+        items:  Array< {
+          __typename: "Directors",
+          id: string,
+          directorTitle?: Title | null,
+          directorName: string,
+          directorKRAPIN: string,
+          directorEmailAddress: string,
+          directorNationality: Ownership,
+          directorShares: number,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      clients?:  {
+        __typename: "ModelClientConnection",
+        items:  Array< {
+          __typename: "Client",
+          id: string,
+          clientName: string,
+          contractValue: number,
+          startDate: string,
+          endDate: string,
+          contactPerson: string,
+          contactEmail: string,
+          contactPhoneNumber: string,
+          contractAttachment: string,
+          serviceDescription: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      personnel?:  {
+        __typename: "ModelPersonelConnection",
+        items:  Array< {
+          __typename: "Personel",
+          id: string,
+          personelName: string,
+          role: string,
+          nationalid: string,
+          qualificationAttachment: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      contracts?:  {
+        __typename: "ModelContractConnection",
+        items:  Array< {
+          __typename: "Contract",
+          id: string,
+          title: string,
+          type: Nature,
+          department: string,
+          budget: number,
+          status?: ContractStatus | null,
+          description: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
 };
 
-export type OnUpdateCompanyDirectorsSubscriptionVariables = {
-  owner?: string | null;
+export type OnUpdateClientSubscriptionVariables = {
+  filter?: ModelSubscriptionClientFilterInput | null,
+  owner?: string | null,
 };
 
-export type OnUpdateCompanyDirectorsSubscription = {
-  onUpdateCompanyDirectors?: {
-    __typename: "CompanyDirectors";
-    id: string;
-    companyID: string;
-    directorsID: string;
-    company: {
-      __typename: "Company";
-      id: string;
-      organizationName: string;
-      organizationType: OrganizationType;
-      ownership: Ownership;
-      natureOfBusiness: string;
-      organizationRegistrationDate: string;
-      organizationRegistrationNumber: string;
-      registrationCertificate: string;
-      cr12: string;
-      KRAPIN: string;
-      KRAPINCertificate: string;
-      taxComplianceNumber: string;
-      taxComplianceExpiry: string;
-      taxComplianceCertificate: string;
-      agpoCategory?: AGPOCategory | null;
-      agpoExpiryDate?: string | null;
-      agpoCertificate?: string | null;
-      addressDetails?: {
-        __typename: "ModelAddressDetailsConnection";
-        nextToken?: string | null;
-      } | null;
-      directors?: {
-        __typename: "ModelCompanyDirectorsConnection";
-        nextToken?: string | null;
-      } | null;
-      createdAt: string;
-      updatedAt: string;
-      owner?: string | null;
-    };
-    directors: {
-      __typename: "Directors";
-      id: string;
-      directorTitle?: Title | null;
-      directorName: string;
-      directorKRAPIN: string;
-      directorEmailAddress: string;
-      directorNationality: string;
-      directorShares: number;
-      companies?: {
-        __typename: "ModelCompanyDirectorsConnection";
-        nextToken?: string | null;
-      } | null;
-      createdAt: string;
-      updatedAt: string;
-      owner?: string | null;
-    };
-    createdAt: string;
-    updatedAt: string;
-    owner?: string | null;
-  } | null;
+export type OnUpdateClientSubscription = {
+  onUpdateClient?:  {
+    __typename: "Client",
+    id: string,
+    clientName: string,
+    contractValue: number,
+    startDate: string,
+    endDate: string,
+    contactPerson: string,
+    contactEmail: string,
+    contactPhoneNumber: string,
+    contractAttachment: string,
+    serviceDescription: string,
+    companyID: string,
+    company?:  {
+      __typename: "Company",
+      id: string,
+      organizationName: string,
+      organizationType: OrganizationType,
+      ownership: Ownership,
+      natureOfBusiness: Array< Nature | null >,
+      organizationRegistrationDate: string,
+      organizationRegistrationNumber: string,
+      registrationCertificate: string,
+      cr12: string,
+      KRAPIN: string,
+      KRAPINCertificate: string,
+      taxComplianceNumber: string,
+      taxComplianceExpiry: string,
+      taxComplianceCertificate: string,
+      agpoCategory?: AGPOCategory | null,
+      agpoExpiryDate?: string | null,
+      agpoCertificate?: string | null,
+      status?: Status | null,
+      response?: Array< string | null > | null,
+      addressDetails?:  {
+        __typename: "ModelAddressDetailsConnection",
+        items:  Array< {
+          __typename: "AddressDetails",
+          id: string,
+          postalAddress: string,
+          city: string,
+          country: string,
+          officeBuilding: string,
+          streetAddress: string,
+          emailAddress: string,
+          title: Title,
+          fullName: string,
+          contactEmail: string,
+          phoneNumber: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      directors?:  {
+        __typename: "ModelDirectorsConnection",
+        items:  Array< {
+          __typename: "Directors",
+          id: string,
+          directorTitle?: Title | null,
+          directorName: string,
+          directorKRAPIN: string,
+          directorEmailAddress: string,
+          directorNationality: Ownership,
+          directorShares: number,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      clients?:  {
+        __typename: "ModelClientConnection",
+        items:  Array< {
+          __typename: "Client",
+          id: string,
+          clientName: string,
+          contractValue: number,
+          startDate: string,
+          endDate: string,
+          contactPerson: string,
+          contactEmail: string,
+          contactPhoneNumber: string,
+          contractAttachment: string,
+          serviceDescription: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      personnel?:  {
+        __typename: "ModelPersonelConnection",
+        items:  Array< {
+          __typename: "Personel",
+          id: string,
+          personelName: string,
+          role: string,
+          nationalid: string,
+          qualificationAttachment: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      contracts?:  {
+        __typename: "ModelContractConnection",
+        items:  Array< {
+          __typename: "Contract",
+          id: string,
+          title: string,
+          type: Nature,
+          department: string,
+          budget: number,
+          status?: ContractStatus | null,
+          description: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
 };
 
-export type OnDeleteCompanyDirectorsSubscriptionVariables = {
-  owner?: string | null;
+export type OnDeleteClientSubscriptionVariables = {
+  filter?: ModelSubscriptionClientFilterInput | null,
+  owner?: string | null,
 };
 
-export type OnDeleteCompanyDirectorsSubscription = {
-  onDeleteCompanyDirectors?: {
-    __typename: "CompanyDirectors";
-    id: string;
-    companyID: string;
-    directorsID: string;
-    company: {
-      __typename: "Company";
-      id: string;
-      organizationName: string;
-      organizationType: OrganizationType;
-      ownership: Ownership;
-      natureOfBusiness: string;
-      organizationRegistrationDate: string;
-      organizationRegistrationNumber: string;
-      registrationCertificate: string;
-      cr12: string;
-      KRAPIN: string;
-      KRAPINCertificate: string;
-      taxComplianceNumber: string;
-      taxComplianceExpiry: string;
-      taxComplianceCertificate: string;
-      agpoCategory?: AGPOCategory | null;
-      agpoExpiryDate?: string | null;
-      agpoCertificate?: string | null;
-      addressDetails?: {
-        __typename: "ModelAddressDetailsConnection";
-        nextToken?: string | null;
-      } | null;
-      directors?: {
-        __typename: "ModelCompanyDirectorsConnection";
-        nextToken?: string | null;
-      } | null;
-      createdAt: string;
-      updatedAt: string;
-      owner?: string | null;
-    };
-    directors: {
-      __typename: "Directors";
-      id: string;
-      directorTitle?: Title | null;
-      directorName: string;
-      directorKRAPIN: string;
-      directorEmailAddress: string;
-      directorNationality: string;
-      directorShares: number;
-      companies?: {
-        __typename: "ModelCompanyDirectorsConnection";
-        nextToken?: string | null;
-      } | null;
-      createdAt: string;
-      updatedAt: string;
-      owner?: string | null;
-    };
-    createdAt: string;
-    updatedAt: string;
-    owner?: string | null;
-  } | null;
+export type OnDeleteClientSubscription = {
+  onDeleteClient?:  {
+    __typename: "Client",
+    id: string,
+    clientName: string,
+    contractValue: number,
+    startDate: string,
+    endDate: string,
+    contactPerson: string,
+    contactEmail: string,
+    contactPhoneNumber: string,
+    contractAttachment: string,
+    serviceDescription: string,
+    companyID: string,
+    company?:  {
+      __typename: "Company",
+      id: string,
+      organizationName: string,
+      organizationType: OrganizationType,
+      ownership: Ownership,
+      natureOfBusiness: Array< Nature | null >,
+      organizationRegistrationDate: string,
+      organizationRegistrationNumber: string,
+      registrationCertificate: string,
+      cr12: string,
+      KRAPIN: string,
+      KRAPINCertificate: string,
+      taxComplianceNumber: string,
+      taxComplianceExpiry: string,
+      taxComplianceCertificate: string,
+      agpoCategory?: AGPOCategory | null,
+      agpoExpiryDate?: string | null,
+      agpoCertificate?: string | null,
+      status?: Status | null,
+      response?: Array< string | null > | null,
+      addressDetails?:  {
+        __typename: "ModelAddressDetailsConnection",
+        items:  Array< {
+          __typename: "AddressDetails",
+          id: string,
+          postalAddress: string,
+          city: string,
+          country: string,
+          officeBuilding: string,
+          streetAddress: string,
+          emailAddress: string,
+          title: Title,
+          fullName: string,
+          contactEmail: string,
+          phoneNumber: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      directors?:  {
+        __typename: "ModelDirectorsConnection",
+        items:  Array< {
+          __typename: "Directors",
+          id: string,
+          directorTitle?: Title | null,
+          directorName: string,
+          directorKRAPIN: string,
+          directorEmailAddress: string,
+          directorNationality: Ownership,
+          directorShares: number,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      clients?:  {
+        __typename: "ModelClientConnection",
+        items:  Array< {
+          __typename: "Client",
+          id: string,
+          clientName: string,
+          contractValue: number,
+          startDate: string,
+          endDate: string,
+          contactPerson: string,
+          contactEmail: string,
+          contactPhoneNumber: string,
+          contractAttachment: string,
+          serviceDescription: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      personnel?:  {
+        __typename: "ModelPersonelConnection",
+        items:  Array< {
+          __typename: "Personel",
+          id: string,
+          personelName: string,
+          role: string,
+          nationalid: string,
+          qualificationAttachment: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      contracts?:  {
+        __typename: "ModelContractConnection",
+        items:  Array< {
+          __typename: "Contract",
+          id: string,
+          title: string,
+          type: Nature,
+          department: string,
+          budget: number,
+          status?: ContractStatus | null,
+          description: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type OnCreatePersonelSubscriptionVariables = {
+  filter?: ModelSubscriptionPersonelFilterInput | null,
+  owner?: string | null,
+};
+
+export type OnCreatePersonelSubscription = {
+  onCreatePersonel?:  {
+    __typename: "Personel",
+    id: string,
+    personelName: string,
+    role: string,
+    nationalid: string,
+    qualificationAttachment: string,
+    companyID: string,
+    company?:  {
+      __typename: "Company",
+      id: string,
+      organizationName: string,
+      organizationType: OrganizationType,
+      ownership: Ownership,
+      natureOfBusiness: Array< Nature | null >,
+      organizationRegistrationDate: string,
+      organizationRegistrationNumber: string,
+      registrationCertificate: string,
+      cr12: string,
+      KRAPIN: string,
+      KRAPINCertificate: string,
+      taxComplianceNumber: string,
+      taxComplianceExpiry: string,
+      taxComplianceCertificate: string,
+      agpoCategory?: AGPOCategory | null,
+      agpoExpiryDate?: string | null,
+      agpoCertificate?: string | null,
+      status?: Status | null,
+      response?: Array< string | null > | null,
+      addressDetails?:  {
+        __typename: "ModelAddressDetailsConnection",
+        items:  Array< {
+          __typename: "AddressDetails",
+          id: string,
+          postalAddress: string,
+          city: string,
+          country: string,
+          officeBuilding: string,
+          streetAddress: string,
+          emailAddress: string,
+          title: Title,
+          fullName: string,
+          contactEmail: string,
+          phoneNumber: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      directors?:  {
+        __typename: "ModelDirectorsConnection",
+        items:  Array< {
+          __typename: "Directors",
+          id: string,
+          directorTitle?: Title | null,
+          directorName: string,
+          directorKRAPIN: string,
+          directorEmailAddress: string,
+          directorNationality: Ownership,
+          directorShares: number,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      clients?:  {
+        __typename: "ModelClientConnection",
+        items:  Array< {
+          __typename: "Client",
+          id: string,
+          clientName: string,
+          contractValue: number,
+          startDate: string,
+          endDate: string,
+          contactPerson: string,
+          contactEmail: string,
+          contactPhoneNumber: string,
+          contractAttachment: string,
+          serviceDescription: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      personnel?:  {
+        __typename: "ModelPersonelConnection",
+        items:  Array< {
+          __typename: "Personel",
+          id: string,
+          personelName: string,
+          role: string,
+          nationalid: string,
+          qualificationAttachment: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      contracts?:  {
+        __typename: "ModelContractConnection",
+        items:  Array< {
+          __typename: "Contract",
+          id: string,
+          title: string,
+          type: Nature,
+          department: string,
+          budget: number,
+          status?: ContractStatus | null,
+          description: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type OnUpdatePersonelSubscriptionVariables = {
+  filter?: ModelSubscriptionPersonelFilterInput | null,
+  owner?: string | null,
+};
+
+export type OnUpdatePersonelSubscription = {
+  onUpdatePersonel?:  {
+    __typename: "Personel",
+    id: string,
+    personelName: string,
+    role: string,
+    nationalid: string,
+    qualificationAttachment: string,
+    companyID: string,
+    company?:  {
+      __typename: "Company",
+      id: string,
+      organizationName: string,
+      organizationType: OrganizationType,
+      ownership: Ownership,
+      natureOfBusiness: Array< Nature | null >,
+      organizationRegistrationDate: string,
+      organizationRegistrationNumber: string,
+      registrationCertificate: string,
+      cr12: string,
+      KRAPIN: string,
+      KRAPINCertificate: string,
+      taxComplianceNumber: string,
+      taxComplianceExpiry: string,
+      taxComplianceCertificate: string,
+      agpoCategory?: AGPOCategory | null,
+      agpoExpiryDate?: string | null,
+      agpoCertificate?: string | null,
+      status?: Status | null,
+      response?: Array< string | null > | null,
+      addressDetails?:  {
+        __typename: "ModelAddressDetailsConnection",
+        items:  Array< {
+          __typename: "AddressDetails",
+          id: string,
+          postalAddress: string,
+          city: string,
+          country: string,
+          officeBuilding: string,
+          streetAddress: string,
+          emailAddress: string,
+          title: Title,
+          fullName: string,
+          contactEmail: string,
+          phoneNumber: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      directors?:  {
+        __typename: "ModelDirectorsConnection",
+        items:  Array< {
+          __typename: "Directors",
+          id: string,
+          directorTitle?: Title | null,
+          directorName: string,
+          directorKRAPIN: string,
+          directorEmailAddress: string,
+          directorNationality: Ownership,
+          directorShares: number,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      clients?:  {
+        __typename: "ModelClientConnection",
+        items:  Array< {
+          __typename: "Client",
+          id: string,
+          clientName: string,
+          contractValue: number,
+          startDate: string,
+          endDate: string,
+          contactPerson: string,
+          contactEmail: string,
+          contactPhoneNumber: string,
+          contractAttachment: string,
+          serviceDescription: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      personnel?:  {
+        __typename: "ModelPersonelConnection",
+        items:  Array< {
+          __typename: "Personel",
+          id: string,
+          personelName: string,
+          role: string,
+          nationalid: string,
+          qualificationAttachment: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      contracts?:  {
+        __typename: "ModelContractConnection",
+        items:  Array< {
+          __typename: "Contract",
+          id: string,
+          title: string,
+          type: Nature,
+          department: string,
+          budget: number,
+          status?: ContractStatus | null,
+          description: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type OnDeletePersonelSubscriptionVariables = {
+  filter?: ModelSubscriptionPersonelFilterInput | null,
+  owner?: string | null,
+};
+
+export type OnDeletePersonelSubscription = {
+  onDeletePersonel?:  {
+    __typename: "Personel",
+    id: string,
+    personelName: string,
+    role: string,
+    nationalid: string,
+    qualificationAttachment: string,
+    companyID: string,
+    company?:  {
+      __typename: "Company",
+      id: string,
+      organizationName: string,
+      organizationType: OrganizationType,
+      ownership: Ownership,
+      natureOfBusiness: Array< Nature | null >,
+      organizationRegistrationDate: string,
+      organizationRegistrationNumber: string,
+      registrationCertificate: string,
+      cr12: string,
+      KRAPIN: string,
+      KRAPINCertificate: string,
+      taxComplianceNumber: string,
+      taxComplianceExpiry: string,
+      taxComplianceCertificate: string,
+      agpoCategory?: AGPOCategory | null,
+      agpoExpiryDate?: string | null,
+      agpoCertificate?: string | null,
+      status?: Status | null,
+      response?: Array< string | null > | null,
+      addressDetails?:  {
+        __typename: "ModelAddressDetailsConnection",
+        items:  Array< {
+          __typename: "AddressDetails",
+          id: string,
+          postalAddress: string,
+          city: string,
+          country: string,
+          officeBuilding: string,
+          streetAddress: string,
+          emailAddress: string,
+          title: Title,
+          fullName: string,
+          contactEmail: string,
+          phoneNumber: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      directors?:  {
+        __typename: "ModelDirectorsConnection",
+        items:  Array< {
+          __typename: "Directors",
+          id: string,
+          directorTitle?: Title | null,
+          directorName: string,
+          directorKRAPIN: string,
+          directorEmailAddress: string,
+          directorNationality: Ownership,
+          directorShares: number,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      clients?:  {
+        __typename: "ModelClientConnection",
+        items:  Array< {
+          __typename: "Client",
+          id: string,
+          clientName: string,
+          contractValue: number,
+          startDate: string,
+          endDate: string,
+          contactPerson: string,
+          contactEmail: string,
+          contactPhoneNumber: string,
+          contractAttachment: string,
+          serviceDescription: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      personnel?:  {
+        __typename: "ModelPersonelConnection",
+        items:  Array< {
+          __typename: "Personel",
+          id: string,
+          personelName: string,
+          role: string,
+          nationalid: string,
+          qualificationAttachment: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      contracts?:  {
+        __typename: "ModelContractConnection",
+        items:  Array< {
+          __typename: "Contract",
+          id: string,
+          title: string,
+          type: Nature,
+          department: string,
+          budget: number,
+          status?: ContractStatus | null,
+          description: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type OnCreateOpportunitySubscriptionVariables = {
+  filter?: ModelSubscriptionOpportunityFilterInput | null,
+  owner?: string | null,
+};
+
+export type OnCreateOpportunitySubscription = {
+  onCreateOpportunity?:  {
+    __typename: "Opportunity",
+    id: string,
+    title: string,
+    type: Nature,
+    department: string,
+    budget: number,
+    status?: OpportunityStatus | null,
+    description: string,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type OnUpdateOpportunitySubscriptionVariables = {
+  filter?: ModelSubscriptionOpportunityFilterInput | null,
+  owner?: string | null,
+};
+
+export type OnUpdateOpportunitySubscription = {
+  onUpdateOpportunity?:  {
+    __typename: "Opportunity",
+    id: string,
+    title: string,
+    type: Nature,
+    department: string,
+    budget: number,
+    status?: OpportunityStatus | null,
+    description: string,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type OnDeleteOpportunitySubscriptionVariables = {
+  filter?: ModelSubscriptionOpportunityFilterInput | null,
+  owner?: string | null,
+};
+
+export type OnDeleteOpportunitySubscription = {
+  onDeleteOpportunity?:  {
+    __typename: "Opportunity",
+    id: string,
+    title: string,
+    type: Nature,
+    department: string,
+    budget: number,
+    status?: OpportunityStatus | null,
+    description: string,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type OnCreateActionSubscriptionVariables = {
+  filter?: ModelSubscriptionActionFilterInput | null,
+  owner?: string | null,
+};
+
+export type OnCreateActionSubscription = {
+  onCreateAction?:  {
+    __typename: "Action",
+    id: string,
+    title: string,
+    type: string,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type OnUpdateActionSubscriptionVariables = {
+  filter?: ModelSubscriptionActionFilterInput | null,
+  owner?: string | null,
+};
+
+export type OnUpdateActionSubscription = {
+  onUpdateAction?:  {
+    __typename: "Action",
+    id: string,
+    title: string,
+    type: string,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type OnDeleteActionSubscriptionVariables = {
+  filter?: ModelSubscriptionActionFilterInput | null,
+  owner?: string | null,
+};
+
+export type OnDeleteActionSubscription = {
+  onDeleteAction?:  {
+    __typename: "Action",
+    id: string,
+    title: string,
+    type: string,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type OnCreateContractSubscriptionVariables = {
+  filter?: ModelSubscriptionContractFilterInput | null,
+  owner?: string | null,
+};
+
+export type OnCreateContractSubscription = {
+  onCreateContract?:  {
+    __typename: "Contract",
+    id: string,
+    title: string,
+    type: Nature,
+    department: string,
+    budget: number,
+    status?: ContractStatus | null,
+    description: string,
+    companyID: string,
+    company?:  {
+      __typename: "Company",
+      id: string,
+      organizationName: string,
+      organizationType: OrganizationType,
+      ownership: Ownership,
+      natureOfBusiness: Array< Nature | null >,
+      organizationRegistrationDate: string,
+      organizationRegistrationNumber: string,
+      registrationCertificate: string,
+      cr12: string,
+      KRAPIN: string,
+      KRAPINCertificate: string,
+      taxComplianceNumber: string,
+      taxComplianceExpiry: string,
+      taxComplianceCertificate: string,
+      agpoCategory?: AGPOCategory | null,
+      agpoExpiryDate?: string | null,
+      agpoCertificate?: string | null,
+      status?: Status | null,
+      response?: Array< string | null > | null,
+      addressDetails?:  {
+        __typename: "ModelAddressDetailsConnection",
+        items:  Array< {
+          __typename: "AddressDetails",
+          id: string,
+          postalAddress: string,
+          city: string,
+          country: string,
+          officeBuilding: string,
+          streetAddress: string,
+          emailAddress: string,
+          title: Title,
+          fullName: string,
+          contactEmail: string,
+          phoneNumber: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      directors?:  {
+        __typename: "ModelDirectorsConnection",
+        items:  Array< {
+          __typename: "Directors",
+          id: string,
+          directorTitle?: Title | null,
+          directorName: string,
+          directorKRAPIN: string,
+          directorEmailAddress: string,
+          directorNationality: Ownership,
+          directorShares: number,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      clients?:  {
+        __typename: "ModelClientConnection",
+        items:  Array< {
+          __typename: "Client",
+          id: string,
+          clientName: string,
+          contractValue: number,
+          startDate: string,
+          endDate: string,
+          contactPerson: string,
+          contactEmail: string,
+          contactPhoneNumber: string,
+          contractAttachment: string,
+          serviceDescription: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      personnel?:  {
+        __typename: "ModelPersonelConnection",
+        items:  Array< {
+          __typename: "Personel",
+          id: string,
+          personelName: string,
+          role: string,
+          nationalid: string,
+          qualificationAttachment: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      contracts?:  {
+        __typename: "ModelContractConnection",
+        items:  Array< {
+          __typename: "Contract",
+          id: string,
+          title: string,
+          type: Nature,
+          department: string,
+          budget: number,
+          status?: ContractStatus | null,
+          description: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type OnUpdateContractSubscriptionVariables = {
+  filter?: ModelSubscriptionContractFilterInput | null,
+  owner?: string | null,
+};
+
+export type OnUpdateContractSubscription = {
+  onUpdateContract?:  {
+    __typename: "Contract",
+    id: string,
+    title: string,
+    type: Nature,
+    department: string,
+    budget: number,
+    status?: ContractStatus | null,
+    description: string,
+    companyID: string,
+    company?:  {
+      __typename: "Company",
+      id: string,
+      organizationName: string,
+      organizationType: OrganizationType,
+      ownership: Ownership,
+      natureOfBusiness: Array< Nature | null >,
+      organizationRegistrationDate: string,
+      organizationRegistrationNumber: string,
+      registrationCertificate: string,
+      cr12: string,
+      KRAPIN: string,
+      KRAPINCertificate: string,
+      taxComplianceNumber: string,
+      taxComplianceExpiry: string,
+      taxComplianceCertificate: string,
+      agpoCategory?: AGPOCategory | null,
+      agpoExpiryDate?: string | null,
+      agpoCertificate?: string | null,
+      status?: Status | null,
+      response?: Array< string | null > | null,
+      addressDetails?:  {
+        __typename: "ModelAddressDetailsConnection",
+        items:  Array< {
+          __typename: "AddressDetails",
+          id: string,
+          postalAddress: string,
+          city: string,
+          country: string,
+          officeBuilding: string,
+          streetAddress: string,
+          emailAddress: string,
+          title: Title,
+          fullName: string,
+          contactEmail: string,
+          phoneNumber: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      directors?:  {
+        __typename: "ModelDirectorsConnection",
+        items:  Array< {
+          __typename: "Directors",
+          id: string,
+          directorTitle?: Title | null,
+          directorName: string,
+          directorKRAPIN: string,
+          directorEmailAddress: string,
+          directorNationality: Ownership,
+          directorShares: number,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      clients?:  {
+        __typename: "ModelClientConnection",
+        items:  Array< {
+          __typename: "Client",
+          id: string,
+          clientName: string,
+          contractValue: number,
+          startDate: string,
+          endDate: string,
+          contactPerson: string,
+          contactEmail: string,
+          contactPhoneNumber: string,
+          contractAttachment: string,
+          serviceDescription: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      personnel?:  {
+        __typename: "ModelPersonelConnection",
+        items:  Array< {
+          __typename: "Personel",
+          id: string,
+          personelName: string,
+          role: string,
+          nationalid: string,
+          qualificationAttachment: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      contracts?:  {
+        __typename: "ModelContractConnection",
+        items:  Array< {
+          __typename: "Contract",
+          id: string,
+          title: string,
+          type: Nature,
+          department: string,
+          budget: number,
+          status?: ContractStatus | null,
+          description: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type OnDeleteContractSubscriptionVariables = {
+  filter?: ModelSubscriptionContractFilterInput | null,
+  owner?: string | null,
+};
+
+export type OnDeleteContractSubscription = {
+  onDeleteContract?:  {
+    __typename: "Contract",
+    id: string,
+    title: string,
+    type: Nature,
+    department: string,
+    budget: number,
+    status?: ContractStatus | null,
+    description: string,
+    companyID: string,
+    company?:  {
+      __typename: "Company",
+      id: string,
+      organizationName: string,
+      organizationType: OrganizationType,
+      ownership: Ownership,
+      natureOfBusiness: Array< Nature | null >,
+      organizationRegistrationDate: string,
+      organizationRegistrationNumber: string,
+      registrationCertificate: string,
+      cr12: string,
+      KRAPIN: string,
+      KRAPINCertificate: string,
+      taxComplianceNumber: string,
+      taxComplianceExpiry: string,
+      taxComplianceCertificate: string,
+      agpoCategory?: AGPOCategory | null,
+      agpoExpiryDate?: string | null,
+      agpoCertificate?: string | null,
+      status?: Status | null,
+      response?: Array< string | null > | null,
+      addressDetails?:  {
+        __typename: "ModelAddressDetailsConnection",
+        items:  Array< {
+          __typename: "AddressDetails",
+          id: string,
+          postalAddress: string,
+          city: string,
+          country: string,
+          officeBuilding: string,
+          streetAddress: string,
+          emailAddress: string,
+          title: Title,
+          fullName: string,
+          contactEmail: string,
+          phoneNumber: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      directors?:  {
+        __typename: "ModelDirectorsConnection",
+        items:  Array< {
+          __typename: "Directors",
+          id: string,
+          directorTitle?: Title | null,
+          directorName: string,
+          directorKRAPIN: string,
+          directorEmailAddress: string,
+          directorNationality: Ownership,
+          directorShares: number,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      clients?:  {
+        __typename: "ModelClientConnection",
+        items:  Array< {
+          __typename: "Client",
+          id: string,
+          clientName: string,
+          contractValue: number,
+          startDate: string,
+          endDate: string,
+          contactPerson: string,
+          contactEmail: string,
+          contactPhoneNumber: string,
+          contractAttachment: string,
+          serviceDescription: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      personnel?:  {
+        __typename: "ModelPersonelConnection",
+        items:  Array< {
+          __typename: "Personel",
+          id: string,
+          personelName: string,
+          role: string,
+          nationalid: string,
+          qualificationAttachment: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      contracts?:  {
+        __typename: "ModelContractConnection",
+        items:  Array< {
+          __typename: "Contract",
+          id: string,
+          title: string,
+          type: Nature,
+          department: string,
+          budget: number,
+          status?: ContractStatus | null,
+          description: string,
+          companyID: string,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null >,
+        nextToken?: string | null,
+      } | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null,
+    createdAt: string,
+    updatedAt: string,
+    owner?: string | null,
+  } | null,
 };

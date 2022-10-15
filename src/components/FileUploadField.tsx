@@ -1,19 +1,23 @@
-import React, { Dispatch, SetStateAction } from "react";
-import { v4 } from "uuid";
+import React from "react";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import Typography from "@mui/material/Typography";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
-import { FileUpload } from "../types";
+import { useFormContext } from "react-hook-form";
 
 interface Props {
-  upload: FileUpload;
-  setFile: Dispatch<SetStateAction<FileUpload>>;
+  disabled: boolean;
+  name: string;
   label: string;
 }
-
-export default function FileUploadField({ upload, setFile, label }: Props) {
+export default function FileUploadField({ disabled, name, label }: Props) {
+  const {
+    register,
+    formState: { errors },
+    watch,
+  } = useFormContext();
+  const upload: File | null = watch(name) ? watch(name)[0] : null;
   return (
     <div
       style={{
@@ -21,13 +25,18 @@ export default function FileUploadField({ upload, setFile, label }: Props) {
         flexDirection: "column",
         alignItems: "stretch",
         width: "25%",
-        paddingLeft: "8px",
-        paddingRight: "8px",
+        padding: "8px",
         justifyContent: "flex-start",
       }}
     >
-      <Typography variant="body2" color="InactiveCaptionText" gutterBottom>
-        {label}
+      <Typography
+        variant="body2"
+        component="label"
+        htmlFor={`${name} upload`}
+        color={errors[name] ? "red" : "InactiveCaptionText"}
+        gutterBottom
+      >
+        {errors[name]?.message.toString() ?? label}
       </Typography>
       <Button
         fullWidth
@@ -38,20 +47,19 @@ export default function FileUploadField({ upload, setFile, label }: Props) {
         }
         variant="outlined"
         component="label"
-        color={upload ? "success" : "secondary"}
+        color={
+          (upload && "success") || (!!errors[name] && "error") || "secondary"
+        }
       >
-        {upload?.file.name.substring(0, 10) ?? "Add Attachment"}
+        {upload?.name?.substring(0, 10) ?? "Add Attachment"}
         <input
           hidden
+          disabled={disabled}
+          id={`${name} upload`}
+          name={name}
           type="file"
           accept="image/*"
-          onChange={(e) =>
-            setFile({
-              path: v4(),
-              contentType: e.target.files[0].type,
-              file: e.target.files[0],
-            })
-          }
+          {...register(name)}
         />
       </Button>
     </div>

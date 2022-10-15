@@ -11,7 +11,7 @@ type Company
   organizationName: String!
   organizationType: OrganizationType!
   ownership: Ownership!
-  natureOfBusiness: String!
+  natureOfBusiness: [Nature]!
   organizationRegistrationDate: AWSDate!
   organizationRegistrationNumber: String!
   registrationCertificate: String!
@@ -24,9 +24,14 @@ type Company
   agpoCategory: AGPOCategory
   agpoExpiryDate: AWSDate
   agpoCertificate: String
+  status: Status @default(value: "Pending")
+  response: [String]
   addressDetails: [AddressDetails]
     @hasMany(indexName: "byAddressDetails", fields: ["id"])
-  directors: [Directors] @manyToMany(relationName: "CompanyDirectors")
+  directors: [Directors] @hasMany(indexName: "byDirectors", fields: ["id"])
+  clients: [Client] @hasMany(indexName: "byClient", fields: ["id"])
+  personnel: [Personel] @hasMany(indexName: "byPersonel", fields: ["id"])
+  contracts: [Contract] @hasMany(indexName: "byContracts", fields: ["id"])
 }
 
 type AddressDetails
@@ -69,7 +74,101 @@ type Directors
   directorEmailAddress: String!
   directorNationality: Ownership!
   directorShares: Int!
-  companies: [Company] @manyToMany(relationName: "CompanyDirectors")
+  companyID: ID! @index(name: "byDirectors", queryField: "directorName")
+  company: Company @belongsTo(fields: ["companyID"])
+}
+
+type Client
+  @model
+  @auth(
+    rules: [
+      { allow: owner }
+      { allow: private, operations: [read] }
+      { allow: public, operations: [read] }
+    ]
+  ) {
+  id: ID!
+  clientName: String!
+  contractValue: Int!
+  startDate: AWSDate!
+  endDate: AWSDate!
+  contactPerson: String!
+  contactEmail: String!
+  contactPhoneNumber: String!
+  contractAttachment: String!
+  serviceDescription: String!
+  companyID: ID! @index(name: "byClient", queryField: "clientName")
+  company: Company @belongsTo(fields: ["companyID"])
+}
+
+type Personel
+  @model
+  @auth(
+    rules: [
+      { allow: owner }
+      { allow: private, operations: [read] }
+      { allow: public, operations: [read] }
+    ]
+  ) {
+  id: ID!
+  personelName: String!
+  role: String!
+  nationalid: String!
+  qualificationAttachment: String!
+  companyID: ID! @index(name: "byPersonel", queryField: "personelName")
+  company: Company @belongsTo(fields: ["companyID"])
+}
+
+type Opportunity
+  @model
+  @auth(
+    rules: [
+      { allow: owner }
+      { allow: private, operations: [read] }
+      { allow: public, operations: [read] }
+    ]
+  ) {
+  id: ID!
+  title: String!
+  type: Nature!
+  department: String!
+  budget: Int!
+  status: OpportunityStatus @default(value: "Draft")
+  description: String!
+}
+
+type Action
+  @model
+  @auth(
+    rules: [
+      { allow: owner }
+      { allow: private, operations: [read] }
+      { allow: public, operations: [read] }
+    ]
+  ) {
+  id: ID!
+  title: String!
+  type: String!
+}
+
+type Contract
+  @model
+  @auth(
+    rules: [
+      { allow: owner }
+      { allow: private, operations: [read] }
+      { allow: public, operations: [read] }
+    ]
+  ) {
+  id: ID!
+  title: String!
+  type: Nature!
+  department: String!
+  budget: Int!
+  status: ContractStatus @default(value: "Draft")
+  description: String!
+  companyID: ID! @index(name: "byContracts", queryField: "title")
+  company: Company @belongsTo(fields: ["companyID"])
 }
 
 enum Title {
@@ -94,4 +193,31 @@ enum AGPOCategory {
   Youth
   Women
   PWD
+}
+
+enum Status {
+  Approved
+  Pending
+  Rejected
+}
+
+enum OpportunityStatus {
+  In_Progress
+  Draft
+  Closed
+}
+
+enum ContractStatus {
+  In_Progress
+  Ended
+  Draft
+}
+
+enum Nature {
+  End_User_Computing
+  Software_Development
+  Digital_Media
+  Policy
+  Consultancy
+  Non_Consultancy_Services
 }

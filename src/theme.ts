@@ -14,9 +14,9 @@ declare module "@mui/material/styles" {
   }
 }
 
-const blue = "#008FDF";
-const lightBlue = "#129FEF";
-const defaultbg = "#D9D9D9";
+export const blue = "#008FDF";
+export const lightBlue = "#129FEF";
+export const defaultbg = "#D9D9D9";
 
 // Create a theme instance.
 const theme = createTheme({

@@ -6,191 +6,230 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import { Directors, Title, Ownership } from "../API";
-import { useFieldArray, useForm } from "react-hook-form";
+import {
+  Controller,
+  useFieldArray,
+  useForm,
+  useFormContext,
+} from "react-hook-form";
 import getOptions from "../lib/getOptions";
 import { Options } from "../types";
 import MenuItem from "@mui/material/MenuItem";
+import Tooltip from "@mui/material/Tooltip";
+import IconButton from "@mui/material/IconButton";
+import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
+import Grid from "@mui/material/Unstable_Grid2";
 
 interface Props {
-  companyId: string;
   activeStep: number;
-  setActiveStep: Dispatch<SetStateAction<number>>;
 }
 
-export default function Director({
-  companyId,
-  activeStep,
-  setActiveStep,
-}: Props) {
+export default function Director({ activeStep }: Props) {
   const {
     control,
     register,
+    watch,
     formState: { errors },
-    handleSubmit,
-  } = useForm<Directors>({
-    mode: "onChange",
+  } = useFormContext();
+  const { fields, append, remove } = useFieldArray({
+    name: "directors",
+    keyName: "directorsId",
   });
 
   const titles = getOptions(Title);
   const nationality = getOptions(Ownership);
 
+  const disabled: boolean = activeStep > 2;
+
   return (
-    <Box
-      component="form"
-      // onSubmit={handleSubmit(onSubmit)}
-      noValidate
-      autoComplete="off"
-    >
-      <Box
-        component="section"
-        sx={activeStep < 3 && { p: 3, m: 3, border: "1px solid black" }}
-      >
-        <Typography variant="h5" component="h3" gutterBottom>
-          Director Details
-        </Typography>
-        <Divider sx={{ borderColor: "#828282", mb: 1 }} />
-        <Typography>
-          Input complete list of directors and % ownership. Foreign companies
-          should input Passport Number under KRA PIN
-        </Typography>
-        <Box
-          sx={{
-            "& .MuiTextField-root": { m: 1 },
-            paddingY: 2,
-            justifyContent: "space-between",
-          }}
-        >
-          <TextField
-            select
-            required
-            name="directorTitle"
-            label="Title"
-            placeholder="Title"
-            sx={{ width: "10%" }}
-            error={!!errors.directorTitle}
-            helperText={errors.directorTitle?.message}
-            inputProps={register("directorTitle", {
-              required: {
-                value: true,
-                message: "A director title is required",
-              },
-            })}
+    <>
+      <Typography variant="h5" component="h3" gutterBottom>
+        Director Details
+      </Typography>
+      <Divider sx={{ borderColor: "#828282", mb: 1 }} />
+      <Typography>
+        Input complete list of directors and % ownership. Foreign companies
+        should input Passport Number under KRA PIN
+      </Typography>
+      {fields.map((director, index) => {
+        const directorTitle = `directors.${index}.directorTitle`;
+        const directorName = `directors.${index}.directorName`;
+        const directorKRAPIN = `directors.${index}.directorKRAPIN`;
+        const directorEmailAddress = `directors.${index}.directorEmailAddress`;
+        const directorNationality = `directors.${index}.directorNationality`;
+        const directorShares = `directors.${index}.directorShares`;
+        return (
+          <Grid
+            key={director.directorsId}
+            container
+            xs={12}
+            justifyContent="space-between"
           >
-            {titles.map((title: Options) => (
-              <MenuItem key={title.name} value={title.name}>
-                {title.value}
-              </MenuItem>
-            ))}
-          </TextField>
-          <TextField
-            required
-            name="directorName"
-            label="Director's Name"
-            placeholder="Director's Name"
-            sx={{ width: "25%" }}
-            error={!!errors.directorName}
-            helperText={errors.directorName?.message}
-            {...register("directorName", {
-              required: {
-                value: true,
-                message: "The director's name is required",
-              },
-            })}
-          />
-          <TextField
-            required
-            type="email"
-            name="directorEmailAddress"
-            label="Email Address"
-            placeholder="Director's email address"
-            sx={{ width: "20%" }}
-            error={!!errors.directorEmailAddress}
-            helperText={errors.directorEmailAddress?.message}
-            {...register("directorEmailAddress", {
-              required: {
-                value: true,
-                message: "The director's email address is required.",
-              },
-            })}
-          />
-          <TextField
-            select
-            required
-            name="directorNationality"
-            label="Director's Nationality"
-            placeholder="Director's Nationality"
-            sx={{ width: "20%" }}
-            error={!!errors.directorNationality}
-            helperText={errors.directorNationality?.message}
-            inputProps={register("directorNationality", {
-              required: {
-                value: true,
-                message: "The director's nationality is required",
-              },
-            })}
-          >
-            {nationality.map((directorNationality: Options) => (
-              <MenuItem
-                key={directorNationality.name}
-                value={directorNationality.name}
-              >
-                {directorNationality.value}
-              </MenuItem>
-            ))}
-          </TextField>
-          <TextField
-            required
-            type="number"
-            name="directorShares"
-            label="% Shares"
-            placeholder="% Shares"
-            sx={{ width: "15%" }}
-            error={!!errors.directorShares}
-            helperText={errors.directorShares?.message}
-            {...register("directorShares", {
-              required: {
-                value: true,
-                message: "The director's shares are required",
-              },
-            })}
-          />
-        </Box>
-        {activeStep < 3 && (
-          <Button
-            id="append"
-            startIcon={<PersonAddIcon />}
-            // onClick={() =>
-            //   append(
-            //     { name: renderCount.toString() },
-            //     { shouldFocus: !withoutFocus }
-            //   )
-            // }
-          >
-            Add director
-          </Button>
-        )}
-      </Box>
+            <Grid
+              xs={activeStep < 3 ? 11 : 12}
+              justifyContent="space-between"
+              py={1}
+              sx={{
+                "& .MuiTextField-root": { m: 1 },
+              }}
+            >
+              <Controller
+                name={directorTitle}
+                control={control}
+                defaultValue=""
+                render={({ field: { ref, ...field } }) => (
+                  <TextField
+                    select
+                    InputProps={{
+                      readOnly: disabled,
+                    }}
+                    required
+                    size="small"
+                    label="Title"
+                    placeholder="Title"
+                    sx={{ width: "10%" }}
+                    inputRef={ref}
+                    value={field.value}
+                    error={!!errors.directors?.[index]?.directorTitle}
+                    helperText={errors.directors?.[
+                      index
+                    ]?.directorTitle?.message.toString()}
+                    onChange={(directorTitle) => field.onChange(directorTitle)}
+                    {...field}
+                  >
+                    {titles.map((title: Options) => (
+                      <MenuItem key={title.name} value={title.name}>
+                        {title.value}
+                      </MenuItem>
+                    ))}
+                  </TextField>
+                )}
+              />
+              <TextField
+                required
+                InputProps={{
+                  readOnly: disabled,
+                }}
+                size="small"
+                label="Full Name"
+                placeholder="Full Name"
+                defaultValue=""
+                sx={{ width: "30%" }}
+                error={!!errors.directors?.[index]?.directorName}
+                helperText={errors?.directors?.[
+                  index
+                ]?.directorName?.message.toString()}
+                {...register(directorName)}
+              />
+              <TextField
+                required
+                InputProps={{
+                  readOnly: disabled,
+                }}
+                size="small"
+                label="KRA PIN"
+                placeholder="KRA PIN"
+                defaultValue=""
+                sx={{ width: "20%" }}
+                error={!!errors.directors?.[index]?.directorKRAPIN}
+                helperText={errors?.directors?.[
+                  index
+                ]?.directorKRAPIN?.message.toString()}
+                {...register(directorKRAPIN)}
+              />
+              <TextField
+                required
+                InputProps={{
+                  readOnly: disabled,
+                }}
+                size="small"
+                type="email"
+                label="Email Address"
+                defaultValue=""
+                sx={{ width: "30%" }}
+                placeholder="Email address"
+                error={!!errors.directors?.[index]?.directorEmailAddress}
+                helperText={errors?.directors?.[
+                  index
+                ]?.directorEmailAddress?.message.toString()}
+                {...register(directorEmailAddress)}
+              />
+              <Controller
+                name={directorNationality}
+                control={control}
+                defaultValue=""
+                render={({ field: { ref, ...field } }) => (
+                  <TextField
+                    select
+                    InputProps={{
+                      readOnly: disabled,
+                    }}
+                    required
+                    size="small"
+                    label="Nationality"
+                    placeholder="Nationality"
+                    sx={{ width: "15%" }}
+                    inputRef={ref}
+                    value={field.value}
+                    error={!!errors.directors?.[index]?.directorNationality}
+                    helperText={errors.directors?.[
+                      index
+                    ]?.directorNationality?.message.toString()}
+                    onChange={(directorNationality) =>
+                      field.onChange(directorNationality)
+                    }
+                    {...field}
+                  >
+                    {nationality.map((directorNationality: Options) => (
+                      <MenuItem
+                        key={directorNationality.name}
+                        value={directorNationality.name}
+                      >
+                        {directorNationality.value}
+                      </MenuItem>
+                    ))}
+                  </TextField>
+                )}
+              />
+              <TextField
+                required
+                InputProps={{
+                  readOnly: disabled,
+                }}
+                size="small"
+                type="number"
+                defaultValue=""
+                label="% Shares"
+                placeholder="% Shares"
+                sx={{ width: "10%" }}
+                error={!!errors.directors?.[index]?.directorShares}
+                helperText={errors.directors?.[
+                  index
+                ]?.directorShares?.message.toString()}
+                {...register(directorShares)}
+              />
+            </Grid>
+            {activeStep < 3 && (
+              <Grid xs={1} py={2}>
+                <Tooltip title="Remove director" arrow>
+                  <IconButton color="error" onClick={() => remove(index)}>
+                    <PersonRemoveIcon />
+                  </IconButton>
+                </Tooltip>
+              </Grid>
+            )}
+          </Grid>
+        );
+      })}
       {activeStep < 3 && (
-        <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-          <Button
-            color="inherit"
-            onClick={() => setActiveStep((prev) => prev - 1)}
-            sx={{ mr: 1 }}
-          >
-            Back
-          </Button>
-          <Box sx={{ flex: "1 1 auto" }} />
-          <Button
-            sx={{ mr: 1 }}
-            onClick={() => setActiveStep((prev) => prev + 1)}
-          >
-            Reset
-          </Button>
-          <Button onClick={() => setActiveStep((prev) => prev + 1)}>
-            Complete Step
-          </Button>
-        </Box>
+        <Button
+          id="append"
+          startIcon={<PersonAddIcon />}
+          onClick={() => append({ directorId: fields.length.toString() })}
+        >
+          Add director
+        </Button>
       )}
-    </Box>
+    </>
   );
 }

@@ -3,8 +3,11 @@
 // this is an auto generated file. This will be overwritten
 
 export const onCreateCompany = /* GraphQL */ `
-  subscription OnCreateCompany($owner: String) {
-    onCreateCompany(owner: $owner) {
+  subscription OnCreateCompany(
+    $filter: ModelSubscriptionCompanyFilterInput
+    $owner: String
+  ) {
+    onCreateCompany(filter: $filter, owner: $owner) {
       id
       organizationName
       organizationType
@@ -22,6 +25,8 @@ export const onCreateCompany = /* GraphQL */ `
       agpoCategory
       agpoExpiryDate
       agpoCertificate
+      status
+      response
       addressDetails {
         items {
           id
@@ -36,6 +41,30 @@ export const onCreateCompany = /* GraphQL */ `
           contactEmail
           phoneNumber
           companyID
+          company {
+            id
+            organizationName
+            organizationType
+            ownership
+            natureOfBusiness
+            organizationRegistrationDate
+            organizationRegistrationNumber
+            registrationCertificate
+            cr12
+            KRAPIN
+            KRAPINCertificate
+            taxComplianceNumber
+            taxComplianceExpiry
+            taxComplianceCertificate
+            agpoCategory
+            agpoExpiryDate
+            agpoCertificate
+            status
+            response
+            createdAt
+            updatedAt
+            owner
+          }
           createdAt
           updatedAt
           owner
@@ -45,8 +74,158 @@ export const onCreateCompany = /* GraphQL */ `
       directors {
         items {
           id
+          directorTitle
+          directorName
+          directorKRAPIN
+          directorEmailAddress
+          directorNationality
+          directorShares
           companyID
-          directorsID
+          company {
+            id
+            organizationName
+            organizationType
+            ownership
+            natureOfBusiness
+            organizationRegistrationDate
+            organizationRegistrationNumber
+            registrationCertificate
+            cr12
+            KRAPIN
+            KRAPINCertificate
+            taxComplianceNumber
+            taxComplianceExpiry
+            taxComplianceCertificate
+            agpoCategory
+            agpoExpiryDate
+            agpoCertificate
+            status
+            response
+            createdAt
+            updatedAt
+            owner
+          }
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
+      clients {
+        items {
+          id
+          clientName
+          contractValue
+          startDate
+          endDate
+          contactPerson
+          contactEmail
+          contactPhoneNumber
+          contractAttachment
+          serviceDescription
+          companyID
+          company {
+            id
+            organizationName
+            organizationType
+            ownership
+            natureOfBusiness
+            organizationRegistrationDate
+            organizationRegistrationNumber
+            registrationCertificate
+            cr12
+            KRAPIN
+            KRAPINCertificate
+            taxComplianceNumber
+            taxComplianceExpiry
+            taxComplianceCertificate
+            agpoCategory
+            agpoExpiryDate
+            agpoCertificate
+            status
+            response
+            createdAt
+            updatedAt
+            owner
+          }
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
+      personnel {
+        items {
+          id
+          personelName
+          role
+          nationalid
+          qualificationAttachment
+          companyID
+          company {
+            id
+            organizationName
+            organizationType
+            ownership
+            natureOfBusiness
+            organizationRegistrationDate
+            organizationRegistrationNumber
+            registrationCertificate
+            cr12
+            KRAPIN
+            KRAPINCertificate
+            taxComplianceNumber
+            taxComplianceExpiry
+            taxComplianceCertificate
+            agpoCategory
+            agpoExpiryDate
+            agpoCertificate
+            status
+            response
+            createdAt
+            updatedAt
+            owner
+          }
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
+      contracts {
+        items {
+          id
+          title
+          type
+          department
+          budget
+          status
+          description
+          companyID
+          company {
+            id
+            organizationName
+            organizationType
+            ownership
+            natureOfBusiness
+            organizationRegistrationDate
+            organizationRegistrationNumber
+            registrationCertificate
+            cr12
+            KRAPIN
+            KRAPINCertificate
+            taxComplianceNumber
+            taxComplianceExpiry
+            taxComplianceCertificate
+            agpoCategory
+            agpoExpiryDate
+            agpoCertificate
+            status
+            response
+            createdAt
+            updatedAt
+            owner
+          }
           createdAt
           updatedAt
           owner
@@ -60,8 +239,11 @@ export const onCreateCompany = /* GraphQL */ `
   }
 `;
 export const onUpdateCompany = /* GraphQL */ `
-  subscription OnUpdateCompany($owner: String) {
-    onUpdateCompany(owner: $owner) {
+  subscription OnUpdateCompany(
+    $filter: ModelSubscriptionCompanyFilterInput
+    $owner: String
+  ) {
+    onUpdateCompany(filter: $filter, owner: $owner) {
       id
       organizationName
       organizationType
@@ -79,6 +261,8 @@ export const onUpdateCompany = /* GraphQL */ `
       agpoCategory
       agpoExpiryDate
       agpoCertificate
+      status
+      response
       addressDetails {
         items {
           id
@@ -93,6 +277,30 @@ export const onUpdateCompany = /* GraphQL */ `
           contactEmail
           phoneNumber
           companyID
+          company {
+            id
+            organizationName
+            organizationType
+            ownership
+            natureOfBusiness
+            organizationRegistrationDate
+            organizationRegistrationNumber
+            registrationCertificate
+            cr12
+            KRAPIN
+            KRAPINCertificate
+            taxComplianceNumber
+            taxComplianceExpiry
+            taxComplianceCertificate
+            agpoCategory
+            agpoExpiryDate
+            agpoCertificate
+            status
+            response
+            createdAt
+            updatedAt
+            owner
+          }
           createdAt
           updatedAt
           owner
@@ -102,8 +310,158 @@ export const onUpdateCompany = /* GraphQL */ `
       directors {
         items {
           id
+          directorTitle
+          directorName
+          directorKRAPIN
+          directorEmailAddress
+          directorNationality
+          directorShares
           companyID
-          directorsID
+          company {
+            id
+            organizationName
+            organizationType
+            ownership
+            natureOfBusiness
+            organizationRegistrationDate
+            organizationRegistrationNumber
+            registrationCertificate
+            cr12
+            KRAPIN
+            KRAPINCertificate
+            taxComplianceNumber
+            taxComplianceExpiry
+            taxComplianceCertificate
+            agpoCategory
+            agpoExpiryDate
+            agpoCertificate
+            status
+            response
+            createdAt
+            updatedAt
+            owner
+          }
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
+      clients {
+        items {
+          id
+          clientName
+          contractValue
+          startDate
+          endDate
+          contactPerson
+          contactEmail
+          contactPhoneNumber
+          contractAttachment
+          serviceDescription
+          companyID
+          company {
+            id
+            organizationName
+            organizationType
+            ownership
+            natureOfBusiness
+            organizationRegistrationDate
+            organizationRegistrationNumber
+            registrationCertificate
+            cr12
+            KRAPIN
+            KRAPINCertificate
+            taxComplianceNumber
+            taxComplianceExpiry
+            taxComplianceCertificate
+            agpoCategory
+            agpoExpiryDate
+            agpoCertificate
+            status
+            response
+            createdAt
+            updatedAt
+            owner
+          }
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
+      personnel {
+        items {
+          id
+          personelName
+          role
+          nationalid
+          qualificationAttachment
+          companyID
+          company {
+            id
+            organizationName
+            organizationType
+            ownership
+            natureOfBusiness
+            organizationRegistrationDate
+            organizationRegistrationNumber
+            registrationCertificate
+            cr12
+            KRAPIN
+            KRAPINCertificate
+            taxComplianceNumber
+            taxComplianceExpiry
+            taxComplianceCertificate
+            agpoCategory
+            agpoExpiryDate
+            agpoCertificate
+            status
+            response
+            createdAt
+            updatedAt
+            owner
+          }
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
+      contracts {
+        items {
+          id
+          title
+          type
+          department
+          budget
+          status
+          description
+          companyID
+          company {
+            id
+            organizationName
+            organizationType
+            ownership
+            natureOfBusiness
+            organizationRegistrationDate
+            organizationRegistrationNumber
+            registrationCertificate
+            cr12
+            KRAPIN
+            KRAPINCertificate
+            taxComplianceNumber
+            taxComplianceExpiry
+            taxComplianceCertificate
+            agpoCategory
+            agpoExpiryDate
+            agpoCertificate
+            status
+            response
+            createdAt
+            updatedAt
+            owner
+          }
           createdAt
           updatedAt
           owner
@@ -117,8 +475,11 @@ export const onUpdateCompany = /* GraphQL */ `
   }
 `;
 export const onDeleteCompany = /* GraphQL */ `
-  subscription OnDeleteCompany($owner: String) {
-    onDeleteCompany(owner: $owner) {
+  subscription OnDeleteCompany(
+    $filter: ModelSubscriptionCompanyFilterInput
+    $owner: String
+  ) {
+    onDeleteCompany(filter: $filter, owner: $owner) {
       id
       organizationName
       organizationType
@@ -136,6 +497,8 @@ export const onDeleteCompany = /* GraphQL */ `
       agpoCategory
       agpoExpiryDate
       agpoCertificate
+      status
+      response
       addressDetails {
         items {
           id
@@ -150,6 +513,30 @@ export const onDeleteCompany = /* GraphQL */ `
           contactEmail
           phoneNumber
           companyID
+          company {
+            id
+            organizationName
+            organizationType
+            ownership
+            natureOfBusiness
+            organizationRegistrationDate
+            organizationRegistrationNumber
+            registrationCertificate
+            cr12
+            KRAPIN
+            KRAPINCertificate
+            taxComplianceNumber
+            taxComplianceExpiry
+            taxComplianceCertificate
+            agpoCategory
+            agpoExpiryDate
+            agpoCertificate
+            status
+            response
+            createdAt
+            updatedAt
+            owner
+          }
           createdAt
           updatedAt
           owner
@@ -159,8 +546,158 @@ export const onDeleteCompany = /* GraphQL */ `
       directors {
         items {
           id
+          directorTitle
+          directorName
+          directorKRAPIN
+          directorEmailAddress
+          directorNationality
+          directorShares
           companyID
-          directorsID
+          company {
+            id
+            organizationName
+            organizationType
+            ownership
+            natureOfBusiness
+            organizationRegistrationDate
+            organizationRegistrationNumber
+            registrationCertificate
+            cr12
+            KRAPIN
+            KRAPINCertificate
+            taxComplianceNumber
+            taxComplianceExpiry
+            taxComplianceCertificate
+            agpoCategory
+            agpoExpiryDate
+            agpoCertificate
+            status
+            response
+            createdAt
+            updatedAt
+            owner
+          }
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
+      clients {
+        items {
+          id
+          clientName
+          contractValue
+          startDate
+          endDate
+          contactPerson
+          contactEmail
+          contactPhoneNumber
+          contractAttachment
+          serviceDescription
+          companyID
+          company {
+            id
+            organizationName
+            organizationType
+            ownership
+            natureOfBusiness
+            organizationRegistrationDate
+            organizationRegistrationNumber
+            registrationCertificate
+            cr12
+            KRAPIN
+            KRAPINCertificate
+            taxComplianceNumber
+            taxComplianceExpiry
+            taxComplianceCertificate
+            agpoCategory
+            agpoExpiryDate
+            agpoCertificate
+            status
+            response
+            createdAt
+            updatedAt
+            owner
+          }
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
+      personnel {
+        items {
+          id
+          personelName
+          role
+          nationalid
+          qualificationAttachment
+          companyID
+          company {
+            id
+            organizationName
+            organizationType
+            ownership
+            natureOfBusiness
+            organizationRegistrationDate
+            organizationRegistrationNumber
+            registrationCertificate
+            cr12
+            KRAPIN
+            KRAPINCertificate
+            taxComplianceNumber
+            taxComplianceExpiry
+            taxComplianceCertificate
+            agpoCategory
+            agpoExpiryDate
+            agpoCertificate
+            status
+            response
+            createdAt
+            updatedAt
+            owner
+          }
+          createdAt
+          updatedAt
+          owner
+        }
+        nextToken
+      }
+      contracts {
+        items {
+          id
+          title
+          type
+          department
+          budget
+          status
+          description
+          companyID
+          company {
+            id
+            organizationName
+            organizationType
+            ownership
+            natureOfBusiness
+            organizationRegistrationDate
+            organizationRegistrationNumber
+            registrationCertificate
+            cr12
+            KRAPIN
+            KRAPINCertificate
+            taxComplianceNumber
+            taxComplianceExpiry
+            taxComplianceCertificate
+            agpoCategory
+            agpoExpiryDate
+            agpoCertificate
+            status
+            response
+            createdAt
+            updatedAt
+            owner
+          }
           createdAt
           updatedAt
           owner
@@ -174,8 +711,11 @@ export const onDeleteCompany = /* GraphQL */ `
   }
 `;
 export const onCreateAddressDetails = /* GraphQL */ `
-  subscription OnCreateAddressDetails($owner: String) {
-    onCreateAddressDetails(owner: $owner) {
+  subscription OnCreateAddressDetails(
+    $filter: ModelSubscriptionAddressDetailsFilterInput
+    $owner: String
+  ) {
+    onCreateAddressDetails(filter: $filter, owner: $owner) {
       id
       postalAddress
       city
@@ -206,10 +746,91 @@ export const onCreateAddressDetails = /* GraphQL */ `
         agpoCategory
         agpoExpiryDate
         agpoCertificate
+        status
+        response
         addressDetails {
+          items {
+            id
+            postalAddress
+            city
+            country
+            officeBuilding
+            streetAddress
+            emailAddress
+            title
+            fullName
+            contactEmail
+            phoneNumber
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         directors {
+          items {
+            id
+            directorTitle
+            directorName
+            directorKRAPIN
+            directorEmailAddress
+            directorNationality
+            directorShares
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        clients {
+          items {
+            id
+            clientName
+            contractValue
+            startDate
+            endDate
+            contactPerson
+            contactEmail
+            contactPhoneNumber
+            contractAttachment
+            serviceDescription
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        personnel {
+          items {
+            id
+            personelName
+            role
+            nationalid
+            qualificationAttachment
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        contracts {
+          items {
+            id
+            title
+            type
+            department
+            budget
+            status
+            description
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         createdAt
@@ -223,8 +844,11 @@ export const onCreateAddressDetails = /* GraphQL */ `
   }
 `;
 export const onUpdateAddressDetails = /* GraphQL */ `
-  subscription OnUpdateAddressDetails($owner: String) {
-    onUpdateAddressDetails(owner: $owner) {
+  subscription OnUpdateAddressDetails(
+    $filter: ModelSubscriptionAddressDetailsFilterInput
+    $owner: String
+  ) {
+    onUpdateAddressDetails(filter: $filter, owner: $owner) {
       id
       postalAddress
       city
@@ -255,10 +879,91 @@ export const onUpdateAddressDetails = /* GraphQL */ `
         agpoCategory
         agpoExpiryDate
         agpoCertificate
+        status
+        response
         addressDetails {
+          items {
+            id
+            postalAddress
+            city
+            country
+            officeBuilding
+            streetAddress
+            emailAddress
+            title
+            fullName
+            contactEmail
+            phoneNumber
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         directors {
+          items {
+            id
+            directorTitle
+            directorName
+            directorKRAPIN
+            directorEmailAddress
+            directorNationality
+            directorShares
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        clients {
+          items {
+            id
+            clientName
+            contractValue
+            startDate
+            endDate
+            contactPerson
+            contactEmail
+            contactPhoneNumber
+            contractAttachment
+            serviceDescription
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        personnel {
+          items {
+            id
+            personelName
+            role
+            nationalid
+            qualificationAttachment
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        contracts {
+          items {
+            id
+            title
+            type
+            department
+            budget
+            status
+            description
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         createdAt
@@ -272,8 +977,11 @@ export const onUpdateAddressDetails = /* GraphQL */ `
   }
 `;
 export const onDeleteAddressDetails = /* GraphQL */ `
-  subscription OnDeleteAddressDetails($owner: String) {
-    onDeleteAddressDetails(owner: $owner) {
+  subscription OnDeleteAddressDetails(
+    $filter: ModelSubscriptionAddressDetailsFilterInput
+    $owner: String
+  ) {
+    onDeleteAddressDetails(filter: $filter, owner: $owner) {
       id
       postalAddress
       city
@@ -304,10 +1012,91 @@ export const onDeleteAddressDetails = /* GraphQL */ `
         agpoCategory
         agpoExpiryDate
         agpoCertificate
+        status
+        response
         addressDetails {
+          items {
+            id
+            postalAddress
+            city
+            country
+            officeBuilding
+            streetAddress
+            emailAddress
+            title
+            fullName
+            contactEmail
+            phoneNumber
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         directors {
+          items {
+            id
+            directorTitle
+            directorName
+            directorKRAPIN
+            directorEmailAddress
+            directorNationality
+            directorShares
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        clients {
+          items {
+            id
+            clientName
+            contractValue
+            startDate
+            endDate
+            contactPerson
+            contactEmail
+            contactPhoneNumber
+            contractAttachment
+            serviceDescription
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        personnel {
+          items {
+            id
+            personelName
+            role
+            nationalid
+            qualificationAttachment
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        contracts {
+          items {
+            id
+            title
+            type
+            department
+            budget
+            status
+            description
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         createdAt
@@ -321,8 +1110,11 @@ export const onDeleteAddressDetails = /* GraphQL */ `
   }
 `;
 export const onCreateDirectors = /* GraphQL */ `
-  subscription OnCreateDirectors($owner: String) {
-    onCreateDirectors(owner: $owner) {
+  subscription OnCreateDirectors(
+    $filter: ModelSubscriptionDirectorsFilterInput
+    $owner: String
+  ) {
+    onCreateDirectors(filter: $filter, owner: $owner) {
       id
       directorTitle
       directorName
@@ -330,16 +1122,115 @@ export const onCreateDirectors = /* GraphQL */ `
       directorEmailAddress
       directorNationality
       directorShares
-      companies {
-        items {
-          id
-          companyID
-          directorsID
-          createdAt
-          updatedAt
-          owner
+      companyID
+      company {
+        id
+        organizationName
+        organizationType
+        ownership
+        natureOfBusiness
+        organizationRegistrationDate
+        organizationRegistrationNumber
+        registrationCertificate
+        cr12
+        KRAPIN
+        KRAPINCertificate
+        taxComplianceNumber
+        taxComplianceExpiry
+        taxComplianceCertificate
+        agpoCategory
+        agpoExpiryDate
+        agpoCertificate
+        status
+        response
+        addressDetails {
+          items {
+            id
+            postalAddress
+            city
+            country
+            officeBuilding
+            streetAddress
+            emailAddress
+            title
+            fullName
+            contactEmail
+            phoneNumber
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
         }
-        nextToken
+        directors {
+          items {
+            id
+            directorTitle
+            directorName
+            directorKRAPIN
+            directorEmailAddress
+            directorNationality
+            directorShares
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        clients {
+          items {
+            id
+            clientName
+            contractValue
+            startDate
+            endDate
+            contactPerson
+            contactEmail
+            contactPhoneNumber
+            contractAttachment
+            serviceDescription
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        personnel {
+          items {
+            id
+            personelName
+            role
+            nationalid
+            qualificationAttachment
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        contracts {
+          items {
+            id
+            title
+            type
+            department
+            budget
+            status
+            description
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
       }
       createdAt
       updatedAt
@@ -348,8 +1239,11 @@ export const onCreateDirectors = /* GraphQL */ `
   }
 `;
 export const onUpdateDirectors = /* GraphQL */ `
-  subscription OnUpdateDirectors($owner: String) {
-    onUpdateDirectors(owner: $owner) {
+  subscription OnUpdateDirectors(
+    $filter: ModelSubscriptionDirectorsFilterInput
+    $owner: String
+  ) {
+    onUpdateDirectors(filter: $filter, owner: $owner) {
       id
       directorTitle
       directorName
@@ -357,16 +1251,115 @@ export const onUpdateDirectors = /* GraphQL */ `
       directorEmailAddress
       directorNationality
       directorShares
-      companies {
-        items {
-          id
-          companyID
-          directorsID
-          createdAt
-          updatedAt
-          owner
+      companyID
+      company {
+        id
+        organizationName
+        organizationType
+        ownership
+        natureOfBusiness
+        organizationRegistrationDate
+        organizationRegistrationNumber
+        registrationCertificate
+        cr12
+        KRAPIN
+        KRAPINCertificate
+        taxComplianceNumber
+        taxComplianceExpiry
+        taxComplianceCertificate
+        agpoCategory
+        agpoExpiryDate
+        agpoCertificate
+        status
+        response
+        addressDetails {
+          items {
+            id
+            postalAddress
+            city
+            country
+            officeBuilding
+            streetAddress
+            emailAddress
+            title
+            fullName
+            contactEmail
+            phoneNumber
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
         }
-        nextToken
+        directors {
+          items {
+            id
+            directorTitle
+            directorName
+            directorKRAPIN
+            directorEmailAddress
+            directorNationality
+            directorShares
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        clients {
+          items {
+            id
+            clientName
+            contractValue
+            startDate
+            endDate
+            contactPerson
+            contactEmail
+            contactPhoneNumber
+            contractAttachment
+            serviceDescription
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        personnel {
+          items {
+            id
+            personelName
+            role
+            nationalid
+            qualificationAttachment
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        contracts {
+          items {
+            id
+            title
+            type
+            department
+            budget
+            status
+            description
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
       }
       createdAt
       updatedAt
@@ -375,8 +1368,11 @@ export const onUpdateDirectors = /* GraphQL */ `
   }
 `;
 export const onDeleteDirectors = /* GraphQL */ `
-  subscription OnDeleteDirectors($owner: String) {
-    onDeleteDirectors(owner: $owner) {
+  subscription OnDeleteDirectors(
+    $filter: ModelSubscriptionDirectorsFilterInput
+    $owner: String
+  ) {
+    onDeleteDirectors(filter: $filter, owner: $owner) {
       id
       directorTitle
       directorName
@@ -384,29 +1380,7 @@ export const onDeleteDirectors = /* GraphQL */ `
       directorEmailAddress
       directorNationality
       directorShares
-      companies {
-        items {
-          id
-          companyID
-          directorsID
-          createdAt
-          updatedAt
-          owner
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const onCreateCompanyDirectors = /* GraphQL */ `
-  subscription OnCreateCompanyDirectors($owner: String) {
-    onCreateCompanyDirectors(owner: $owner) {
-      id
       companyID
-      directorsID
       company {
         id
         organizationName
@@ -425,25 +1399,91 @@ export const onCreateCompanyDirectors = /* GraphQL */ `
         agpoCategory
         agpoExpiryDate
         agpoCertificate
+        status
+        response
         addressDetails {
+          items {
+            id
+            postalAddress
+            city
+            country
+            officeBuilding
+            streetAddress
+            emailAddress
+            title
+            fullName
+            contactEmail
+            phoneNumber
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         directors {
+          items {
+            id
+            directorTitle
+            directorName
+            directorKRAPIN
+            directorEmailAddress
+            directorNationality
+            directorShares
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
-        createdAt
-        updatedAt
-        owner
-      }
-      directors {
-        id
-        directorTitle
-        directorName
-        directorKRAPIN
-        directorEmailAddress
-        directorNationality
-        directorShares
-        companies {
+        clients {
+          items {
+            id
+            clientName
+            contractValue
+            startDate
+            endDate
+            contactPerson
+            contactEmail
+            contactPhoneNumber
+            contractAttachment
+            serviceDescription
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        personnel {
+          items {
+            id
+            personelName
+            role
+            nationalid
+            qualificationAttachment
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        contracts {
+          items {
+            id
+            title
+            type
+            department
+            budget
+            status
+            description
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         createdAt
@@ -456,12 +1496,23 @@ export const onCreateCompanyDirectors = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateCompanyDirectors = /* GraphQL */ `
-  subscription OnUpdateCompanyDirectors($owner: String) {
-    onUpdateCompanyDirectors(owner: $owner) {
+export const onCreateClient = /* GraphQL */ `
+  subscription OnCreateClient(
+    $filter: ModelSubscriptionClientFilterInput
+    $owner: String
+  ) {
+    onCreateClient(filter: $filter, owner: $owner) {
       id
+      clientName
+      contractValue
+      startDate
+      endDate
+      contactPerson
+      contactEmail
+      contactPhoneNumber
+      contractAttachment
+      serviceDescription
       companyID
-      directorsID
       company {
         id
         organizationName
@@ -480,25 +1531,91 @@ export const onUpdateCompanyDirectors = /* GraphQL */ `
         agpoCategory
         agpoExpiryDate
         agpoCertificate
+        status
+        response
         addressDetails {
+          items {
+            id
+            postalAddress
+            city
+            country
+            officeBuilding
+            streetAddress
+            emailAddress
+            title
+            fullName
+            contactEmail
+            phoneNumber
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         directors {
+          items {
+            id
+            directorTitle
+            directorName
+            directorKRAPIN
+            directorEmailAddress
+            directorNationality
+            directorShares
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
-        createdAt
-        updatedAt
-        owner
-      }
-      directors {
-        id
-        directorTitle
-        directorName
-        directorKRAPIN
-        directorEmailAddress
-        directorNationality
-        directorShares
-        companies {
+        clients {
+          items {
+            id
+            clientName
+            contractValue
+            startDate
+            endDate
+            contactPerson
+            contactEmail
+            contactPhoneNumber
+            contractAttachment
+            serviceDescription
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        personnel {
+          items {
+            id
+            personelName
+            role
+            nationalid
+            qualificationAttachment
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        contracts {
+          items {
+            id
+            title
+            type
+            department
+            budget
+            status
+            description
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         createdAt
@@ -511,12 +1628,23 @@ export const onUpdateCompanyDirectors = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteCompanyDirectors = /* GraphQL */ `
-  subscription OnDeleteCompanyDirectors($owner: String) {
-    onDeleteCompanyDirectors(owner: $owner) {
+export const onUpdateClient = /* GraphQL */ `
+  subscription OnUpdateClient(
+    $filter: ModelSubscriptionClientFilterInput
+    $owner: String
+  ) {
+    onUpdateClient(filter: $filter, owner: $owner) {
       id
+      clientName
+      contractValue
+      startDate
+      endDate
+      contactPerson
+      contactEmail
+      contactPhoneNumber
+      contractAttachment
+      serviceDescription
       companyID
-      directorsID
       company {
         id
         organizationName
@@ -535,25 +1663,1093 @@ export const onDeleteCompanyDirectors = /* GraphQL */ `
         agpoCategory
         agpoExpiryDate
         agpoCertificate
+        status
+        response
         addressDetails {
+          items {
+            id
+            postalAddress
+            city
+            country
+            officeBuilding
+            streetAddress
+            emailAddress
+            title
+            fullName
+            contactEmail
+            phoneNumber
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         directors {
+          items {
+            id
+            directorTitle
+            directorName
+            directorKRAPIN
+            directorEmailAddress
+            directorNationality
+            directorShares
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        clients {
+          items {
+            id
+            clientName
+            contractValue
+            startDate
+            endDate
+            contactPerson
+            contactEmail
+            contactPhoneNumber
+            contractAttachment
+            serviceDescription
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        personnel {
+          items {
+            id
+            personelName
+            role
+            nationalid
+            qualificationAttachment
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        contracts {
+          items {
+            id
+            title
+            type
+            department
+            budget
+            status
+            description
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         createdAt
         updatedAt
         owner
       }
-      directors {
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onDeleteClient = /* GraphQL */ `
+  subscription OnDeleteClient(
+    $filter: ModelSubscriptionClientFilterInput
+    $owner: String
+  ) {
+    onDeleteClient(filter: $filter, owner: $owner) {
+      id
+      clientName
+      contractValue
+      startDate
+      endDate
+      contactPerson
+      contactEmail
+      contactPhoneNumber
+      contractAttachment
+      serviceDescription
+      companyID
+      company {
         id
-        directorTitle
-        directorName
-        directorKRAPIN
-        directorEmailAddress
-        directorNationality
-        directorShares
-        companies {
+        organizationName
+        organizationType
+        ownership
+        natureOfBusiness
+        organizationRegistrationDate
+        organizationRegistrationNumber
+        registrationCertificate
+        cr12
+        KRAPIN
+        KRAPINCertificate
+        taxComplianceNumber
+        taxComplianceExpiry
+        taxComplianceCertificate
+        agpoCategory
+        agpoExpiryDate
+        agpoCertificate
+        status
+        response
+        addressDetails {
+          items {
+            id
+            postalAddress
+            city
+            country
+            officeBuilding
+            streetAddress
+            emailAddress
+            title
+            fullName
+            contactEmail
+            phoneNumber
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        directors {
+          items {
+            id
+            directorTitle
+            directorName
+            directorKRAPIN
+            directorEmailAddress
+            directorNationality
+            directorShares
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        clients {
+          items {
+            id
+            clientName
+            contractValue
+            startDate
+            endDate
+            contactPerson
+            contactEmail
+            contactPhoneNumber
+            contractAttachment
+            serviceDescription
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        personnel {
+          items {
+            id
+            personelName
+            role
+            nationalid
+            qualificationAttachment
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        contracts {
+          items {
+            id
+            title
+            type
+            department
+            budget
+            status
+            description
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onCreatePersonel = /* GraphQL */ `
+  subscription OnCreatePersonel(
+    $filter: ModelSubscriptionPersonelFilterInput
+    $owner: String
+  ) {
+    onCreatePersonel(filter: $filter, owner: $owner) {
+      id
+      personelName
+      role
+      nationalid
+      qualificationAttachment
+      companyID
+      company {
+        id
+        organizationName
+        organizationType
+        ownership
+        natureOfBusiness
+        organizationRegistrationDate
+        organizationRegistrationNumber
+        registrationCertificate
+        cr12
+        KRAPIN
+        KRAPINCertificate
+        taxComplianceNumber
+        taxComplianceExpiry
+        taxComplianceCertificate
+        agpoCategory
+        agpoExpiryDate
+        agpoCertificate
+        status
+        response
+        addressDetails {
+          items {
+            id
+            postalAddress
+            city
+            country
+            officeBuilding
+            streetAddress
+            emailAddress
+            title
+            fullName
+            contactEmail
+            phoneNumber
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        directors {
+          items {
+            id
+            directorTitle
+            directorName
+            directorKRAPIN
+            directorEmailAddress
+            directorNationality
+            directorShares
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        clients {
+          items {
+            id
+            clientName
+            contractValue
+            startDate
+            endDate
+            contactPerson
+            contactEmail
+            contactPhoneNumber
+            contractAttachment
+            serviceDescription
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        personnel {
+          items {
+            id
+            personelName
+            role
+            nationalid
+            qualificationAttachment
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        contracts {
+          items {
+            id
+            title
+            type
+            department
+            budget
+            status
+            description
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onUpdatePersonel = /* GraphQL */ `
+  subscription OnUpdatePersonel(
+    $filter: ModelSubscriptionPersonelFilterInput
+    $owner: String
+  ) {
+    onUpdatePersonel(filter: $filter, owner: $owner) {
+      id
+      personelName
+      role
+      nationalid
+      qualificationAttachment
+      companyID
+      company {
+        id
+        organizationName
+        organizationType
+        ownership
+        natureOfBusiness
+        organizationRegistrationDate
+        organizationRegistrationNumber
+        registrationCertificate
+        cr12
+        KRAPIN
+        KRAPINCertificate
+        taxComplianceNumber
+        taxComplianceExpiry
+        taxComplianceCertificate
+        agpoCategory
+        agpoExpiryDate
+        agpoCertificate
+        status
+        response
+        addressDetails {
+          items {
+            id
+            postalAddress
+            city
+            country
+            officeBuilding
+            streetAddress
+            emailAddress
+            title
+            fullName
+            contactEmail
+            phoneNumber
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        directors {
+          items {
+            id
+            directorTitle
+            directorName
+            directorKRAPIN
+            directorEmailAddress
+            directorNationality
+            directorShares
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        clients {
+          items {
+            id
+            clientName
+            contractValue
+            startDate
+            endDate
+            contactPerson
+            contactEmail
+            contactPhoneNumber
+            contractAttachment
+            serviceDescription
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        personnel {
+          items {
+            id
+            personelName
+            role
+            nationalid
+            qualificationAttachment
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        contracts {
+          items {
+            id
+            title
+            type
+            department
+            budget
+            status
+            description
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onDeletePersonel = /* GraphQL */ `
+  subscription OnDeletePersonel(
+    $filter: ModelSubscriptionPersonelFilterInput
+    $owner: String
+  ) {
+    onDeletePersonel(filter: $filter, owner: $owner) {
+      id
+      personelName
+      role
+      nationalid
+      qualificationAttachment
+      companyID
+      company {
+        id
+        organizationName
+        organizationType
+        ownership
+        natureOfBusiness
+        organizationRegistrationDate
+        organizationRegistrationNumber
+        registrationCertificate
+        cr12
+        KRAPIN
+        KRAPINCertificate
+        taxComplianceNumber
+        taxComplianceExpiry
+        taxComplianceCertificate
+        agpoCategory
+        agpoExpiryDate
+        agpoCertificate
+        status
+        response
+        addressDetails {
+          items {
+            id
+            postalAddress
+            city
+            country
+            officeBuilding
+            streetAddress
+            emailAddress
+            title
+            fullName
+            contactEmail
+            phoneNumber
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        directors {
+          items {
+            id
+            directorTitle
+            directorName
+            directorKRAPIN
+            directorEmailAddress
+            directorNationality
+            directorShares
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        clients {
+          items {
+            id
+            clientName
+            contractValue
+            startDate
+            endDate
+            contactPerson
+            contactEmail
+            contactPhoneNumber
+            contractAttachment
+            serviceDescription
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        personnel {
+          items {
+            id
+            personelName
+            role
+            nationalid
+            qualificationAttachment
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        contracts {
+          items {
+            id
+            title
+            type
+            department
+            budget
+            status
+            description
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onCreateOpportunity = /* GraphQL */ `
+  subscription OnCreateOpportunity(
+    $filter: ModelSubscriptionOpportunityFilterInput
+    $owner: String
+  ) {
+    onCreateOpportunity(filter: $filter, owner: $owner) {
+      id
+      title
+      type
+      department
+      budget
+      status
+      description
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onUpdateOpportunity = /* GraphQL */ `
+  subscription OnUpdateOpportunity(
+    $filter: ModelSubscriptionOpportunityFilterInput
+    $owner: String
+  ) {
+    onUpdateOpportunity(filter: $filter, owner: $owner) {
+      id
+      title
+      type
+      department
+      budget
+      status
+      description
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onDeleteOpportunity = /* GraphQL */ `
+  subscription OnDeleteOpportunity(
+    $filter: ModelSubscriptionOpportunityFilterInput
+    $owner: String
+  ) {
+    onDeleteOpportunity(filter: $filter, owner: $owner) {
+      id
+      title
+      type
+      department
+      budget
+      status
+      description
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onCreateAction = /* GraphQL */ `
+  subscription OnCreateAction(
+    $filter: ModelSubscriptionActionFilterInput
+    $owner: String
+  ) {
+    onCreateAction(filter: $filter, owner: $owner) {
+      id
+      title
+      type
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onUpdateAction = /* GraphQL */ `
+  subscription OnUpdateAction(
+    $filter: ModelSubscriptionActionFilterInput
+    $owner: String
+  ) {
+    onUpdateAction(filter: $filter, owner: $owner) {
+      id
+      title
+      type
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onDeleteAction = /* GraphQL */ `
+  subscription OnDeleteAction(
+    $filter: ModelSubscriptionActionFilterInput
+    $owner: String
+  ) {
+    onDeleteAction(filter: $filter, owner: $owner) {
+      id
+      title
+      type
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onCreateContract = /* GraphQL */ `
+  subscription OnCreateContract(
+    $filter: ModelSubscriptionContractFilterInput
+    $owner: String
+  ) {
+    onCreateContract(filter: $filter, owner: $owner) {
+      id
+      title
+      type
+      department
+      budget
+      status
+      description
+      companyID
+      company {
+        id
+        organizationName
+        organizationType
+        ownership
+        natureOfBusiness
+        organizationRegistrationDate
+        organizationRegistrationNumber
+        registrationCertificate
+        cr12
+        KRAPIN
+        KRAPINCertificate
+        taxComplianceNumber
+        taxComplianceExpiry
+        taxComplianceCertificate
+        agpoCategory
+        agpoExpiryDate
+        agpoCertificate
+        status
+        response
+        addressDetails {
+          items {
+            id
+            postalAddress
+            city
+            country
+            officeBuilding
+            streetAddress
+            emailAddress
+            title
+            fullName
+            contactEmail
+            phoneNumber
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        directors {
+          items {
+            id
+            directorTitle
+            directorName
+            directorKRAPIN
+            directorEmailAddress
+            directorNationality
+            directorShares
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        clients {
+          items {
+            id
+            clientName
+            contractValue
+            startDate
+            endDate
+            contactPerson
+            contactEmail
+            contactPhoneNumber
+            contractAttachment
+            serviceDescription
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        personnel {
+          items {
+            id
+            personelName
+            role
+            nationalid
+            qualificationAttachment
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        contracts {
+          items {
+            id
+            title
+            type
+            department
+            budget
+            status
+            description
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onUpdateContract = /* GraphQL */ `
+  subscription OnUpdateContract(
+    $filter: ModelSubscriptionContractFilterInput
+    $owner: String
+  ) {
+    onUpdateContract(filter: $filter, owner: $owner) {
+      id
+      title
+      type
+      department
+      budget
+      status
+      description
+      companyID
+      company {
+        id
+        organizationName
+        organizationType
+        ownership
+        natureOfBusiness
+        organizationRegistrationDate
+        organizationRegistrationNumber
+        registrationCertificate
+        cr12
+        KRAPIN
+        KRAPINCertificate
+        taxComplianceNumber
+        taxComplianceExpiry
+        taxComplianceCertificate
+        agpoCategory
+        agpoExpiryDate
+        agpoCertificate
+        status
+        response
+        addressDetails {
+          items {
+            id
+            postalAddress
+            city
+            country
+            officeBuilding
+            streetAddress
+            emailAddress
+            title
+            fullName
+            contactEmail
+            phoneNumber
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        directors {
+          items {
+            id
+            directorTitle
+            directorName
+            directorKRAPIN
+            directorEmailAddress
+            directorNationality
+            directorShares
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        clients {
+          items {
+            id
+            clientName
+            contractValue
+            startDate
+            endDate
+            contactPerson
+            contactEmail
+            contactPhoneNumber
+            contractAttachment
+            serviceDescription
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        personnel {
+          items {
+            id
+            personelName
+            role
+            nationalid
+            qualificationAttachment
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        contracts {
+          items {
+            id
+            title
+            type
+            department
+            budget
+            status
+            description
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onDeleteContract = /* GraphQL */ `
+  subscription OnDeleteContract(
+    $filter: ModelSubscriptionContractFilterInput
+    $owner: String
+  ) {
+    onDeleteContract(filter: $filter, owner: $owner) {
+      id
+      title
+      type
+      department
+      budget
+      status
+      description
+      companyID
+      company {
+        id
+        organizationName
+        organizationType
+        ownership
+        natureOfBusiness
+        organizationRegistrationDate
+        organizationRegistrationNumber
+        registrationCertificate
+        cr12
+        KRAPIN
+        KRAPINCertificate
+        taxComplianceNumber
+        taxComplianceExpiry
+        taxComplianceCertificate
+        agpoCategory
+        agpoExpiryDate
+        agpoCertificate
+        status
+        response
+        addressDetails {
+          items {
+            id
+            postalAddress
+            city
+            country
+            officeBuilding
+            streetAddress
+            emailAddress
+            title
+            fullName
+            contactEmail
+            phoneNumber
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        directors {
+          items {
+            id
+            directorTitle
+            directorName
+            directorKRAPIN
+            directorEmailAddress
+            directorNationality
+            directorShares
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        clients {
+          items {
+            id
+            clientName
+            contractValue
+            startDate
+            endDate
+            contactPerson
+            contactEmail
+            contactPhoneNumber
+            contractAttachment
+            serviceDescription
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        personnel {
+          items {
+            id
+            personelName
+            role
+            nationalid
+            qualificationAttachment
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
+          nextToken
+        }
+        contracts {
+          items {
+            id
+            title
+            type
+            department
+            budget
+            status
+            description
+            companyID
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         createdAt

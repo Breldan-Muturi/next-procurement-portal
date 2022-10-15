@@ -15,6 +15,12 @@
       "auth": {
         "nextprocurementporta07fbca2e": {},
         "true": {}
+      },
+      "api": {
+        "nextportalapi": {}
+      },
+      "storage": {
+        "procurementPortalFiles": {}
       }
     }
   }

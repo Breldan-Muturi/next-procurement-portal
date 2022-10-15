@@ -32,3 +32,11 @@ export interface FileUpload {
   contentType: string;
   file: File;
 }
+
+export interface DashInfo {
+  title: string;
+  linkText: string;
+  link: string;
+  icon: keyof typeof icons;
+  count: number;
+}

@@ -13,6 +13,7 @@ import Sidebar from "../components/sidebar";
 import Box from "@mui/material/Box";
 import { useRouter } from "next/router";
 import Header from "../components/header";
+import { grey } from "@mui/material/colors";
 
 Amplify.configure({ ...awsconfig, ssr: true });
 
@@ -47,6 +48,7 @@ export default function MyApp(props: MyAppProps) {
             {router.pathname !== "/authenticate" && <Sidebar />}
             <Box
               component="main"
+              bgcolor={router.pathname !== "/authenticate" && grey[100]}
               sx={{
                 flexGrow: 1,
                 height: "100vh",
