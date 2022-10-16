@@ -14,6 +14,8 @@ import Box from "@mui/material/Box";
 import { useRouter } from "next/router";
 import Header from "../components/header";
 import { grey } from "@mui/material/colors";
+import Typography from "@mui/material/Typography";
+import Link from "next/link";
 
 Amplify.configure({ ...awsconfig, ssr: true });
 
@@ -57,6 +59,23 @@ export default function MyApp(props: MyAppProps) {
             >
               {router.pathname !== "/authenticate" && <Header />}
               <Component {...pageProps} />
+              {router.pathname !== "/authenticate" && (
+                <Box
+                  display="flex"
+                  mb={2}
+                  pr={3}
+                  alignItems="center"
+                  justifyContent="flex-end"
+                >
+                  <Link href="/">
+                    <Typography>
+                      {
+                        "Get Technical Assistance   |   FAQ   |   User Guide   |   Sitemap   "
+                      }
+                    </Typography>
+                  </Link>
+                </Box>
+              )}
             </Box>
           </Box>
         </ThemeProvider>

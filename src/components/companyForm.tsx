@@ -83,9 +83,9 @@ export default function CompanyForm({ company }: Props) {
     ),
     defaultValues: {
       organizationName: company?.organizationName ?? "",
-      organizationType: company?.organizationType ?? "",
-      ownership: company?.ownership ?? "",
-      natureOfBusiness: company?.natureOfBusiness ?? "",
+      organizationType: company?.organizationType ?? null,
+      ownership: company?.ownership ?? null,
+      natureOfBusiness: company?.natureOfBusiness ?? null,
       organizationRegistrationDate: company?.organizationRegistrationDate ?? "",
       organizationRegistrationNumber:
         company?.organizationRegistrationNumber ?? "",
@@ -96,7 +96,7 @@ export default function CompanyForm({ company }: Props) {
       taxComplianceNumber: company?.taxComplianceNumber ?? "",
       taxComplianceExpiry: company?.taxComplianceExpiry ?? "",
       taxComplianceCertificate: company?.taxComplianceCertificate ?? "",
-      agpoCategory: company?.agpoCategory ?? "",
+      agpoCategory: company?.agpoCategory ?? null,
       agpoExpiryDate: company?.agpoExpiryDate ?? "",
       agpoCertificate: company?.agpoCertificate ?? "",
       postalAddress: company?.addressDetails.items[0]?.postalAddress ?? "",

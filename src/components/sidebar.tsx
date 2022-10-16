@@ -155,7 +155,11 @@ export default function Sidebar() {
                 }}
               />
             </ListItemButton>
-            <ListItemButton sx={Boolean(open) && { pl: 4 }}>
+            <ListItemButton
+              selected={router.pathname === "activeopportunities"}
+              onClick={() => router.push("/activeopportunities")}
+              sx={Boolean(open) && { pl: 4 }}
+            >
               <Tooltip arrow title="Active Opportunities">
                 <ListItemIcon sx={{ color: theme.palette.common.white }}>
                   <FolderOpenIcon />
@@ -171,7 +175,10 @@ export default function Sidebar() {
             </ListItemButton>
           </List>
         </Collapse>
-        <ListItemButton>
+        <ListItemButton
+          selected={router.pathname === "activecontracts"}
+          onClick={() => router.push("/activecontracts")}
+        >
           <Tooltip arrow title="Active Contracts">
             <ListItemIcon sx={{ color: theme.palette.common.white }}>
               <PeopleAltIcon />

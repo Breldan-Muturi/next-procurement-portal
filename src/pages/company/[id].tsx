@@ -1,5 +1,5 @@
 import React from "react";
-import { GetStaticProps, GetStaticPaths } from "next";
+import { GetStaticProps, GetStaticPaths, GetServerSideProps } from "next";
 import { API, withSSRContext } from "aws-amplify";
 import {
   getCompany,
@@ -11,7 +11,6 @@ import {
   GetCompanyQuery,
   ListCompaniesQuery,
   ListOpportunitiesQuery,
-  ModelOpportunityFilterInput,
   Opportunity,
   Status,
   UpdateCompanyInput,
@@ -29,7 +28,6 @@ import DashCard from "../../components/dashCard";
 import ContractsTable from "../../components/contractsTable";
 import { grey } from "@mui/material/colors";
 import OpportunitiesTable from "../../components/opportunitiesTable";
-import useSWR from "swr";
 import Skeleton from "@mui/material/Skeleton";
 import TextField from "@mui/material/TextField";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
@@ -303,32 +301,20 @@ export default function RegisteredCompany({ company, opportunities }: Props) {
   );
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const SSR = withSSRContext();
-  const allCompanies = (await SSR.API.graphql({ query: listCompanies })) as {
-    data: ListCompaniesQuery;
-    errors: any[];
-  };
-  const paths = allCompanies.data.listCompanies.items.map((company) => ({
-    params: { id: company.id },
-  }));
-  return { paths, fallback: true };
-};
-
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getServerSideProps = async ({
+  params: { id },
+}: {
+  params: { id: string };
+}) => {
   const SSR = withSSRContext();
   const companiesQuery = (await SSR.API.graphql({
     query: getCompany,
-    variables: {
-      id: params.id,
-    },
+    variables: { id },
   })) as { data: GetCompanyQuery };
   const company: Company = companiesQuery.data.getCompany;
-
   const companyOpportunities = (await SSR.API.graphql({
     query: listOpportunities,
   })) as { data: ListOpportunitiesQuery };
-
   return {
     props: {
       company,
@@ -336,6 +322,5 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         (opportunity) => company.natureOfBusiness.includes(opportunity.type)
       ),
     },
-    revalidate: 1,
   };
 };
