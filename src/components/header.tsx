@@ -21,6 +21,7 @@ import CustomAvatar from "../custom/CustomAvatar";
 import { useUser } from "../context/AuthContext";
 import theme from "../theme";
 import { useRouter } from "next/router";
+import { Auth } from "aws-amplify";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -87,6 +88,12 @@ export default function Header() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  const signUserOut = async () => {
+    await Auth.signOut();
+    handleMenuClose;
+    router.push(`/authenticate`);
+  };
+
   const menuId = "primary-search-account-menu";
   const renderMenu = (
     <Menu
@@ -106,6 +113,7 @@ export default function Header() {
     >
       <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={signUserOut}>Sign Out</MenuItem>
     </Menu>
   );
 
