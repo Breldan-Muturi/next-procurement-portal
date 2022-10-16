@@ -121,7 +121,7 @@ export default function CompanyForm({ company }: Props) {
 
   const handleReset = () => {
     if (activeStep === 0) {
-      methods.reset((formValues) => ({
+      methods.reset((formValues: any) => ({
         ...formValues,
         organizationName: "",
         organizationType: "",
